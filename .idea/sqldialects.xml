@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/apps/web/drizzle/0000_true_captain_cross.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/apps/web/drizzle/0001_rainy_mathemanic.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/apps/web/drizzle/0002_greedy_rick_jones.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/apps/web/drizzle/0003_lazy_tyrannus.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/apps/web/drizzle/0004_brown_natasha_romanoff.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/apps/web/drizzle/0005_worthless_dazzler.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/apps/web/drizzle/0006_nice_living_tribunal.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/packages/domain/drizzle/0000_true_captain_cross.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/packages/domain/drizzle/0001_rainy_mathemanic.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/packages/domain/drizzle/0002_greedy_rick_jones.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/packages/domain/drizzle/0003_lazy_tyrannus.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/packages/domain/drizzle/0004_brown_natasha_romanoff.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/packages/domain/drizzle/0005_worthless_dazzler.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/packages/domain/drizzle/0006_nice_living_tribunal.sql" dialect="GenericSQL" />
+  </component>
+</project>

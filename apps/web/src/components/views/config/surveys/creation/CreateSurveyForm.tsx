@@ -1,0 +1,85 @@
+import Form from 'next/form'
+import { FormState } from './schema'
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Input,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Textarea,
+} from '@janhoeck/ui'
+import { Category } from '@janhoeck/domain'
+
+export type CreateSurveyFormProps = {
+  categories: Category[]
+  formState: FormState
+  formAction: (payload: FormData) => void
+  pending: boolean
+}
+
+export const CreateSurveyForm = (props: CreateSurveyFormProps) => {
+  const { categories, formState, formAction, pending } = props
+  return (
+    <Form
+      action={formAction}
+      id='create-survey-form'
+    >
+      <FieldGroup>
+        <Field data-invalid={!!formState.errors?.title}>
+          <FieldLabel htmlFor='title'>Titel</FieldLabel>
+          <Input
+            id='title'
+            name='title'
+            disabled={pending}
+            placeholder='Der Titel der Umfrage'
+            autoComplete='off'
+            aria-invalid={!!formState.errors?.title}
+          />
+          {formState.errors?.title && <FieldError>{formState.errors.title[0]}</FieldError>}
+        </Field>
+        <Field data-invalid={!!formState.errors?.description}>
+          <FieldLabel htmlFor='title'>Beschreibung</FieldLabel>
+          <Textarea
+            id='description'
+            name='description'
+            disabled={pending}
+            placeholder='Beschreibung für die Umfrage (Optional)'
+            autoComplete='off'
+            aria-invalid={!!formState.errors?.description}
+          />
+          {formState.errors?.description && <FieldError>{formState.errors.description[0]}</FieldError>}
+        </Field>
+        <Field data-invalid={!!formState.errors?.categoryId}>
+          <FieldLabel htmlFor='title'>Kategorie</FieldLabel>
+          <Select name='categoryId'>
+            <SelectTrigger
+              aria-invalid={!!formState.errors?.categoryId}
+              name='categoryId'
+            >
+              <SelectValue id='categoryId' />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {categories.map((category) => (
+                  <SelectItem
+                    key={category.id}
+                    value={category.id}
+                  >
+                    {category.title}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          {formState.errors?.categoryId && <FieldError>{formState.errors.categoryId[0]}</FieldError>}
+        </Field>
+      </FieldGroup>
+    </Form>
+  )
+}

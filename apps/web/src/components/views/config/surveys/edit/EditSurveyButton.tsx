@@ -1,0 +1,86 @@
+'use client'
+
+import { useDataContext } from '@/components/contexts/data/DataContext'
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from '@janhoeck/ui'
+import { useActionState, useEffect, useState } from 'react'
+import { FaPen } from 'react-icons/fa'
+
+import { updateSurveyAction } from './actions'
+import { EditSurveyForm } from './EditSurveyForm'
+import { FormState } from './schema'
+import { Survey } from '@janhoeck/domain'
+
+export type EditSurveyButtonProps = {
+  survey: Survey
+}
+
+export const EditSurveyButton = (props: EditSurveyButtonProps) => {
+  const { survey } = props
+  const { categories, updateSurvey } = useDataContext()
+
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(updateSurveyAction, {
+    survey: null,
+    success: false,
+    errors: null,
+  })
+
+  const availableCategories = categories.filter((category) => category.type === 'survey')
+
+  useEffect(() => {
+    if (formState.success) {
+      updateSurvey(survey.id, formState.survey)
+      setIsOpen(false)
+    }
+  }, [formState.success])
+
+  return (
+    <Dialog
+      open={isOpen}
+      onOpenChange={setIsOpen}
+    >
+      <DialogTrigger asChild>
+        <Button
+          variant='outline'
+          size='icon'
+        >
+          <FaPen />
+        </Button>
+      </DialogTrigger>
+      <DialogPortal>
+        <DialogOverlay />
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Umfrage bearbeiten</DialogTitle>
+          </DialogHeader>
+          <EditSurveyForm
+            survey={survey}
+            categories={availableCategories}
+            formState={formState}
+            formAction={formAction}
+            pending={pending}
+          />
+          <DialogFooter className='flex justify-end'>
+            <Button
+              type='submit'
+              form='edit-survey-form'
+              disabled={pending}
+            >
+              Aktualisieren
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </DialogPortal>
+    </Dialog>
+  )
+}

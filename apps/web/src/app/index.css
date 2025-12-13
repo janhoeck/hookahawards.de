@@ -1,0 +1,4 @@
+@import 'tailwindcss';
+@import '@janhoeck/ui/globals.css';
+
+@source '../../node_modules/@janhoeck/ui';

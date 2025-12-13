@@ -1,0 +1,13 @@
+{
+  "extends": "@janhoeck/typescript-config/nextjs.json",
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "next.config.ts", ".next/types/**/*.ts"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"],
+      "@/utils/*": ["utils/*"]
+    },
+    "plugins": [{ "name": "next" }]
+  }
+}
