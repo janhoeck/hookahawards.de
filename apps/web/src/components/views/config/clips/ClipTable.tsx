@@ -3,7 +3,6 @@
 import { useDataContext } from '@/components/contexts/data/DataContext'
 import { extractYoutubeId } from '@/utils/extract-youtube-id'
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
-import Image from 'next/image'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
 import { deleteClip } from './actions'
@@ -20,7 +19,6 @@ export const ClipTable = () => {
           <TableHead>Title</TableHead>
           <TableHead>Beschreibung</TableHead>
           <TableHead>Kategorie</TableHead>
-          <TableHead>Link</TableHead>
           <TableHead />
         </TableRow>
       </TableHeader>
@@ -36,18 +34,6 @@ export const ClipTable = () => {
               <TableCell>{clip.title}</TableCell>
               <TableCell className='whitespace-normal'>{shortenText(clip.description ?? '')}</TableCell>
               <TableCell>{category?.title}</TableCell>
-              <TableCell>
-                <div className='relative w-32 aspect-video'>
-                  <Image
-                    fill
-                    loading='lazy'
-                    className='object-cover rounded'
-                    src={thumnailUrl}
-                    alt={clip.title}
-                    sizes='128px'
-                  />
-                </div>
-              </TableCell>
               <TableCell>
                 <div className='flex flex-row space-x-2'>
                   <EditClipButton clip={clip} />
