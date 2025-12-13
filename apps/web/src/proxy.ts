@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -12,8 +12,8 @@ export function proxy(request: NextRequest) {
   }
 
   // Basic Auth Credentials (should be stored in environment variables)
-  const validUsername = process.env.BASIC_AUTH_USERNAME || 'admin'
-  const validPassword = process.env.BASIC_AUTH_PASSWORD || 'password'
+  const validUsername = process.env.BASIC_AUTH_USERNAME! as string
+  const validPassword = process.env.BASIC_AUTH_PASSWORD! as string
 
   // Get Authorization Header
   const authHeader = request.headers.get('authorization')
