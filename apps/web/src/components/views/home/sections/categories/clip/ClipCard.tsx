@@ -39,7 +39,7 @@ export const ClipCard = (props: ClipCardProps) => {
 
   return (
     <Card
-      className='pt-0 overflow-hidden group'
+      className='pt-0 overflow-hidden group cursor-pointer'
       onClick={() => onClickAction(clip)}
     >
       <CardContent className='px-0'>
