@@ -5,13 +5,16 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"],
-      "env": [
-        "BETTER_AUTH_SECRET",
-        "TWITCH_CLIENT_ID",
-        "TWITCH_CLIENT_SECRET",
-        "DATABASE_URL"
-      ]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", ".turbo/**"],
+      "env": ["BETTER_AUTH_SECRET", "TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET", "DATABASE_URL"]
+    },
+    "@janhoeck/ui#build": {
+      "outputs": ["dist/**"],
+      "inputs": ["src/**", "package.json", "vite.config.ts", "tsconfig.json"]
+    },
+    "@janhoeck/domain#build": {
+      "outputs": ["dist/**"],
+      "inputs": ["src/**", "package.json", "tsconfig.json"]
     },
     "test": {
       "dependsOn": ["transit"]

@@ -9,6 +9,9 @@
     },
     "./globals.css": "./dist/globals.css"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build && pnpm run copy:theme",
     "copy:theme": "copyfiles -f src/globals.css dist"
