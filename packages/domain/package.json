@@ -4,7 +4,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "database:generate": "pnpm drizzle-kit generate",
     "database:update": "pnpm drizzle-kit push"
   },
