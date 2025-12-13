@@ -12,12 +12,9 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es'],
     },
-    sourcemap: true,
-    minify: false,
     rollupOptions: {
       external: ['react', 'react/jsx-runtime'],
       output: {
-        preserveModules: true,
         preserveModulesRoot: 'src',
         entryFileNames: '[name].js',
       },
