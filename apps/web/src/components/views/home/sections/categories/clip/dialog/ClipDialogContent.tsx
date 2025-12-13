@@ -1,15 +1,5 @@
 import { NextClipButton } from './buttons/NextClipButton'
-import {
-  Card,
-  CardContent,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-  DesktopOnly,
-  MobileOnly,
-  DialogHeader,
-} from '@janhoeck/ui'
-import { GoInfo } from 'react-icons/go'
+import { DesktopOnly, DialogContent, DialogDescription, DialogHeader, DialogTitle, MobileOnly } from '@janhoeck/ui'
 
 import { ResponsiveYouTubeVideo } from './ResponsiveYouTubeVideo'
 import { PreviousClipButton } from './buttons/PreviousClipButton'
@@ -26,12 +16,12 @@ export const ClipDialogContent = (props: ClipDialogContentProps) => {
   const { clip, category, onNextClick, onPrevClick } = props
 
   return (
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>{category.title}</DialogTitle>
-        <DialogDescription>{clip.title}</DialogDescription>
+    <DialogContent className='h-screen max-w-screen! block rounded-none bg-transparent'>
+      <DialogHeader className='mb-12'>
+        <DialogTitle>{clip.title}</DialogTitle>
+        <DialogDescription>{clip.description}</DialogDescription>
       </DialogHeader>
-      <div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-4 w-full max-w-5xl'>
+      <div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-4 w-full max-w-5xl mx-auto'>
         <DesktopOnly>
           <PreviousClipButton onClick={onPrevClick} />
         </DesktopOnly>
@@ -46,16 +36,6 @@ export const ClipDialogContent = (props: ClipDialogContentProps) => {
           </div>
         </MobileOnly>
       </div>
-      {clip.description && (
-        <Card className='max-w-3xl glass-card'>
-          <CardContent className='inline-flex flex-row space-x-4'>
-            <div className='flex-shrink-0 mt-0.5'>
-              <GoInfo size={20} />
-            </div>
-            <DialogDescription>{clip.description}</DialogDescription>
-          </CardContent>
-        </Card>
-      )}
     </DialogContent>
   )
 }

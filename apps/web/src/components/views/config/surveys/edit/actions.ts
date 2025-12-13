@@ -30,6 +30,7 @@ export async function updateSurveyAction(_prevState: FormState, formData: FormDa
       errors: null,
     }
   } catch (error) {
+    console.error(error)
     return {
       survey: null,
       success: false,

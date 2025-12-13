@@ -19,7 +19,13 @@ import { updateCategoryAction } from './actions'
 import { EditCategoryForm } from './EditCategoryForm'
 import { Category } from '@janhoeck/domain'
 
-export type EditCategoryButtonProps = {
+const INITIAL_FORM_STATE: FormState = {
+  category: null,
+  success: false,
+  errors: null,
+}
+
+type EditCategoryButtonProps = {
   category: Category
 }
 
@@ -28,18 +34,16 @@ export const EditCategoryButton = (props: EditCategoryButtonProps) => {
   const { updateCategory } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [formState, formAction, pending] = useActionState<FormState, FormData>(updateCategoryAction, {
-    category: null,
-    success: false,
-    errors: null,
-  })
+  const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(updateCategoryAction, initialFormState)
 
   useEffect(() => {
     if (formState.success) {
       updateCategory(category.id, formState.category)
+      setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState.success])
+  }, [formState])
 
   return (
     <Dialog

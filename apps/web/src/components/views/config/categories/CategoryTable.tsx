@@ -6,6 +6,7 @@ import { FaRegTrashAlt } from 'react-icons/fa'
 
 import { deleteCategoryAction } from './actions'
 import { EditCategoryButton } from './edit/EditCategoryButton'
+import { shortenText } from '@/utils/shorten-text'
 
 export const CategoryTable = () => {
   const { categories, removeCategory } = useDataContext()
@@ -24,7 +25,7 @@ export const CategoryTable = () => {
         {categories.map((category) => (
           <TableRow key={category.id}>
             <TableCell>{category.title}</TableCell>
-            <TableCell>{category.description}</TableCell>
+            <TableCell className='whitespace-normal'>{shortenText(category.description ?? '')}</TableCell>
             <TableCell>{category.type === 'clip' ? 'Clip' : 'Umfrage'}</TableCell>
             <TableCell>
               <div className='flex flex-row space-x-2'>

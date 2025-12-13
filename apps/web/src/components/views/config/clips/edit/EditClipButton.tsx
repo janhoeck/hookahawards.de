@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogContent,
   DialogFooter,
+  DialogHeader,
   DialogOverlay,
   DialogPortal,
   DialogTitle,
@@ -15,12 +16,17 @@ import { useActionState, useEffect, useState } from 'react'
 import { FaPen } from 'react-icons/fa'
 
 import { updateClipAction } from './actions'
-import { DialogHeader } from '@janhoeck/ui'
 import { EditClipForm } from './EditClipForm'
 import { FormState } from './schema'
 import { Clip } from '@janhoeck/domain'
 
-export type EditClipButtonProps = {
+const INITIAL_FORM_STATE: FormState = {
+  clip: null,
+  success: false,
+  errors: null,
+}
+
+type EditClipButtonProps = {
   clip: Clip
 }
 
@@ -29,20 +35,18 @@ export const EditClipButton = (props: EditClipButtonProps) => {
   const { categories, updateClip } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [formState, formAction, pending] = useActionState<FormState, FormData>(updateClipAction, {
-    clip: null,
-    success: false,
-    errors: null,
-  })
+  const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(updateClipAction, initialFormState)
 
   const availableCategories = categories.filter((category) => category.type === 'clip')
 
   useEffect(() => {
     if (formState.success) {
       updateClip(clip.id, formState.clip)
+      setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState.success])
+  }, [formState])
 
   return (
     <Dialog

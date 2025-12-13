@@ -32,6 +32,12 @@ export const EditClipForm = (props: EditClipFormProps) => {
       id='edit-clip-form'
     >
       <FieldGroup>
+        <Input
+          type='hidden'
+          name='id'
+          id='id'
+          value={clip.id}
+        />
         <Field data-invalid={!!formState.errors?.title}>
           <FieldLabel htmlFor='title'>Titel</FieldLabel>
           <Input

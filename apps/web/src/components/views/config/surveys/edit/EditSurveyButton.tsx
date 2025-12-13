@@ -20,7 +20,13 @@ import { EditSurveyForm } from './EditSurveyForm'
 import { FormState } from './schema'
 import { Survey } from '@janhoeck/domain'
 
-export type EditSurveyButtonProps = {
+const INITIAL_FORM_STATE: FormState = {
+  survey: null,
+  success: false,
+  errors: null,
+}
+
+type EditSurveyButtonProps = {
   survey: Survey
 }
 
@@ -29,20 +35,18 @@ export const EditSurveyButton = (props: EditSurveyButtonProps) => {
   const { categories, updateSurvey } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [formState, formAction, pending] = useActionState<FormState, FormData>(updateSurveyAction, {
-    survey: null,
-    success: false,
-    errors: null,
-  })
+  const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(updateSurveyAction, initialFormState)
 
   const availableCategories = categories.filter((category) => category.type === 'survey')
 
   useEffect(() => {
     if (formState.success) {
       updateSurvey(survey.id, formState.survey)
+      setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState.success])
+  }, [formState])
 
   return (
     <Dialog

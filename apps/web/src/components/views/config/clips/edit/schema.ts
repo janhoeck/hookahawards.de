@@ -5,7 +5,6 @@ const youtubeUrlRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\
 
 export const schema = z.object({
   id: z.uuid(),
-  createdAt: z.date(),
   title: z.string().min(1, {
     error: 'Du musst einen Titel angeben',
   }),

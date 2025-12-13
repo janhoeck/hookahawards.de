@@ -19,15 +19,18 @@ import { createSurveyAction } from './actions'
 import { FormState } from './schema'
 import { CreateSurveyForm } from './CreateSurveyForm'
 
+const INITIAL_FORM_STATE: FormState = {
+  survey: null,
+  success: false,
+  errors: null,
+}
+
 export const CreateSurveyButton = () => {
   const { categories, addSurvey } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [formState, formAction, pending] = useActionState<FormState, FormData>(createSurveyAction, {
-    survey: null,
-    success: false,
-    errors: null,
-  })
+  const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(createSurveyAction, initialFormState)
 
   const availableCategories = categories.filter((category) => category.type === 'survey')
   const hasSurveyCategories = availableCategories.length !== 0
@@ -35,9 +38,10 @@ export const CreateSurveyButton = () => {
   useEffect(() => {
     if (formState.success) {
       addSurvey(formState.survey)
+      setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState.success])
+  }, [formState])
 
   return (
     <Dialog

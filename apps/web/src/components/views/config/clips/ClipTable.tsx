@@ -8,6 +8,7 @@ import { FaRegTrashAlt } from 'react-icons/fa'
 
 import { deleteClip } from './actions'
 import { EditClipButton } from './edit/EditClipButton'
+import { shortenText } from '@/utils/shorten-text'
 
 export const ClipTable = () => {
   const { clips, categories, removeClip } = useDataContext()
@@ -33,7 +34,7 @@ export const ClipTable = () => {
           return (
             <TableRow key={clip.id}>
               <TableCell>{clip.title}</TableCell>
-              <TableCell>{clip.description}</TableCell>
+              <TableCell className='whitespace-normal'>{shortenText(clip.description ?? '')}</TableCell>
               <TableCell>{category?.title}</TableCell>
               <TableCell>
                 <div className='relative w-32 aspect-video'>

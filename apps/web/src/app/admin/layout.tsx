@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import { DataContextProvider } from '@/components/contexts/data/DataContextProvider'
 import React from 'react'
 import { categoryRepository, clipRepository, surveyRepository, voteRepository } from '@/lib/db/db'

@@ -32,6 +32,12 @@ export const EditSurveyForm = (props: EditSurveyFormProps) => {
       id='edit-survey-form'
     >
       <FieldGroup>
+        <Input
+          type='hidden'
+          name='id'
+          id='id'
+          value={survey.id}
+        />
         <Field data-invalid={!!formState.errors?.title}>
           <FieldLabel htmlFor='title'>Titel</FieldLabel>
           <Input

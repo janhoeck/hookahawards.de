@@ -21,6 +21,12 @@ export const EditCategoryForm = (props: EditCategoryFormProps) => {
       id='edit-category-form'
     >
       <FieldGroup>
+        <Input
+          type='hidden'
+          name='id'
+          id='id'
+          value={category.id}
+        />
         <Field data-invalid={!!formState.errors?.title}>
           <FieldLabel htmlFor='title'>Titel</FieldLabel>
           <Input

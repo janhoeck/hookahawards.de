@@ -6,6 +6,7 @@ import { FaRegTrashAlt } from 'react-icons/fa'
 
 import { deleteSurveyAction } from './actions'
 import { EditSurveyButton } from './edit/EditSurveyButton'
+import { shortenText } from '@/utils/shorten-text'
 
 export const SurveyTable = () => {
   const { surveys, categories, removeSurvey } = useDataContext()
@@ -26,7 +27,7 @@ export const SurveyTable = () => {
           return (
             <TableRow key={survey.id}>
               <TableCell>{survey.title}</TableCell>
-              <TableCell>{survey.description}</TableCell>
+              <TableCell className='whitespace-normal'>{shortenText(survey.description ?? '')}</TableCell>
               <TableCell>{category?.title}</TableCell>
               <TableCell>
                 <div className='flex flex-row space-x-2'>

@@ -30,6 +30,7 @@ export async function updateClipAction(_prevState: FormState, formData: FormData
       errors: null,
     }
   } catch (error) {
+    console.error(error)
     return {
       clip: null,
       success: false,

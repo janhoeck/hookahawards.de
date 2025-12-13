@@ -30,6 +30,7 @@ export async function updateCategoryAction(_prevState: FormState, formData: Form
       errors: null,
     }
   } catch (error) {
+    console.error(error)
     return {
       category: null,
       success: false,

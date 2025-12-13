@@ -18,22 +18,26 @@ import { CreateCategoryForm } from './CreateCategoryForm'
 import { FormState } from './schema'
 import { createCategoryAction } from './actions'
 
+const INITIAL_FORM_STATE: FormState = {
+  category: null,
+  success: false,
+  errors: null,
+}
+
 export const CreateCategoryButton = () => {
   const { addCategory } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [formState, formAction, pending] = useActionState<FormState, FormData>(createCategoryAction, {
-    category: null,
-    success: false,
-    errors: null,
-  })
+  const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(createCategoryAction, initialFormState)
 
   useEffect(() => {
     if (formState.success) {
       addCategory(formState.category)
+      setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState.success])
+  }, [formState])
 
   return (
     <Dialog

@@ -19,15 +19,18 @@ import { createClipAction } from './actions'
 import { FormState } from './schema'
 import { CreateClipForm } from './CreateClipForm'
 
+const INITIAL_FORM_STATE: FormState = {
+  clip: null,
+  success: false,
+  errors: null,
+}
+
 export const CreateClipButton = () => {
   const { categories, addClip } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [formState, formAction, pending] = useActionState<FormState, FormData>(createClipAction, {
-    clip: null,
-    success: false,
-    errors: null,
-  })
+  const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(createClipAction, initialFormState)
 
   const availableCategories = categories.filter((category) => category.type === 'clip')
   const hasClipCategories = availableCategories.length !== 0
@@ -35,9 +38,10 @@ export const CreateClipButton = () => {
   useEffect(() => {
     if (formState.success) {
       addClip(formState.clip)
+      setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState.success])
+  }, [formState])
 
   return (
     <Dialog
