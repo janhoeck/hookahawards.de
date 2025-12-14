@@ -1,12 +1,12 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
-import { deleteClip } from './actions'
+import { deleteClipAction } from './actions'
 import { EditClipButton } from './edit/EditClipButton'
 import { shortenText } from '@/utils/shorten-text'
-import { Trash } from 'lucide-react'
+import { DeleteButtonWithConfirm } from '../components/DeleteButtonWithConfirm'
 
 export const ClipTable = () => {
   const { clips, categories, removeClip } = useDataContext()
@@ -33,16 +33,13 @@ export const ClipTable = () => {
               <TableCell>
                 <div className='flex flex-row space-x-2'>
                   <EditClipButton clip={clip} />
-                  <Button
-                    variant='outline'
-                    size='icon'
-                    onClick={async () => {
-                      await deleteClip(clip)
+                  <DeleteButtonWithConfirm
+                    description={`Bist du sicher, dass du den Clip "${clip.title}" wirklich löschen?`}
+                    onConfirm={async () => {
+                      await deleteClipAction(clip)
                       removeClip(clip.id)
                     }}
-                  >
-                    <Trash />
-                  </Button>
+                  />
                 </div>
               </TableCell>
             </TableRow>

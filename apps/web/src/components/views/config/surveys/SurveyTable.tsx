@@ -1,12 +1,12 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Button, Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
 
 import { deleteSurveyAction } from './actions'
 import { EditSurveyButton } from './edit/EditSurveyButton'
 import { shortenText } from '@/utils/shorten-text'
-import { Trash } from 'lucide-react'
+import { DeleteButtonWithConfirm } from '../components/DeleteButtonWithConfirm'
 
 export const SurveyTable = () => {
   const { surveys, categories, removeSurvey } = useDataContext()
@@ -32,16 +32,13 @@ export const SurveyTable = () => {
               <TableCell>
                 <div className='flex flex-row space-x-2'>
                   <EditSurveyButton survey={survey} />
-                  <Button
-                    variant='outline'
-                    size='icon'
-                    onClick={async () => {
+                  <DeleteButtonWithConfirm
+                    description={`Bist du sicher, dass du die Umfragen Option "${survey.title}" wirklich löschen?`}
+                    onConfirm={async () => {
                       await deleteSurveyAction(survey)
                       removeSurvey(survey.id)
                     }}
-                  >
-                    <Trash />
-                  </Button>
+                  />
                 </div>
               </TableCell>
             </TableRow>
