@@ -15,18 +15,18 @@ export const CategoryTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Title</TableHead>
-          <TableHead>Beschreibung</TableHead>
+          <TableHead className='w-[250px]'>Title</TableHead>
           <TableHead>Typ</TableHead>
+          <TableHead>Beschreibung</TableHead>
           <TableHead className='w-[80px]' />
         </TableRow>
       </TableHeader>
       <TableBody>
         {categories.map((category) => (
           <TableRow key={category.id}>
-            <TableCell>{category.title}</TableCell>
-            <TableCell className='whitespace-normal'>{shortenText(category.description ?? '')}</TableCell>
+            <TableCell className='w-[250px]'>{category.title}</TableCell>
             <TableCell>{category.type === 'clip' ? 'Clip' : 'Umfrage'}</TableCell>
+            <TableCell className='whitespace-normal'>{shortenText(category.description ?? '')}</TableCell>
             <TableCell>
               <div className='flex flex-row space-x-2'>
                 <EditCategoryButton category={category} />

@@ -3,7 +3,7 @@
 import { useDataContext } from '@/components/contexts/data/DataContext'
 
 import { mostVotesForCategory } from './utils'
-import { Table, TableBody, TableHeader, TableRow, TableHead, TableCell, H3 } from '@janhoeck/ui'
+import { H3, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 export const MostVotedSection = () => {
   const { categories, clips, surveys, votes } = useDataContext()
@@ -16,7 +16,7 @@ export const MostVotedSection = () => {
           <TableRow>
             <TableHead>Kategorie</TableHead>
             <TableHead>Clip / Umfrage</TableHead>
-            <TableHead>Votes</TableHead>
+            <TableHead className='text-center'>Votes</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -33,7 +33,7 @@ export const MostVotedSection = () => {
                     ))}
                   </div>
                 </TableCell>
-                <TableCell>{amount ?? '--'}</TableCell>
+                <TableCell className='text-center'>{amount ?? '--'}</TableCell>
               </TableRow>
             )
           })}

@@ -10,9 +10,9 @@ export const ConfigView = () => {
     <div className='container mx-auto max-w-6xl'>
       <Headline>Konfiguration</Headline>
       <CategoriesConfigSection />
-      <Separator className='my-8' />
+      <Separator className='my-16' />
       <ClipsConfigSection />
-      <Separator className='my-8' />
+      <Separator className='my-16' />
       <SurveysConfigSection />
     </div>
   )

@@ -15,9 +15,9 @@ export const ClipTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Title</TableHead>
-          <TableHead>Beschreibung</TableHead>
+          <TableHead className='w-[250px]'>Title</TableHead>
           <TableHead>Kategorie</TableHead>
+          <TableHead>Beschreibung</TableHead>
           <TableHead className='w-[80px]' />
         </TableRow>
       </TableHeader>
@@ -27,9 +27,9 @@ export const ClipTable = () => {
 
           return (
             <TableRow key={clip.id}>
-              <TableCell>{clip.title}</TableCell>
-              <TableCell className='whitespace-normal'>{shortenText(clip.description ?? '')}</TableCell>
+              <TableCell className='w-[250px]'>{clip.title}</TableCell>
               <TableCell>{category?.title}</TableCell>
+              <TableCell className='whitespace-normal'>{shortenText(clip.description ?? '')}</TableCell>
               <TableCell>
                 <div className='flex flex-row space-x-2'>
                   <EditClipButton clip={clip} />

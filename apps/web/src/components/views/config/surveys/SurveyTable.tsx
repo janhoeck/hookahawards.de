@@ -15,9 +15,9 @@ export const SurveyTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableCell>Title</TableCell>
-          <TableCell>Beschreibung</TableCell>
+          <TableCell className='w-[250px]'>Title</TableCell>
           <TableCell>Kategorie</TableCell>
+          <TableCell>Beschreibung</TableCell>
           <TableCell className='w-[80px]' />
         </TableRow>
       </TableHeader>
@@ -26,9 +26,9 @@ export const SurveyTable = () => {
           const category = categories.find((category) => category.id === survey.categoryId)
           return (
             <TableRow key={survey.id}>
-              <TableCell>{survey.title}</TableCell>
-              <TableCell className='whitespace-normal'>{shortenText(survey.description ?? '')}</TableCell>
+              <TableCell className='w-[250px]'>{survey.title}</TableCell>
               <TableCell>{category?.title}</TableCell>
+              <TableCell className='whitespace-normal'>{shortenText(survey.description ?? '')}</TableCell>
               <TableCell>
                 <div className='flex flex-row space-x-2'>
                   <EditSurveyButton survey={survey} />
