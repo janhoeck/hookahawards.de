@@ -13,11 +13,11 @@ import {
   DialogTrigger,
 } from '@janhoeck/ui'
 import { useActionState, useEffect, useState } from 'react'
-import { FaPen } from 'react-icons/fa'
 import { FormState } from './schema'
 import { updateCategoryAction } from './actions'
 import { EditCategoryForm } from './EditCategoryForm'
 import { Category } from '@janhoeck/domain'
+import { PenLine } from 'lucide-react'
 
 const INITIAL_FORM_STATE: FormState = {
   category: null,
@@ -55,7 +55,7 @@ export const EditCategoryButton = (props: EditCategoryButtonProps) => {
           variant='outline'
           size='icon'
         >
-          <FaPen />
+          <PenLine />
         </Button>
       </DialogTrigger>
       <DialogPortal>

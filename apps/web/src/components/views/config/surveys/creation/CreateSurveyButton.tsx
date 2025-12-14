@@ -13,11 +13,11 @@ import {
   DialogTrigger,
 } from '@janhoeck/ui'
 import { useActionState, useEffect, useState } from 'react'
-import { FaPlus } from 'react-icons/fa'
 
 import { createSurveyAction } from './actions'
 import { FormState } from './schema'
 import { CreateSurveyForm } from './CreateSurveyForm'
+import { Plus } from 'lucide-react'
 
 const INITIAL_FORM_STATE: FormState = {
   survey: null,
@@ -50,7 +50,7 @@ export const CreateSurveyButton = () => {
     >
       <DialogTrigger asChild>
         <Button disabled={!hasSurveyCategories}>
-          <FaPlus />
+          <Plus />
           Erstellen
         </Button>
       </DialogTrigger>

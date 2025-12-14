@@ -14,7 +14,7 @@ import {
   useIsMounted,
 } from '@janhoeck/ui'
 import Image from 'next/image'
-import { FaCheck } from 'react-icons/fa6'
+import { Check } from 'lucide-react'
 
 import { useVotesContext } from '../context/VotesContext'
 import { VoteButton } from '../VoteButton'
@@ -69,7 +69,7 @@ export const ClipCard = (props: ClipCardProps) => {
           label={(voted) =>
             voted ? (
               <>
-                <FaCheck />
+                <Check />
                 Ausgewählt
               </>
             ) : (

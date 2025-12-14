@@ -1,6 +1,6 @@
 import { SocialButton } from '@/components/shared/Footer/SocialButton'
 import Link from 'next/link'
-import { FaDiscord, FaInstagram, FaTwitch, FaYoutube } from 'react-icons/fa'
+import { SiDiscord, SiInstagram, SiTwitch, SiYoutube } from '@icons-pack/react-simple-icons'
 
 export const Footer = () => {
   return (
@@ -8,19 +8,19 @@ export const Footer = () => {
       <div className='flex flex-row space-x-4 mb-4'>
         <SocialButton
           href='https://www.instagram.com/aykut_hookah/'
-          icon={FaInstagram}
+          icon={SiInstagram}
         />
         <SocialButton
           href='https://discord.gg/rwuv2FVD'
-          icon={FaDiscord}
+          icon={SiDiscord}
         />
         <SocialButton
           href='https://www.twitch.tv/aykut_hookah'
-          icon={FaTwitch}
+          icon={SiTwitch}
         />
         <SocialButton
           href='https://www.youtube.com/@Aykut_Hookah'
-          icon={FaYoutube}
+          icon={SiYoutube}
         />
       </div>
       <div className='text-muted-foreground text-center space-y-2'>

@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from '@janhoeck/ui'
 import { useActionState, useEffect, useState } from 'react'
-import { FaPen } from 'react-icons/fa'
+import { PenLine } from 'lucide-react'
 
 import { updateSurveyAction } from './actions'
 import { EditSurveyForm } from './EditSurveyForm'
@@ -58,7 +58,7 @@ export const EditSurveyButton = (props: EditSurveyButtonProps) => {
           variant='outline'
           size='icon'
         >
-          <FaPen />
+          <PenLine />
         </Button>
       </DialogTrigger>
       <DialogPortal>

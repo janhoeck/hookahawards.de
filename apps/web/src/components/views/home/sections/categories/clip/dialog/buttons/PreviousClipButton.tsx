@@ -1,5 +1,5 @@
 import { Button } from '@janhoeck/ui'
-import { GoChevronLeft } from 'react-icons/go'
+import { ChevronLeft } from 'lucide-react'
 
 type PreviousClipButtonProps = {
   onClick?: () => void
@@ -11,9 +11,10 @@ export const PreviousClipButton = (props: PreviousClipButtonProps) => {
     <Button
       disabled={typeof onClick !== 'function'}
       variant='default'
+      size='icon'
       onClick={onClick}
     >
-      <GoChevronLeft size={20} />
+      <ChevronLeft />
     </Button>
   )
 }

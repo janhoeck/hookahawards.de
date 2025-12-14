@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from '@janhoeck/ui'
 import { useActionState, useEffect, useState } from 'react'
-import { FaPlus } from 'react-icons/fa'
+import { Plus } from 'lucide-react'
 import { CreateCategoryForm } from './CreateCategoryForm'
 import { FormState } from './schema'
 import { createCategoryAction } from './actions'
@@ -46,7 +46,7 @@ export const CreateCategoryButton = () => {
     >
       <DialogTrigger asChild>
         <Button>
-          <FaPlus size={16} />
+          <Plus />
           Erstellen
         </Button>
       </DialogTrigger>

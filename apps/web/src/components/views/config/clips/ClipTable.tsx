@@ -1,13 +1,12 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { extractYoutubeId } from '@/utils/extract-youtube-id'
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
-import { FaRegTrashAlt } from 'react-icons/fa'
 
 import { deleteClip } from './actions'
 import { EditClipButton } from './edit/EditClipButton'
 import { shortenText } from '@/utils/shorten-text'
+import { Trash } from 'lucide-react'
 
 export const ClipTable = () => {
   const { clips, categories, removeClip } = useDataContext()
@@ -19,15 +18,12 @@ export const ClipTable = () => {
           <TableHead>Title</TableHead>
           <TableHead>Beschreibung</TableHead>
           <TableHead>Kategorie</TableHead>
-          <TableHead />
+          <TableHead className='w-[80px]' />
         </TableRow>
       </TableHeader>
       <TableBody>
         {clips.map((clip) => {
           const category = categories.find((category) => category.id === clip.categoryId)
-
-          const clipYouTubeId = extractYoutubeId(clip.link)
-          const thumnailUrl = `https://i.ytimg.com/vi/${clipYouTubeId}/0.jpg`
 
           return (
             <TableRow key={clip.id}>
@@ -45,7 +41,7 @@ export const ClipTable = () => {
                       removeClip(clip.id)
                     }}
                   >
-                    <FaRegTrashAlt />
+                    <Trash />
                   </Button>
                 </div>
               </TableCell>

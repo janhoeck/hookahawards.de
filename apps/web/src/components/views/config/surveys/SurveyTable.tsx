@@ -2,11 +2,11 @@
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
 import { Button, Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
-import { FaRegTrashAlt } from 'react-icons/fa'
 
 import { deleteSurveyAction } from './actions'
 import { EditSurveyButton } from './edit/EditSurveyButton'
 import { shortenText } from '@/utils/shorten-text'
+import { Trash } from 'lucide-react'
 
 export const SurveyTable = () => {
   const { surveys, categories, removeSurvey } = useDataContext()
@@ -18,7 +18,7 @@ export const SurveyTable = () => {
           <TableCell>Title</TableCell>
           <TableCell>Beschreibung</TableCell>
           <TableCell>Kategorie</TableCell>
-          <TableCell />
+          <TableCell className='w-[80px]' />
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -40,7 +40,7 @@ export const SurveyTable = () => {
                       removeSurvey(survey.id)
                     }}
                   >
-                    <FaRegTrashAlt />
+                    <Trash />
                   </Button>
                 </div>
               </TableCell>

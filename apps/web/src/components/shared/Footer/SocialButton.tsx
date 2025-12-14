@@ -1,6 +1,6 @@
 import { Button } from '@janhoeck/ui'
 import Link from 'next/link'
-import { IconType } from 'react-icons'
+import { IconType } from '@icons-pack/react-simple-icons'
 
 export type SocialButtonProps = {
   href: string
@@ -19,7 +19,7 @@ export const SocialButton = (props: SocialButtonProps) => {
         href={href}
         target='_blank'
       >
-        <Icon size={20} />
+        <Icon />
       </Link>
     </Button>
   )

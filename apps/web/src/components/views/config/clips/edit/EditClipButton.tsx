@@ -13,12 +13,12 @@ import {
   DialogTrigger,
 } from '@janhoeck/ui'
 import { useActionState, useEffect, useState } from 'react'
-import { FaPen } from 'react-icons/fa'
 
 import { updateClipAction } from './actions'
 import { EditClipForm } from './EditClipForm'
 import { FormState } from './schema'
 import { Clip } from '@janhoeck/domain'
+import { PenLine } from 'lucide-react'
 
 const INITIAL_FORM_STATE: FormState = {
   clip: null,
@@ -58,7 +58,7 @@ export const EditClipButton = (props: EditClipButtonProps) => {
           variant='outline'
           size='icon'
         >
-          <FaPen />
+          <PenLine />
         </Button>
       </DialogTrigger>
       <DialogPortal>

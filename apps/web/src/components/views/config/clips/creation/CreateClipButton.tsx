@@ -13,11 +13,11 @@ import {
   DialogTrigger,
 } from '@janhoeck/ui'
 import { useActionState, useEffect, useState } from 'react'
-import { FaPlus } from 'react-icons/fa'
 
 import { createClipAction } from './actions'
 import { FormState } from './schema'
 import { CreateClipForm } from './CreateClipForm'
+import { Plus } from 'lucide-react'
 
 const INITIAL_FORM_STATE: FormState = {
   clip: null,
@@ -50,7 +50,7 @@ export const CreateClipButton = () => {
     >
       <DialogTrigger asChild>
         <Button disabled={!hasClipCategories}>
-          <FaPlus size={16} />
+          <Plus />
           Erstellen
         </Button>
       </DialogTrigger>

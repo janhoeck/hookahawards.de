@@ -3,7 +3,7 @@
 import { signIn, useSession } from '@/lib/auth-client'
 import { Button } from '@janhoeck/ui'
 import Image from 'next/image'
-import { FaTwitch } from 'react-icons/fa'
+import { SiTwitch } from '@icons-pack/react-simple-icons'
 
 export const TwitchAccountButton = () => {
   const { data } = useSession()
@@ -45,7 +45,7 @@ export const TwitchAccountButton = () => {
         })
       }
     >
-      <FaTwitch size={20} />
+      <SiTwitch />
       Mit Twitch anmelden
     </Button>
   )

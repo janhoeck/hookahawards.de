@@ -2,7 +2,7 @@
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
 import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
-import { FaRegTrashAlt } from 'react-icons/fa'
+import { Trash } from 'lucide-react'
 
 import { deleteCategoryAction } from './actions'
 import { EditCategoryButton } from './edit/EditCategoryButton'
@@ -18,7 +18,7 @@ export const CategoryTable = () => {
           <TableHead>Title</TableHead>
           <TableHead>Beschreibung</TableHead>
           <TableHead>Typ</TableHead>
-          <TableHead />
+          <TableHead className='w-[80px]' />
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -38,7 +38,7 @@ export const CategoryTable = () => {
                     removeCategory(category.id)
                   }}
                 >
-                  <FaRegTrashAlt />
+                  <Trash />
                 </Button>
               </div>
             </TableCell>
