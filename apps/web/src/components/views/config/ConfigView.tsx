@@ -1,19 +1,40 @@
 import { Headline } from '@/components/shared/Headline'
 
 import { CategoriesConfigSection } from './categories/CategoriesConfigSection'
-import { Separator } from '@janhoeck/ui'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@janhoeck/ui'
 import { ClipsConfigSection } from './clips/ClipsConfigSection'
 import { SurveysConfigSection } from './surveys/SurveysConfigSection'
+
+enum TabsType {
+  CATEGORIES = 'categories',
+  SURVEY_OPTIONS = 'survey_options',
+  CLIPS = 'clips',
+}
 
 export const ConfigView = () => {
   return (
     <div className='container mx-auto max-w-6xl'>
       <Headline>Konfiguration</Headline>
-      <CategoriesConfigSection />
-      <Separator className='my-16' />
-      <ClipsConfigSection />
-      <Separator className='my-16' />
-      <SurveysConfigSection />
+      <Tabs defaultValue={TabsType.CATEGORIES}>
+        <div className='sticky top-6 z-10 flex justify-center'>
+          <TabsList>
+            <TabsTrigger value={TabsType.CATEGORIES}>Kategorien</TabsTrigger>
+            <TabsTrigger value={TabsType.CLIPS}>Clips</TabsTrigger>
+            <TabsTrigger value={TabsType.SURVEY_OPTIONS}>Umfrage Optionen</TabsTrigger>
+          </TabsList>
+        </div>
+        <div className='mt-20'>
+          <TabsContent value={TabsType.CATEGORIES}>
+            <CategoriesConfigSection />
+          </TabsContent>
+          <TabsContent value={TabsType.CLIPS}>
+            <ClipsConfigSection />
+          </TabsContent>
+          <TabsContent value={TabsType.SURVEY_OPTIONS}>
+            <SurveysConfigSection />
+          </TabsContent>
+        </div>
+      </Tabs>
     </div>
   )
 }
