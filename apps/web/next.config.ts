@@ -1,9 +1,10 @@
 import { NextConfig } from 'next'
-import { loadEnvConfig } from '@next/env'
 import path from 'path'
+import { config } from 'dotenv'
 
 const projectRoot = path.resolve(__dirname, '../../')
-loadEnvConfig(projectRoot)
+config({ path: path.join(projectRoot, '.env.local') })
+config({ path: path.join(projectRoot, '.env') })
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
