@@ -37,7 +37,7 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
 
   return (
     <div className='w-full flex items-center justify-center'>
-      <div className='flex gap-8 md:gap-12'>
+      <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10 xl:gap-12'>
         <TimeUnit
           value={timeLeft.days}
           label='TAGE'
