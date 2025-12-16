@@ -1,12 +1,14 @@
+'use client'
+
 import { Fragment } from 'react'
 
 import { ClipCategory } from './clip/ClipCategory'
 import { SurveyCategory } from './survey/SurveyCategory'
 import { VotesContextProvider } from './context/VotesContextProvider'
-import { categoryRepository } from '@/lib/db/db'
+import { useDataContext } from '@/components/contexts/data/DataContext'
 
-export const CategoriesSection = async () => {
-  const categories = await categoryRepository.getCategories()
+export const CategoriesSection = () => {
+  const { categories } = useDataContext()
 
   return (
     <section className='flex flex-col space-y-40'>

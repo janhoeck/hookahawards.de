@@ -4,6 +4,7 @@ import React, { MouseEventHandler, useState } from 'react'
 
 import { useVotesContext } from './context/VotesContext'
 import { CategoryType } from '@janhoeck/domain'
+import { useConfigContext } from '@/components/contexts/config/ConfigContext'
 
 type VoteButtonProps = {
   className?: string
@@ -19,6 +20,7 @@ export const VoteButton = (props: VoteButtonProps) => {
 
   const [isVotePending, setVotePending] = useState<boolean>(false)
   const { votes, isLoading, createVote } = useVotesContext()
+  const { isVotingPhaseOver } = useConfigContext()
 
   const handleVoteButtonClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.stopPropagation()
@@ -34,7 +36,7 @@ export const VoteButton = (props: VoteButtonProps) => {
     <Button
       className={className}
       variant={voted ? 'default' : 'outline'}
-      disabled={disabled || isLoading || isVotePending}
+      disabled={disabled || isLoading || isVotePending || isVotingPhaseOver}
       onClick={handleVoteButtonClick}
     >
       {label(voted)}

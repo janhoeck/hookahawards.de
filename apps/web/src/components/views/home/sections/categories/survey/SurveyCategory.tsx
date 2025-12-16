@@ -1,20 +1,21 @@
+'use client'
+
 import { CategoryContainer } from '../CategoryContainer'
 import { SurveyOptionGrid } from './SurveyOptionGrid'
 import { Category } from '@janhoeck/domain'
-import { surveyRepository } from '@/lib/db/db'
+import { useDataContext } from '@/components/contexts/data/DataContext'
 
 type SurveyVotingSectionProps = {
   category: Category
 }
 
-export const SurveyCategory = async (props: SurveyVotingSectionProps) => {
+export const SurveyCategory = (props: SurveyVotingSectionProps) => {
   const { category } = props
-
-  const surveys = await surveyRepository.getSurveysByCategoryId(category.id)
+  const { surveys } = useDataContext()
 
   return (
     <CategoryContainer category={category}>
-      <SurveyOptionGrid surveys={surveys} />
+      <SurveyOptionGrid surveys={surveys.filter((survey) => survey.categoryId === category.id)} />
     </CategoryContainer>
   )
 }

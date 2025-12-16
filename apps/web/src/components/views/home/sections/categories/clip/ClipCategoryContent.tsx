@@ -1,19 +1,20 @@
+'use client'
+
 import ClipCardGrid from './ClipCardGrid'
 import { Category } from '@janhoeck/domain'
-import { clipRepository } from '@/lib/db/db'
+import { useDataContext } from '@/components/contexts/data/DataContext'
 
 type ClipCategoryContentProps = {
   category: Category
 }
 
-export const ClipCategoryContent = async (props: ClipCategoryContentProps) => {
+export const ClipCategoryContent = (props: ClipCategoryContentProps) => {
   const { category } = props
-
-  const clips = await clipRepository.getClipsByCategoryId(category.id)
+  const { clips } = useDataContext()
 
   return (
     <ClipCardGrid
-      clips={clips}
+      clips={clips.filter((clip) => clip.categoryId === category.id)}
       category={category}
     />
   )

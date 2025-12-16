@@ -6,7 +6,7 @@ type ClipCategoryProps = {
   category: Category
 }
 
-export const ClipCategory = async (props: ClipCategoryProps) => {
+export const ClipCategory = (props: ClipCategoryProps) => {
   const { category } = props
 
   return (

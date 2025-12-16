@@ -10,7 +10,11 @@ export const createConfigRepository = (db: DatabaseClient) => {
       return configObject as Config
     } catch (error) {
       console.error('Failed to execute getConfig:', error)
-      return []
+      return {}
     }
+  }
+
+  return {
+    getConfig,
   }
 }
