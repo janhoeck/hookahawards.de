@@ -1,3 +1,6 @@
+'use client' // Falls du Next.js App Router verwendest
+
+import { useState } from 'react'
 import Form from 'next/form'
 import { FormState } from './schema'
 import {
@@ -6,6 +9,7 @@ import {
   FieldGroup,
   FieldLabel,
   Input,
+  MultiSelect,
   Select,
   SelectContent,
   SelectGroup,
@@ -14,17 +18,20 @@ import {
   SelectValue,
   Textarea,
 } from '@janhoeck/ui'
-import { Category } from '@janhoeck/domain'
+import { Category, Streamer } from '@janhoeck/domain'
 
 export type CreateClipFormProps = {
   categories: Category[]
+  streamers: Streamer[]
   formState: FormState
   formAction: (payload: FormData) => void
   pending: boolean
 }
 
 export const CreateClipForm = (props: CreateClipFormProps) => {
-  const { categories, formState, formAction, pending } = props
+  const { categories, streamers, formState, formAction, pending } = props
+  const [selectedStreamers, setSelectedStreamers] = useState<string[]>([])
+
   return (
     <Form
       action={formAction}
@@ -42,18 +49,6 @@ export const CreateClipForm = (props: CreateClipFormProps) => {
             aria-invalid={!!formState.errors?.title}
           />
           {formState.errors?.title && <FieldError>{formState.errors.title[0]}</FieldError>}
-        </Field>
-        <Field data-invalid={!!formState.errors?.description}>
-          <FieldLabel htmlFor='title'>Beschreibung</FieldLabel>
-          <Textarea
-            id='description'
-            name='description'
-            disabled={pending}
-            placeholder='Beschreibung für diesen Clip (Optional)'
-            autoComplete='off'
-            aria-invalid={!!formState.errors?.description}
-          />
-          {formState.errors?.description && <FieldError>{formState.errors.description[0]}</FieldError>}
         </Field>
         <Field data-invalid={!!formState.errors?.categoryId}>
           <FieldLabel htmlFor='title'>Kategorie</FieldLabel>
@@ -90,6 +85,36 @@ export const CreateClipForm = (props: CreateClipFormProps) => {
             aria-invalid={!!formState.errors?.link}
           />
           {formState.errors?.link && <FieldError>{formState.errors.link[0]}</FieldError>}
+        </Field>
+        <Field>
+          <FieldLabel htmlFor='streamerIds'>Teilnehmer</FieldLabel>
+          <MultiSelect
+            options={streamers.map((streamer) => ({
+              value: streamer.id,
+              label: streamer.name,
+            }))}
+            onValueChange={setSelectedStreamers}
+            placeholder='Clip Teilnehmer auswählen...'
+            value={selectedStreamers}
+          />
+          {/* Hidden input for FormData */}
+          <input
+            type='hidden'
+            name='streamerIds'
+            value={JSON.stringify(selectedStreamers)}
+          />
+        </Field>
+        <Field data-invalid={!!formState.errors?.description}>
+          <FieldLabel htmlFor='description'>Beschreibung</FieldLabel>
+          <Textarea
+            id='description'
+            name='description'
+            disabled={pending}
+            placeholder='Beschreibung für diesen Clip (Optional)'
+            autoComplete='off'
+            aria-invalid={!!formState.errors?.description}
+          />
+          {formState.errors?.description && <FieldError>{formState.errors.description[0]}</FieldError>}
         </Field>
       </FieldGroup>
     </Form>

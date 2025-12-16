@@ -32,7 +32,7 @@ type EditClipButtonProps = {
 
 export const EditClipButton = (props: EditClipButtonProps) => {
   const { clip } = props
-  const { categories, updateClip } = useDataContext()
+  const { categories, streamers, updateClip } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -70,6 +70,7 @@ export const EditClipButton = (props: EditClipButtonProps) => {
           <EditClipForm
             clip={clip}
             categories={availableCategories}
+            streamers={streamers}
             formState={formState}
             formAction={formAction}
             pending={pending}

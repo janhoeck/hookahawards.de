@@ -4,11 +4,13 @@ import { CategoriesConfigSection } from './categories/CategoriesConfigSection'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@janhoeck/ui'
 import { ClipsConfigSection } from './clips/ClipsConfigSection'
 import { SurveysConfigSection } from './surveys/SurveysConfigSection'
+import { StreamersConfigSection } from './streamers/StreamersConfigSection'
 
 enum TabsType {
   CATEGORIES = 'categories',
   SURVEY_OPTIONS = 'survey_options',
   CLIPS = 'clips',
+  STREAMERS = 'streamers',
 }
 
 export const ConfigView = () => {
@@ -21,6 +23,7 @@ export const ConfigView = () => {
             <TabsTrigger value={TabsType.CATEGORIES}>Kategorien</TabsTrigger>
             <TabsTrigger value={TabsType.CLIPS}>Clips</TabsTrigger>
             <TabsTrigger value={TabsType.SURVEY_OPTIONS}>Umfrage Optionen</TabsTrigger>
+            <TabsTrigger value={TabsType.STREAMERS}>Streamer</TabsTrigger>
           </TabsList>
         </div>
         <div className='mt-20'>
@@ -32,6 +35,9 @@ export const ConfigView = () => {
           </TabsContent>
           <TabsContent value={TabsType.SURVEY_OPTIONS}>
             <SurveysConfigSection />
+          </TabsContent>
+          <TabsContent value={TabsType.STREAMERS}>
+            <StreamersConfigSection />
           </TabsContent>
         </div>
       </Tabs>

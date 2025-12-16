@@ -8,7 +8,7 @@ export const schema = z.object({
   title: z.string().min(1, {
     error: 'Du musst einen Titel angeben',
   }),
-  description: z.string().optional(),
+  description: z.string().nullable(),
   categoryId: z.uuid({
     error: 'Du musst den Clip einer Kategorie zuordnen',
   }),
@@ -16,6 +16,12 @@ export const schema = z.object({
     pattern: youtubeUrlRegex,
     error: 'Nur YouTube Links sind erlaubt',
   }),
+  streamerIds: z.preprocess((val) => {
+    if (typeof val === 'string') {
+      return JSON.parse(val)
+    }
+    return val
+  }, z.array(z.string())),
 })
 
 export type FormState =

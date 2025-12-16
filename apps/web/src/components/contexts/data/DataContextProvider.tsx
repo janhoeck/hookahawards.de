@@ -3,9 +3,9 @@
 import { Dispatch, PropsWithChildren, SetStateAction, useState } from 'react'
 
 import { DataContext } from './DataContext'
-import { Category, Clip, Survey, Vote } from '@janhoeck/domain'
+import { Category, Clip, Streamer, Survey, Vote } from '@janhoeck/domain'
 
-type Any = Category | Clip | Survey
+type Any = Category | Clip | Survey | Streamer
 type UseStateFactoryReturn<T extends Any> = [
   T[],
   (item: T) => void,
@@ -37,6 +37,7 @@ type InitialStoreData = {
   clips: Clip[]
   surveys: Survey[]
   votes: Vote[]
+  streamers: Streamer[]
 }
 
 const useStore = (initialData: InitialStoreData) => {
@@ -44,6 +45,7 @@ const useStore = (initialData: InitialStoreData) => {
   const [clips, addClip, updateClip, removeClip, setClips] = useStateFactory<Clip>(initialData.clips)
   const [surveys, addSurvey, updateSurvey, removeSurvey, setSurveys] = useStateFactory<Survey>(initialData.surveys)
   const [votes] = useState<Vote[]>(initialData.votes)
+  const [streamers, addStreamer, updateStreamer, removeStreamer] = useStateFactory<Streamer>(initialData.streamers)
 
   const removeCategory: typeof _removeCategory = (categoryId) => {
     _removeCategory(categoryId)
@@ -56,6 +58,7 @@ const useStore = (initialData: InitialStoreData) => {
     clips,
     surveys,
     votes,
+    streamers,
     addCategory,
     updateCategory,
     removeCategory,
@@ -65,6 +68,9 @@ const useStore = (initialData: InitialStoreData) => {
     addSurvey,
     updateSurvey,
     removeSurvey,
+    addStreamer,
+    updateStreamer,
+    removeStreamer,
   }
 }
 
@@ -73,11 +79,12 @@ export type DataContextProviderProps = PropsWithChildren<{
   clips: Clip[]
   surveys: Survey[]
   votes: Vote[]
+  streamers: Streamer[]
 }>
 
 export const DataContextProvider = (props: DataContextProviderProps) => {
-  const { children, categories, clips, surveys, votes } = props
-  const store = useStore({ categories, clips, surveys, votes })
+  const { children, categories, clips, surveys, votes, streamers } = props
+  const store = useStore({ categories, clips, surveys, votes, streamers })
 
   return <DataContext.Provider value={store}>{children}</DataContext.Provider>
 }

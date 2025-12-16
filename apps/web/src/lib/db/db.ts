@@ -5,6 +5,7 @@ import {
   createClipRepository,
   createConfigRepository,
   createDatabaseClient,
+  createStreamerRepository,
   createSurveyRepository,
   createVoteRepository,
 } from '@janhoeck/domain'
@@ -16,5 +17,6 @@ const surveyRepository = createSurveyRepository(db)
 const clipRepository = createClipRepository(db)
 const voteRepository = createVoteRepository(db)
 const configRepository = createConfigRepository(db)
+const streamerRepository = createStreamerRepository(db)
 
-export { categoryRepository, surveyRepository, clipRepository, voteRepository, configRepository }
+export { categoryRepository, surveyRepository, clipRepository, voteRepository, configRepository, streamerRepository }

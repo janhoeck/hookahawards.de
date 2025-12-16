@@ -19,6 +19,7 @@ import { Check } from 'lucide-react'
 import { useVotesContext } from '../context/VotesContext'
 import { VoteButton } from '../VoteButton'
 import { Clip } from '@janhoeck/domain'
+import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
 
 type ClipCardProps = {
   clip: Clip
@@ -58,6 +59,7 @@ export const ClipCard = (props: ClipCardProps) => {
       <CardHeader>
         <CardTitle>{clip.title}</CardTitle>
         <CardDescription>{clip.description}</CardDescription>
+        <StreamerAvatarList streamerIds={clip.streamerIds} />
       </CardHeader>
       <CardFooter className='gap-3 max-sm:flex-col max-sm:items-stretch'>
         <VoteButton

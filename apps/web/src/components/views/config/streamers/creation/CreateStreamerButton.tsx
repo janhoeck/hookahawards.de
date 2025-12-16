@@ -14,30 +14,27 @@ import {
 } from '@janhoeck/ui'
 import { useActionState, useEffect, useState } from 'react'
 
-import { createClipAction } from './actions'
+import { createStreamerAction } from './actions'
 import { FormState } from './schema'
-import { CreateClipForm } from './CreateClipForm'
+import { CreateStreamerForm } from './CreateStreamerForm'
 import { Plus } from 'lucide-react'
 
 const INITIAL_FORM_STATE: FormState = {
-  clip: null,
+  streamer: null,
   success: false,
   errors: null,
 }
 
-export const CreateClipButton = () => {
-  const { categories, streamers, addClip } = useDataContext()
+export const CreateStreamerButton = () => {
+  const { addStreamer } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
-  const [formState, formAction, pending] = useActionState<FormState, FormData>(createClipAction, initialFormState)
-
-  const availableCategories = categories.filter((category) => category.type === 'clip')
-  const hasClipCategories = availableCategories.length !== 0
+  const [formState, formAction, pending] = useActionState<FormState, FormData>(createStreamerAction, initialFormState)
 
   useEffect(() => {
     if (formState.success) {
-      addClip(formState.clip)
+      addStreamer(formState.streamer)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
@@ -49,7 +46,7 @@ export const CreateClipButton = () => {
       onOpenChange={setIsOpen}
     >
       <DialogTrigger asChild>
-        <Button disabled={!hasClipCategories}>
+        <Button>
           <Plus />
           Erstellen
         </Button>
@@ -58,11 +55,9 @@ export const CreateClipButton = () => {
         <DialogOverlay />
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Clip erstellen</DialogTitle>
+            <DialogTitle>Umfrage erstellen</DialogTitle>
           </DialogHeader>
-          <CreateClipForm
-            categories={availableCategories}
-            streamers={streamers}
+          <CreateStreamerForm
             formState={formState}
             formAction={formAction}
             pending={pending}
@@ -70,7 +65,7 @@ export const CreateClipButton = () => {
           <DialogFooter className='flex justify-end'>
             <Button
               type='submit'
-              form='create-clip-form'
+              form='create-streamer-form'
               disabled={pending}
             >
               Erstellen

@@ -2,11 +2,25 @@ import { clipSchema } from '../lib/db/schema'
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
 
 /**
- * Represents to full clip type of the database
+ * Base clip type from database
  */
-export type Clip = InferSelectModel<typeof clipSchema>
+export type ClipBase = InferSelectModel<typeof clipSchema>
 
 /**
- * Represents to draft of a clip. This does not contain auto created property
+ * Represents the full clip type with streamers
+ */
+export type Clip = ClipBase & {
+  streamerIds: string[]
+}
+
+/**
+ * Represents a draft of a clip. This does not contain auto created properties
  */
 export type ClipDraft = InferInsertModel<typeof clipSchema>
+
+/**
+ * Represents a clip draft with streamer IDs for creation
+ */
+export type ClipDraftWithStreamers = ClipDraft & {
+  streamerIds: string[]
+}
