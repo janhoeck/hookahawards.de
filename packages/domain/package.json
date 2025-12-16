@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc -b",
     "database:generate": "pnpm drizzle-kit generate",
-    "database:update": "pnpm drizzle-kit push"
+    "database:update": "pnpm drizzle-kit push",
+    "database:seed": "tsx src/seed/run-seed.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.44.7",
@@ -15,7 +16,10 @@
   "devDependencies": {
     "@janhoeck/typescript-config": "workspace:*",
     "@types/node": "^25.0.2",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
-    "drizzle-kit": "^0.31.8"
+    "dotenv-cli": "^11.0.0",
+    "drizzle-kit": "^0.31.8",
+    "tsx": "^4.21.0"
   }
 }

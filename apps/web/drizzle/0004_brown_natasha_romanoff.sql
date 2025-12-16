@@ -1,1 +1,0 @@
-ALTER TABLE "votes" ADD CONSTRAINT "votes_user_id_category_id_pk" PRIMARY KEY("user_id","category_id");
