@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 import { TwitchAccountButton } from './TwitchAccountButton'
 import { Card, CardContent, CardHeader, H3, H4, List, Muted } from '@janhoeck/ui'
-import { Headline } from '@/components/shared/Headline'
+import Image from 'next/image'
 
 type HeroSectionProps = {
   className?: string
@@ -17,9 +17,13 @@ export const HeroSection = (props: HeroSectionProps) => {
         <div className='absolute inset-0 pointer-events-none'>
           <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[600px] bg-primary/10 rounded-full blur-3xl' />
         </div>
-
-        {/* Main title */}
-        <Headline>Hookah Awards</Headline>
+        <div className='relative h-45 w-45 mx-auto'>
+          <Image
+            fill
+            src='/images/logo.webp'
+            alt='Logo'
+          />
+        </div>
         {/* Subtitle */}
         <div className='space-y-4 max-w-2xl mx-auto'>
           <H3>Willkommen zum „Best of 2025" Community-Voting!</H3>
