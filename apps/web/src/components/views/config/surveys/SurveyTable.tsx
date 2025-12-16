@@ -1,7 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 import { deleteSurveyAction } from './actions'
 import { EditSurveyButton } from './edit/EditSurveyButton'
@@ -15,10 +15,10 @@ export const SurveyTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableCell className='w-[250px]'>Title</TableCell>
-          <TableCell>Kategorie</TableCell>
-          <TableCell>Beschreibung</TableCell>
-          <TableCell className='w-[80px]' />
+          <TableHead className='w-[250px]'>Title</TableHead>
+          <TableHead>Kategorie</TableHead>
+          <TableHead>Beschreibung</TableHead>
+          <TableHead className='w-[80px]' />
         </TableRow>
       </TableHeader>
       <TableBody>
