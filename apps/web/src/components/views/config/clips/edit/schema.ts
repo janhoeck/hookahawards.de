@@ -8,7 +8,7 @@ export const schema = z.object({
   title: z.string().min(1, {
     error: 'Du musst einen Titel angeben',
   }),
-  description: z.string().nullable(),
+  description: z.string().nullable().nullable(),
   categoryId: z.uuid({
     error: 'Du musst den Clip einer Kategorie zuordnen',
   }),

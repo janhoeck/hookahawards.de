@@ -25,7 +25,7 @@ const INITIAL_FORM_STATE: FormState = {
 }
 
 export const CreateCategoryButton = () => {
-  const { addCategory } = useDataContext()
+  const { categories, addCategory } = useDataContext()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -37,7 +37,7 @@ export const CreateCategoryButton = () => {
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, addCategory])
 
   return (
     <Dialog
@@ -57,6 +57,7 @@ export const CreateCategoryButton = () => {
             <DialogTitle>Kategorie erstellen</DialogTitle>
           </DialogHeader>
           <CreateCategoryForm
+            categories={categories}
             formState={formState}
             formAction={formAction}
             pending={pending}

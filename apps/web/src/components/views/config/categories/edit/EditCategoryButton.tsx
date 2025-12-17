@@ -43,7 +43,7 @@ export const EditCategoryButton = (props: EditCategoryButtonProps) => {
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, category, updateCategory])
 
   return (
     <Dialog

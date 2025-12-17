@@ -5,7 +5,7 @@ export const schema = z.object({
   title: z.string().min(1, {
     error: 'Du musst einen Titel angeben',
   }),
-  description: z.string().optional(),
+  description: z.string().optional().nullable(),
 })
 
 export type FormState =

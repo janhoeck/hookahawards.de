@@ -1,6 +1,6 @@
 const cache = new Map<string, { url: string; timestamp: number }>()
 const pendingRequests = new Map<string, Promise<string>>()
-const CACHE_DURATION = 24 * 60 * 60 * 1000 // 24 Stunden
+const CACHE_DURATION = 24 * 60 * 60 * 1000
 
 export async function getCachedAvatar(username: string): Promise<string> {
   const cached = cache.get(username)

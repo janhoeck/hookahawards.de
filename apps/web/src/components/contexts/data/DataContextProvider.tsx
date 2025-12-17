@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, PropsWithChildren, SetStateAction, useState } from 'react'
+import { Dispatch, PropsWithChildren, SetStateAction, useCallback, useState } from 'react'
 
 import { DataContext } from './DataContext'
 import { Category, Clip, Streamer, Survey, Vote } from '@janhoeck/domain'
@@ -17,17 +17,17 @@ type UseStateFactoryReturn<T extends Any> = [
 function useStateFactory<T extends Any>(initialData: T[]): UseStateFactoryReturn<T> {
   const [items, setItems] = useState<T[]>(initialData)
 
-  const remove = (itemId: T['id']) => {
+  const remove = useCallback((itemId: T['id']) => {
     setItems((currItems: T[]) => currItems.filter((currItem) => currItem.id !== itemId))
-  }
+  }, [])
 
-  const update: (itemId: T['id'], item: T) => void = (itemId, item) => {
+  const update = useCallback((itemId: T['id'], item: T): void => {
     setItems((currItems: T[]) => currItems.map((currItem) => (currItem.id === itemId ? item : currItem)))
-  }
+  }, [])
 
-  const add = (item: T) => {
+  const add = useCallback((item: T) => {
     setItems((currItems: T[]) => [...currItems, item])
-  }
+  }, [])
 
   return [items, add, update, remove, setItems]
 }
@@ -54,7 +54,7 @@ const useStore = (initialData: InitialStoreData) => {
   }
 
   return {
-    categories,
+    categories: categories.sort((a, b) => a.position - b.position),
     clips,
     surveys,
     votes,

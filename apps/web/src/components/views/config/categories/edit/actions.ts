@@ -18,7 +18,7 @@ export async function updateCategoryAction(_prevState: FormState, formData: Form
   }
 
   try {
-    const category = await categoryRepository.updateCategory(categoryFormData)
+    const category = await categoryRepository.updateCategory(categoryFormData.id, categoryFormData)
     if (!category) {
       throw Error('No category was returned after update')
     }

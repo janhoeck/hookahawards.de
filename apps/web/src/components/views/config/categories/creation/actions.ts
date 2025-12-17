@@ -7,6 +7,8 @@ import { revalidatePath } from 'next/cache'
 
 export async function createCategoryAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const values = Object.fromEntries([...formData]) as unknown as CategoryDraft
+  values.position = Number(values.position)
+  
   const { success, error } = schema.safeParse(values)
 
   if (!success) {

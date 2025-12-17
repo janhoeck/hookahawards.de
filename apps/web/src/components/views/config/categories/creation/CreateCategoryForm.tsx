@@ -15,21 +15,32 @@ import {
   SelectValue,
   Textarea,
 } from '@janhoeck/ui'
+import { Category } from '@janhoeck/domain'
 
 export type CreateCategoryFormProps = {
+  categories: Category[],
   formState: FormState
   formAction: (payload: FormData) => void
   pending: boolean
 }
 
 export const CreateCategoryForm = (props: CreateCategoryFormProps) => {
-  const { formState, formAction, pending } = props
+  const { categories, formState, formAction, pending } = props
+
+  const nextPosition = Math.max(...categories.map(category => category.position)) + 1
+
   return (
     <Form
       action={formAction}
       id='create-category-form'
     >
       <FieldGroup>
+        <Input
+          type='hidden'
+          name='position'
+          id='position'
+          value={nextPosition}
+        />
         <Field data-invalid={!!formState.errors?.title}>
           <FieldLabel htmlFor='title'>Titel</FieldLabel>
           <Input

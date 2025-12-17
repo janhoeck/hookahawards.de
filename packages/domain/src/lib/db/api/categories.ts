@@ -6,7 +6,7 @@ import { DatabaseClient } from '../database'
 export const createCategoryRepository = (db: DatabaseClient) => {
   const getCategories = async (): Promise<Category[]> => {
     try {
-      return await db.select().from(categorySchema).orderBy(categorySchema.createdAt)
+      return await db.select().from(categorySchema).orderBy(categorySchema.position)
     } catch (error) {
       console.error('Failed to execute getCategories:', error)
       return []
@@ -22,11 +22,14 @@ export const createCategoryRepository = (db: DatabaseClient) => {
     return createdCategories[0]
   }
 
-  const updateCategory = async (category: Omit<Category, 'type' | 'createdAt'>) => {
+  const updateCategory = async (
+    categoryId: string,
+    updatedCategory: Partial<CategoryDraft>
+  ) => {
     const updatedCategories = await db
       .update(categorySchema)
-      .set(category)
-      .where(eq(categorySchema.id, category.id))
+      .set(updatedCategory)
+      .where(eq(categorySchema.id, categoryId))
       .returning()
     return updatedCategories[0]
   }

@@ -2,7 +2,7 @@
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
 
-import { CategoryTable } from './CategoryTable'
+import { CategoryTable } from './table/CategoryTable'
 
 export const CategoryTableContainer = () => {
   const { categories } = useDataContext()
