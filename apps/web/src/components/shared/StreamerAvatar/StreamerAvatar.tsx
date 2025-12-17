@@ -1,5 +1,8 @@
+'use client'
+
 import { Avatar, AvatarFallback, AvatarImage } from '@janhoeck/ui'
 import { useEffect, useState } from 'react'
+import { getCachedAvatar } from './avatarCache'
 
 type StreamerAvatarProps = {
   username: string
@@ -7,13 +10,12 @@ type StreamerAvatarProps = {
 
 export const StreamerAvatar = (props: StreamerAvatarProps) => {
   const { username } = props
-  const [imageUrl, setImageUrl] = useState<string>('https://static-cdn.jtvnw.net/user-default-pictures-uv/cdd517fe-def4-11e9-948e-784f43822e80-profile_image-150x150.png')
+  const [imageUrl, setImageUrl] = useState<string>(
+    'https://static-cdn.jtvnw.net/user-default-pictures-uv/cdd517fe-def4-11e9-948e-784f43822e80-profile_image-150x150.png'
+  )
 
   useEffect(() => {
-    fetch(`https://decapi.me/twitch/avatar/${username}`)
-      .then(res => res.text())
-      .then(url => setImageUrl(url))
-      .catch(console.error)
+    getCachedAvatar(username).then(setImageUrl).catch(console.error)
   }, [username])
 
   return (

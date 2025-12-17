@@ -1,5 +1,3 @@
-'use client'
-
 import { Muted } from '@janhoeck/ui'
 import Link from 'next/link'
 import { useDataContext } from '@/components/contexts/data/DataContext'
