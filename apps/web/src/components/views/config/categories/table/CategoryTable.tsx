@@ -1,20 +1,20 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
-
-import { deleteCategoryAction, updateCategoriesPositionAction } from './actions'
-import { CategoryTableRow } from './CategoryTableRow'
 import {
-  closestCenter,
   DndContext,
   DragEndEvent,
   KeyboardSensor,
   PointerSensor,
+  closestCenter,
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { SortableContext, arrayMove, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { Table, TableBody, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
+
+import { CategoryTableRow } from './CategoryTableRow'
+import { deleteCategoryAction, updateCategoriesPositionAction } from './actions'
 
 export const CategoryTable = () => {
   const { categories, removeCategory, updateCategory } = useDataContext()

@@ -1,6 +1,7 @@
-import Form from 'next/form'
-import { FormState } from './schema'
 import { Field, FieldError, FieldGroup, FieldLabel, Input } from '@janhoeck/ui'
+import Form from 'next/form'
+
+import { FormState } from './schema'
 
 export type CreateStreamerFormProps = {
   formState: FormState

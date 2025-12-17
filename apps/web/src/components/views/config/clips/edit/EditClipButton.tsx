@@ -1,6 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { Clip } from '@janhoeck/domain'
 import {
   Button,
   Dialog,
@@ -12,13 +13,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@janhoeck/ui'
+import { PenLine } from 'lucide-react'
 import { useActionState, useEffect, useState } from 'react'
 
-import { updateClipAction } from './actions'
 import { EditClipForm } from './EditClipForm'
+import { updateClipAction } from './actions'
 import { FormState } from './schema'
-import { Clip } from '@janhoeck/domain'
-import { PenLine } from 'lucide-react'
 
 const INITIAL_FORM_STATE: FormState = {
   clip: null,

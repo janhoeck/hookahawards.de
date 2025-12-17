@@ -1,7 +1,7 @@
-import { HomeView } from '@/components/views/home/HomeView'
-import { categoryRepository, clipRepository, configRepository, streamerRepository, surveyRepository } from '@/lib/db/db'
 import { ConfigContextProvider } from '@/components/contexts/config/ConfigContextProvider'
 import { DataContextProvider } from '@/components/contexts/data/DataContextProvider'
+import { HomeView } from '@/components/views/home/HomeView'
+import { categoryRepository, clipRepository, configRepository, streamerRepository, surveyRepository } from '@/lib/db/db'
 
 export default async function HomePage() {
   const [config, categories, clips, surveys, streamers] = await Promise.all([

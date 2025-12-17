@@ -1,7 +1,8 @@
 import { eq } from 'drizzle-orm'
+
 import { Category, Vote } from '../../../types'
-import { voteSchema } from '../schema'
 import { DatabaseClient } from '../database'
+import { voteSchema } from '../schema'
 
 export const createVoteRepository = (db: DatabaseClient) => {
   const getVotes = async (): Promise<Vote[]> => {

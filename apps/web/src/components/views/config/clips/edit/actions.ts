@@ -1,9 +1,10 @@
 'use server'
 
-import { FormState, schema } from './schema'
-import { Clip } from '@janhoeck/domain'
 import { clipRepository } from '@/lib/db/db'
+import { Clip } from '@janhoeck/domain'
 import { revalidatePath } from 'next/cache'
+
+import { FormState, schema } from './schema'
 
 export async function updateClipAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const clipFormData = Object.fromEntries([...formData]) as unknown as Clip

@@ -1,10 +1,9 @@
-import { checkVote } from '@/utils/check-vote'
-import { Button } from '@janhoeck/ui'
-import React, { MouseEventHandler, useState } from 'react'
-
-import { CategoryType } from '@janhoeck/domain'
 import { useConfigContext } from '@/components/contexts/config/ConfigContext'
 import { useVotesContext } from '@/components/contexts/votes/VotesContext'
+import { checkVote } from '@/utils/check-vote'
+import { CategoryType } from '@janhoeck/domain'
+import { Button } from '@janhoeck/ui'
+import React, { MouseEventHandler, useState } from 'react'
 
 type VoteButtonProps = {
   className?: string

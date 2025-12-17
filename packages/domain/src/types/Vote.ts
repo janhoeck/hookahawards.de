@@ -1,5 +1,6 @@
-import { voteSchema } from '../lib/db/schema'
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
+
+import { voteSchema } from '../lib/db/schema'
 
 /**
  * Represents to full vote type of the database

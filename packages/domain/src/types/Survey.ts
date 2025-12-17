@@ -1,5 +1,6 @@
-import { surveySchema } from '../lib/db/schema'
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
+
+import { surveySchema } from '../lib/db/schema'
 
 /**
  * Represents to full survey type of the database

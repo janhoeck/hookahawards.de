@@ -1,10 +1,10 @@
 import { Headline } from '@/components/shared/Headline'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@janhoeck/ui'
 
 import { CategoriesConfigSection } from './categories/CategoriesConfigSection'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@janhoeck/ui'
 import { ClipsConfigSection } from './clips/ClipsConfigSection'
-import { SurveysConfigSection } from './surveys/SurveysConfigSection'
 import { StreamersConfigSection } from './streamers/StreamersConfigSection'
+import { SurveysConfigSection } from './surveys/SurveysConfigSection'
 
 enum TabsType {
   CATEGORIES = 'categories',

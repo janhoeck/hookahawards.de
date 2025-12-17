@@ -1,9 +1,10 @@
 'use server'
 
-import { FormState, schema } from './schema'
-import { SurveyDraft } from '@janhoeck/domain'
 import { streamerRepository } from '@/lib/db/db'
+import { SurveyDraft } from '@janhoeck/domain'
 import { revalidatePath } from 'next/cache'
+
+import { FormState, schema } from './schema'
 
 export async function createStreamerAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const streamerFormData = Object.fromEntries([...formData]) as unknown as SurveyDraft

@@ -1,5 +1,6 @@
-import path from 'path'
 import { config as dotenvConfig } from 'dotenv'
+import path from 'path'
+
 import { createDatabaseClient } from '../lib'
 import { configSchema } from '../lib/db/schema'
 

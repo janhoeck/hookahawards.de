@@ -1,11 +1,11 @@
 'use client'
 
+import { useDataContext } from '@/components/contexts/data/DataContext'
 import { useSession } from '@/lib/auth-client'
+import { CategoryType, Vote } from '@janhoeck/domain'
 import React, { startTransition, useEffect, useMemo, useOptimistic, useState } from 'react'
 
 import { VotesContext } from './VotesContext'
-import { CategoryType, Vote } from '@janhoeck/domain'
-import { useDataContext } from '@/components/contexts/data/DataContext'
 
 export type VotesContextProviderProps = {
   children: React.ReactNode

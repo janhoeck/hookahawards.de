@@ -1,10 +1,10 @@
 'use client'
 
 import { useSession } from '@/lib/auth-client'
+import { Survey } from '@janhoeck/domain'
 import { Variants, motion, stagger } from 'motion/react'
 
 import { VoteButton } from '../VoteButton'
-import { Survey } from '@janhoeck/domain'
 
 const container: Variants = {
   hidden: { opacity: 0 },

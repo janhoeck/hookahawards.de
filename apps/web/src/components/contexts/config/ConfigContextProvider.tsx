@@ -1,8 +1,9 @@
 'use client'
 
-import { PropsWithChildren } from 'react'
-import { ConfigContext } from './ConfigContext'
 import { Config } from '@janhoeck/domain'
+import { PropsWithChildren } from 'react'
+
+import { ConfigContext } from './ConfigContext'
 
 export type ConfigContextProviderProps = PropsWithChildren<{
   config: Config

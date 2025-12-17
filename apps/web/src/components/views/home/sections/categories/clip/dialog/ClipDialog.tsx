@@ -1,6 +1,7 @@
-import { Dialog, DialogOverlay, DialogPortal } from '@janhoeck/ui'
-import { ClipDialogContent } from './ClipDialogContent'
 import { Category, Clip } from '@janhoeck/domain'
+import { Dialog, DialogOverlay, DialogPortal } from '@janhoeck/ui'
+
+import { ClipDialogContent } from './ClipDialogContent'
 
 export type ClipDialogProps = {
   selectedClip?: Clip

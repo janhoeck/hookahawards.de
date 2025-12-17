@@ -1,5 +1,4 @@
-import Form from 'next/form'
-import { FormState } from './schema'
+import { Category } from '@janhoeck/domain'
 import {
   Field,
   FieldError,
@@ -15,7 +14,9 @@ import {
   SelectValue,
   Textarea,
 } from '@janhoeck/ui'
-import { Category } from '@janhoeck/domain'
+import Form from 'next/form'
+
+import { FormState } from './schema'
 
 export type CreateCategoryFormProps = {
   categories: Category[]

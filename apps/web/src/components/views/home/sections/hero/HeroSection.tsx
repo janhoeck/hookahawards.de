@@ -1,11 +1,12 @@
 'use client'
 
-import { twMerge } from 'tailwind-merge'
-import { TwitchAccountButton } from './TwitchAccountButton'
+import { useConfigContext } from '@/components/contexts/config/ConfigContext'
 import { Card, CardContent, CardHeader, H3, H4, List, Muted } from '@janhoeck/ui'
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
+
+import { TwitchAccountButton } from './TwitchAccountButton'
 import { VotingPhaseTimer } from './VotingPhaseTimer'
-import { useConfigContext } from '@/components/contexts/config/ConfigContext'
 
 type HeroSectionProps = {
   className?: string

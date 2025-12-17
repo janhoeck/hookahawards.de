@@ -1,9 +1,10 @@
 'use server'
 
-import { FormState, schema } from './schema'
-import { Survey } from '@janhoeck/domain'
 import { surveyRepository } from '@/lib/db/db'
+import { Survey } from '@janhoeck/domain'
 import { revalidatePath } from 'next/cache'
+
+import { FormState, schema } from './schema'
 
 export async function updateSurveyAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const surveyFormData = Object.fromEntries([...formData]) as unknown as Survey

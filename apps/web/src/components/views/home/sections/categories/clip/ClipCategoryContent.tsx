@@ -1,8 +1,9 @@
 'use client'
 
-import ClipCardGrid from './ClipCardGrid'
-import { Category } from '@janhoeck/domain'
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { Category } from '@janhoeck/domain'
+
+import ClipCardGrid from './ClipCardGrid'
 
 type ClipCategoryContentProps = {
   category: Category

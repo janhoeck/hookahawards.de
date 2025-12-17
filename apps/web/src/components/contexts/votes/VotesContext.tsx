@@ -1,5 +1,5 @@
-import { createContext, useContext } from 'react'
 import { CategoryType, Vote } from '@janhoeck/domain'
+import { createContext, useContext } from 'react'
 
 export type VotesContextType = {
   votes: Vote[]

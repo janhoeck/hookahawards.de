@@ -1,5 +1,4 @@
-import Form from 'next/form'
-import { FormState } from './schema'
+import { Category, Clip, Streamer } from '@janhoeck/domain'
 import {
   Field,
   FieldError,
@@ -15,8 +14,10 @@ import {
   SelectValue,
   Textarea,
 } from '@janhoeck/ui'
-import { Category, Clip, Streamer } from '@janhoeck/domain'
+import Form from 'next/form'
 import { useState } from 'react'
+
+import { FormState } from './schema'
 
 export type EditClipFormProps = {
   clip: Clip

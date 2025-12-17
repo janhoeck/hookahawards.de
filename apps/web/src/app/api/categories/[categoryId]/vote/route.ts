@@ -1,7 +1,7 @@
 import { getCurrentUser } from '@/lib/auth-server'
+import { voteRepository } from '@/lib/db/db'
 import { NextRequest } from 'next/server'
 import { z } from 'zod'
-import { voteRepository } from '@/lib/db/db'
 
 type Params = Promise<{ categoryId: string }>
 

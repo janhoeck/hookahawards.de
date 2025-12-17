@@ -1,10 +1,10 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
 import { DeleteButtonWithConfirm } from '@/components/views/config/components/DeleteButtonWithConfirm'
 import { deleteStreamerAction } from '@/components/views/config/streamers/actions'
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
 
 export const StreamerTable = () => {
   const { streamers, removeStreamer } = useDataContext()

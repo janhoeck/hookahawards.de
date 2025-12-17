@@ -12,11 +12,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@janhoeck/ui'
-import { useActionState, useEffect, useState } from 'react'
 import { Plus } from 'lucide-react'
+import { useActionState, useEffect, useState } from 'react'
+
 import { CreateCategoryForm } from './CreateCategoryForm'
-import { FormState } from './schema'
 import { createCategoryAction } from './actions'
+import { FormState } from './schema'
 
 const INITIAL_FORM_STATE: FormState = {
   category: null,

@@ -1,6 +1,6 @@
+import { config } from 'dotenv'
 import { NextConfig } from 'next'
 import path from 'path'
-import { config } from 'dotenv'
 
 const projectRoot = path.resolve(__dirname, '../../')
 config({ path: path.join(projectRoot, '.env.local') })

@@ -1,5 +1,5 @@
-import { useCallback } from 'react'
 import confetti from 'canvas-confetti'
+import { useCallback } from 'react'
 
 export const useConfettiCannons = () => {
   const start = useCallback(() => {

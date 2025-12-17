@@ -1,9 +1,10 @@
 'use server'
 
-import { FormState, schema } from './schema'
+import { clipRepository } from '@/lib/db/db'
 import { ClipDraftWithStreamers } from '@janhoeck/domain'
 import { revalidatePath } from 'next/cache'
-import { clipRepository } from '@/lib/db/db'
+
+import { FormState, schema } from './schema'
 
 export async function createClipAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const clipFormData = Object.fromEntries([...formData]) as unknown as ClipDraftWithStreamers

@@ -1,6 +1,7 @@
-import { describe, expect, test } from 'vitest'
-import { buildChartData, groupVotesByDay } from './utils'
 import { Vote } from '@janhoeck/domain'
+import { describe, expect, test } from 'vitest'
+
+import { buildChartData, groupVotesByDay } from './utils'
 
 describe('Test utils.test.ts', () => {
   const votes: Vote[] = [

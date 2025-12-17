@@ -1,4 +1,5 @@
 import { jsonb, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
+
 import { ConfigValue } from '../../../types/Config'
 
 export const configSchema = pgTable('config', {

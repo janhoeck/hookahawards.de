@@ -1,7 +1,7 @@
 'use server'
 
-import { Survey } from '@janhoeck/domain'
 import { surveyRepository } from '@/lib/db/db'
+import { Survey } from '@janhoeck/domain'
 import { revalidatePath } from 'next/cache'
 
 export async function deleteSurveyAction(survey: Survey) {

@@ -1,5 +1,4 @@
-import Form from 'next/form'
-import { FormState } from './schema'
+import { Category, Survey } from '@janhoeck/domain'
 import {
   Field,
   FieldError,
@@ -14,7 +13,9 @@ import {
   SelectValue,
   Textarea,
 } from '@janhoeck/ui'
-import { Category, Survey } from '@janhoeck/domain'
+import Form from 'next/form'
+
+import { FormState } from './schema'
 
 export type EditSurveyFormProps = {
   survey: Survey

@@ -1,6 +1,7 @@
+import { Category } from '@janhoeck/domain'
+
 import { CategoryContainer } from '../CategoryContainer'
 import { ClipCategoryContent } from './ClipCategoryContent'
-import { Category } from '@janhoeck/domain'
 
 type ClipCategoryProps = {
   category: Category

@@ -1,7 +1,8 @@
-import { DatabaseClient } from '../database'
-import { Streamer, StreamerDraft } from '../../../types'
-import { streamerSchema } from '../schema'
 import { eq } from 'drizzle-orm'
+
+import { Streamer, StreamerDraft } from '../../../types'
+import { DatabaseClient } from '../database'
+import { streamerSchema } from '../schema'
 
 export const createStreamerRepository = (db: DatabaseClient) => {
   const getStreamers = async (): Promise<Streamer[]> => {

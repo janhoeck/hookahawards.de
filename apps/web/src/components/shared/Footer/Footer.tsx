@@ -1,6 +1,6 @@
 import { SocialButton } from '@/components/shared/Footer/SocialButton'
-import Link from 'next/link'
 import { SiDiscord, SiInstagram, SiTwitch, SiYoutube } from '@icons-pack/react-simple-icons'
+import Link from 'next/link'
 
 export const Footer = () => {
   return (

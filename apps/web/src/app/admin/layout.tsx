@@ -1,6 +1,6 @@
 import { DataContextProvider } from '@/components/contexts/data/DataContextProvider'
-import React from 'react'
 import { categoryRepository, clipRepository, streamerRepository, surveyRepository, voteRepository } from '@/lib/db/db'
+import React from 'react'
 
 type LayoutProps = {
   children: React.ReactNode

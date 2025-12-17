@@ -1,5 +1,5 @@
-import { HeroSection } from './sections/hero/HeroSection'
 import { CategoriesSection } from './sections/categories/CategoriesSection'
+import { HeroSection } from './sections/hero/HeroSection'
 
 export const HomeView = () => {
   return (

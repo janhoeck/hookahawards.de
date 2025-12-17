@@ -1,9 +1,9 @@
 'use client'
 
+import { useDataContext } from '@/components/contexts/data/DataContext'
 import { Card, CardContent, H3, Muted } from '@janhoeck/ui'
 
 import { VotesByDayChart } from './VotesByDayChart'
-import { useDataContext } from '@/components/contexts/data/DataContext'
 
 export const VoteStatisticSection = () => {
   const { votes } = useDataContext()

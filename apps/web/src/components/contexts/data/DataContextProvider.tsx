@@ -1,9 +1,9 @@
 'use client'
 
+import { Category, Clip, Streamer, Survey, Vote } from '@janhoeck/domain'
 import { Dispatch, PropsWithChildren, SetStateAction, useCallback, useState } from 'react'
 
 import { DataContext } from './DataContext'
-import { Category, Clip, Streamer, Survey, Vote } from '@janhoeck/domain'
 
 type Any = Category | Clip | Survey | Streamer
 type UseStateFactoryReturn<T extends Any> = [

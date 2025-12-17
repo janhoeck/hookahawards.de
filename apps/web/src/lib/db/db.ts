@@ -1,5 +1,3 @@
-import 'server-only'
-
 import {
   createCategoryRepository,
   createClipRepository,
@@ -9,6 +7,7 @@ import {
   createSurveyRepository,
   createVoteRepository,
 } from '@janhoeck/domain'
+import 'server-only'
 
 export const db = createDatabaseClient(process.env.DATABASE_URL as string)
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { Survey } from '@janhoeck/domain'
 import {
   Button,
   Dialog,
@@ -12,13 +13,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@janhoeck/ui'
-import { useActionState, useEffect, useState } from 'react'
 import { PenLine } from 'lucide-react'
+import { useActionState, useEffect, useState } from 'react'
 
-import { updateSurveyAction } from './actions'
 import { EditSurveyForm } from './EditSurveyForm'
+import { updateSurveyAction } from './actions'
 import { FormState } from './schema'
-import { Survey } from '@janhoeck/domain'
 
 const INITIAL_FORM_STATE: FormState = {
   survey: null,

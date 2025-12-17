@@ -1,5 +1,5 @@
-import { pgTable, primaryKey, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
+import { pgTable, primaryKey, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 
 import { categorySchema } from './categorySchema'
 import { streamerSchema } from './streamerSchema'

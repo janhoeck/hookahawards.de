@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from '@janhoeck/ui'
 import { useEffect, useState } from 'react'
+
 import { getCachedAvatar } from './avatarCache'
 
 type StreamerAvatarProps = {

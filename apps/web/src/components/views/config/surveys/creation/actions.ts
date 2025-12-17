@@ -1,9 +1,10 @@
 'use server'
 
-import { FormState, schema } from './schema'
-import { SurveyDraft } from '@janhoeck/domain'
 import { surveyRepository } from '@/lib/db/db'
+import { SurveyDraft } from '@janhoeck/domain'
 import { revalidatePath } from 'next/cache'
+
+import { FormState, schema } from './schema'
 
 export async function createSurveyAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const surveyFormData = Object.fromEntries([...formData]) as unknown as SurveyDraft

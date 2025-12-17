@@ -1,5 +1,5 @@
-import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
+import React from 'react'
 
 export const ConfigSectionSkeleton = () => {
   return (

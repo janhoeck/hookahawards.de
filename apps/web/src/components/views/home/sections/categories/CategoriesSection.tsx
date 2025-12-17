@@ -1,12 +1,12 @@
 'use client'
 
+import { useDataContext } from '@/components/contexts/data/DataContext'
+import { VotesContextProvider } from '@/components/contexts/votes/VotesContextProvider'
+import { VotingFeedback } from '@/components/views/home/VotingFeedback'
 import { Fragment } from 'react'
 
 import { ClipCategory } from './clip/ClipCategory'
 import { SurveyCategory } from './survey/SurveyCategory'
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { VotesContextProvider } from '@/components/contexts/votes/VotesContextProvider'
-import { VotingFeedback } from '@/components/views/home/VotingFeedback'
 
 export const CategoriesSection = () => {
   const { categories } = useDataContext()

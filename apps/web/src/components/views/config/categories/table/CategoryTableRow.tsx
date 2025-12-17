@@ -1,11 +1,11 @@
-import { TableCell, TableRow } from '@janhoeck/ui'
-import { GripHorizontal } from 'lucide-react'
-import { shortenText } from '@/utils/shorten-text'
 import { EditCategoryButton } from '@/components/views/config/categories/edit/EditCategoryButton'
 import { DeleteButtonWithConfirm } from '@/components/views/config/components/DeleteButtonWithConfirm'
-import { Category } from '@janhoeck/domain'
+import { shortenText } from '@/utils/shorten-text'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { Category } from '@janhoeck/domain'
+import { TableCell, TableRow } from '@janhoeck/ui'
+import { GripHorizontal } from 'lucide-react'
 
 type CategoryTableRowProps = {
   category: Category

@@ -1,7 +1,8 @@
 import { eq } from 'drizzle-orm'
+
 import { Category, CategoryDraft } from '../../../types'
-import { categorySchema } from '../schema'
 import { DatabaseClient } from '../database'
+import { categorySchema } from '../schema'
 
 export const createCategoryRepository = (db: DatabaseClient) => {
   const getCategories = async (): Promise<Category[]> => {

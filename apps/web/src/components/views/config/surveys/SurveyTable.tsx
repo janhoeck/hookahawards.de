@@ -1,12 +1,12 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { shortenText } from '@/utils/shorten-text'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
+import { DeleteButtonWithConfirm } from '../components/DeleteButtonWithConfirm'
 import { deleteSurveyAction } from './actions'
 import { EditSurveyButton } from './edit/EditSurveyButton'
-import { shortenText } from '@/utils/shorten-text'
-import { DeleteButtonWithConfirm } from '../components/DeleteButtonWithConfirm'
 
 export const SurveyTable = () => {
   const { surveys, categories, removeSurvey } = useDataContext()

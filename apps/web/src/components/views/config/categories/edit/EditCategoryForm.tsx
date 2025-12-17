@@ -1,7 +1,8 @@
-import Form from 'next/form'
-import { FormState } from './schema'
-import { Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from '@janhoeck/ui'
 import { Category } from '@janhoeck/domain'
+import { Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from '@janhoeck/ui'
+import Form from 'next/form'
+
+import { FormState } from './schema'
 
 export type EditCategoryFormProps = {
   /**

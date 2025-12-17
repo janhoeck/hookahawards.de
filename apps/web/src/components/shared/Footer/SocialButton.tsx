@@ -1,6 +1,6 @@
+import { IconType } from '@icons-pack/react-simple-icons'
 import { Button } from '@janhoeck/ui'
 import Link from 'next/link'
-import { IconType } from '@icons-pack/react-simple-icons'
 
 export type SocialButtonProps = {
   href: string

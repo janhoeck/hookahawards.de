@@ -1,8 +1,11 @@
 'use client'
 
+import { useVotesContext } from '@/components/contexts/votes/VotesContext'
+import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
 import { useSession } from '@/lib/auth-client'
 import { checkVote } from '@/utils/check-vote'
 import { extractYoutubeId } from '@/utils/extract-youtube-id'
+import { Clip } from '@janhoeck/domain'
 import {
   Badge,
   Card,
@@ -13,13 +16,10 @@ import {
   CardTitle,
   useIsMounted,
 } from '@janhoeck/ui'
-import Image from 'next/image'
 import { Check } from 'lucide-react'
+import Image from 'next/image'
 
 import { VoteButton } from '../VoteButton'
-import { Clip } from '@janhoeck/domain'
-import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
-import { useVotesContext } from '@/components/contexts/votes/VotesContext'
 
 type ClipCardProps = {
   clip: Clip

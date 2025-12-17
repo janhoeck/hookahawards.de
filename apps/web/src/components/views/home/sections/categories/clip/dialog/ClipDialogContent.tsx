@@ -1,9 +1,9 @@
-import { NextClipButton } from './buttons/NextClipButton'
+import { Category, Clip } from '@janhoeck/domain'
 import { DesktopOnly, DialogContent, DialogDescription, DialogHeader, DialogTitle, MobileOnly } from '@janhoeck/ui'
 
 import { ResponsiveYouTubeVideo } from './ResponsiveYouTubeVideo'
+import { NextClipButton } from './buttons/NextClipButton'
 import { PreviousClipButton } from './buttons/PreviousClipButton'
-import { Category, Clip } from '@janhoeck/domain'
 
 export type ClipDialogContentProps = {
   clip: Clip

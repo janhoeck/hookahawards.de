@@ -1,5 +1,6 @@
-import { StreamerTableContainer } from './StreamerTableContainer'
 import { H3 } from '@janhoeck/ui'
+
+import { StreamerTableContainer } from './StreamerTableContainer'
 import { CreateStreamerButton } from './creation/CreateStreamerButton'
 
 export const StreamersConfigSection = () => {

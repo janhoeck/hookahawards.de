@@ -1,9 +1,10 @@
 'use server'
 
-import { FormState, schema } from './schema'
-import { Category } from '@janhoeck/domain'
 import { categoryRepository } from '@/lib/db/db'
+import { Category } from '@janhoeck/domain'
 import { revalidatePath } from 'next/cache'
+
+import { FormState, schema } from './schema'
 
 export async function updateCategoryAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   const categoryFormData = Object.fromEntries([...formData]) as unknown as Category

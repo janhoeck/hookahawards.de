@@ -1,9 +1,10 @@
 'use client'
 
+import { useDataContext } from '@/components/contexts/data/DataContext'
+import { Category } from '@janhoeck/domain'
+
 import { CategoryContainer } from '../CategoryContainer'
 import { SurveyOptionGrid } from './SurveyOptionGrid'
-import { Category } from '@janhoeck/domain'
-import { useDataContext } from '@/components/contexts/data/DataContext'
 
 type SurveyVotingSectionProps = {
   category: Category

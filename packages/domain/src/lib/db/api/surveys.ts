@@ -1,8 +1,8 @@
 import { eq } from 'drizzle-orm'
 
 import { Category, Survey, SurveyDraft } from '../../../types'
-import { surveySchema } from '../schema'
 import { DatabaseClient } from '../database'
+import { surveySchema } from '../schema'
 
 export const createSurveyRepository = (db: DatabaseClient) => {
   const getSurveys = async (): Promise<Survey[]> => {

@@ -1,5 +1,5 @@
-import { z } from 'zod'
 import { Survey } from '@janhoeck/domain'
+import { z } from 'zod'
 
 export const schema = z.object({
   title: z.string().min(1, {

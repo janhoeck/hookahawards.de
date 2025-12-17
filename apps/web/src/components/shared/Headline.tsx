@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react'
 import { H1 } from '@janhoeck/ui'
+import { PropsWithChildren } from 'react'
 
 export const Headline = ({ children }: PropsWithChildren) => (
   <div className='space-y-2 mb-10 text-center'>

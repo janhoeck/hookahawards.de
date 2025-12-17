@@ -1,7 +1,6 @@
-import { PropsWithChildren } from 'react'
-
-import { H2, Muted } from '@janhoeck/ui'
 import { Category } from '@janhoeck/domain'
+import { H2, Muted } from '@janhoeck/ui'
+import { PropsWithChildren } from 'react'
 
 type CategoryContainerProps = PropsWithChildren<{
   category: Category

@@ -1,7 +1,8 @@
 import { eq } from 'drizzle-orm'
+
 import { Category, Clip, ClipDraftWithStreamers } from '../../../types'
-import { clipSchema, clipStreamersSchema } from '../schema'
 import { DatabaseClient } from '../database'
+import { clipSchema, clipStreamersSchema } from '../schema'
 
 export const createClipRepository = (db: DatabaseClient) => {
   const getClips = async (): Promise<Clip[]> => {

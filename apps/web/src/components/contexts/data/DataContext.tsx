@@ -1,7 +1,7 @@
 'use client'
 
-import { createContext, useContext } from 'react'
 import { Category, Clip, Streamer, Survey, Vote } from '@janhoeck/domain'
+import { createContext, useContext } from 'react'
 
 export type DataContextType = {
   categories: Category[]

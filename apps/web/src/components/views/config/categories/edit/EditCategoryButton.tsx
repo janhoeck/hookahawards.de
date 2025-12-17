@@ -1,6 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { Category } from '@janhoeck/domain'
 import {
   Button,
   Dialog,
@@ -12,12 +13,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@janhoeck/ui'
-import { useActionState, useEffect, useState } from 'react'
-import { FormState } from './schema'
-import { updateCategoryAction } from './actions'
-import { EditCategoryForm } from './EditCategoryForm'
-import { Category } from '@janhoeck/domain'
 import { PenLine } from 'lucide-react'
+import { useActionState, useEffect, useState } from 'react'
+
+import { EditCategoryForm } from './EditCategoryForm'
+import { updateCategoryAction } from './actions'
+import { FormState } from './schema'
 
 const INITIAL_FORM_STATE: FormState = {
   category: null,

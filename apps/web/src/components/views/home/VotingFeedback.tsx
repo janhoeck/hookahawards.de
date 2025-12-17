@@ -1,7 +1,6 @@
 'use client'
 
 import { useVotesContext } from '@/components/contexts/votes/VotesContext'
-import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -13,6 +12,7 @@ import {
   useConfettiCannons,
 } from '@janhoeck/ui'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 const CONFETTI_FIRED_KEY = 'voting_confetti_fired'
 

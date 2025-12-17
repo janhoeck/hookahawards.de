@@ -1,9 +1,9 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { H3, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 import { mostVotesForCategory } from './utils'
-import { H3, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 export const MostVotedSection = () => {
   const { categories, clips, surveys, votes } = useDataContext()

@@ -1,6 +1,7 @@
+import { H3 } from '@janhoeck/ui'
+
 import { CategoryTableContainer } from './CategoryTableContainer'
 import { CreateCategoryButton } from './creation/CreateCategoryButton'
-import { H3 } from '@janhoeck/ui'
 
 export const CategoriesConfigSection = () => {
   return (

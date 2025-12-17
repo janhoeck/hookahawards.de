@@ -1,6 +1,7 @@
+import { H3 } from '@janhoeck/ui'
+
 import { SurveyTableContainer } from './SurveyTableContainer'
 import { CreateSurveyButton } from './creation/CreateSurveyButton'
-import { H3 } from '@janhoeck/ui'
 
 export const SurveysConfigSection = () => {
   return (

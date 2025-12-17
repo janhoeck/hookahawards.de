@@ -1,11 +1,11 @@
 'use client'
 
+import { Category, Clip } from '@janhoeck/domain'
 import { Variants, motion, stagger } from 'motion/react'
 import { useMemo, useState } from 'react'
 
 import { ClipCard } from './ClipCard'
 import { ClipDialog } from './dialog/ClipDialog'
-import { Category, Clip } from '@janhoeck/domain'
 
 const container: Variants = {
   hidden: { opacity: 0 },

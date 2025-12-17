@@ -1,6 +1,6 @@
+import { Config } from '../../../types/Config'
 import { DatabaseClient } from '../database'
 import { configSchema } from '../schema'
-import { Config } from '../../../types/Config'
 
 export const createConfigRepository = (db: DatabaseClient) => {
   const getConfig = async () => {

@@ -1,6 +1,7 @@
+import { H3 } from '@janhoeck/ui'
+
 import { ClipTableContainer } from './ClipTableContainer'
 import { CreateClipButton } from './creation/CreateClipButton'
-import { H3 } from '@janhoeck/ui'
 
 export const ClipsConfigSection = () => {
   return (

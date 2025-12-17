@@ -1,9 +1,10 @@
 'use client'
 
-import { useDataContext } from '../../../contexts/data/DataContext'
-import { buildChartData, groupVotesByDay } from './utils'
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@janhoeck/ui'
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
+
+import { useDataContext } from '../../../contexts/data/DataContext'
+import { buildChartData, groupVotesByDay } from './utils'
 
 const chartConfig = {
   amount: {
