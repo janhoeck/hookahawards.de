@@ -2,7 +2,7 @@ import { Headline } from '@/components/shared/Headline'
 
 export const ImprintView = () => {
   return (
-    <div className='container mx-auto max-w-6xl text-muted-foreground'>
+    <div className='text-muted-foreground container mx-auto max-w-6xl'>
       <Headline>Impressum</Headline>
       <div className='space-y-2'>
         <div>Aykut_Hookah - Aykut Sakarkaya</div>

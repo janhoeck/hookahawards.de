@@ -18,12 +18,12 @@ export const HeroSection = (props: HeroSectionProps) => {
 
   return (
     <section className={twMerge(['flex flex-col items-center', className])}>
-      <div className='relative max-w-4xl mx-auto text-center space-y-8 px-4'>
+      <div className='relative mx-auto max-w-4xl space-y-8 px-4 text-center'>
         {/* Background effects */}
-        <div className='absolute inset-0 pointer-events-none'>
-          <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[600px] bg-primary/10 rounded-full blur-3xl' />
+        <div className='pointer-events-none absolute inset-0'>
+          <div className='bg-primary/10 absolute top-1/2 left-1/2 h-[600px] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl' />
         </div>
-        <div className='relative h-45 w-45 mx-auto'>
+        <div className='relative mx-auto h-45 w-45'>
           <Image
             fill
             src='/images/logo.webp'
@@ -31,7 +31,7 @@ export const HeroSection = (props: HeroSectionProps) => {
           />
         </div>
         {/* Subtitle */}
-        <div className='space-y-4 max-w-2xl mx-auto'>
+        <div className='mx-auto max-w-2xl space-y-4'>
           <H3>Willkommen zum „Best of 2025" Community-Voting!</H3>
           <Muted>
             Das Jahr 2025 war voller legendärer Momente, unerwarteter Fails und absoluter Highlight-Clips. Jetzt ist
@@ -47,26 +47,26 @@ export const HeroSection = (props: HeroSectionProps) => {
         {!isVotingPhaseOver && (
           <>
             {/* How it works */}
-            <Card className='max-w-xl mx-auto'>
+            <Card className='mx-auto max-w-xl'>
               <CardHeader>
-                <H4 className='font-semibold text-lg text-foreground'>So funktioniert's:</H4>
+                <H4 className='text-foreground text-lg font-semibold'>So funktioniert's:</H4>
               </CardHeader>
               <CardContent>
-                <List className='space-y-3 text-left ml-0'>
+                <List className='ml-0 space-y-3 text-left'>
                   <li className='flex items-start gap-3'>
-                    <span className='flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center'>
+                    <span className='bg-primary text-primary-foreground flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold'>
                       1
                     </span>
                     <span className='text-muted-foreground'>Logge dich mit deinem Twitch Account ein</span>
                   </li>
                   <li className='flex items-start gap-3'>
-                    <span className='flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center'>
+                    <span className='bg-primary text-primary-foreground flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold'>
                       2
                     </span>
                     <span className='text-muted-foreground'>Schau dir die nominierten Clips an</span>
                   </li>
                   <li className='flex items-start gap-3'>
-                    <span className='flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center'>
+                    <span className='bg-primary text-primary-foreground flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold'>
                       3
                     </span>
                     <span className='text-muted-foreground'>Wähle deinen Favoriten in jeder Kategorie</span>

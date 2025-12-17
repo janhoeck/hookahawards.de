@@ -17,8 +17,8 @@ export default function Layout(props: LayoutProps) {
   return (
     <html className='dark'>
       <body className={twMerge(inter.className, bebasNeue.variable)}>
-        <div className='flex flex-col min-h-screen'>
-          <main className='container mx-auto px-4 mt-16 mb-16 flex-1'>{children}</main>
+        <div className='flex min-h-screen flex-col'>
+          <main className='container mx-auto mt-16 mb-16 flex-1 px-4'>{children}</main>
           <Footer />
         </div>
         <Analytics />

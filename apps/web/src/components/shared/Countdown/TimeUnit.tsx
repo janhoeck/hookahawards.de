@@ -4,10 +4,10 @@ type TimeUnitProps = {
 }
 
 export const TimeUnit = ({ value, label }: TimeUnitProps) => (
-  <div className='flex flex-col items-center justify-center min-w-[80px]'>
-    <div className='text-4xl md:text-6xl font-bold text-foreground mb-1 tabular-nums'>
+  <div className='flex min-w-[80px] flex-col items-center justify-center'>
+    <div className='text-foreground mb-1 text-4xl font-bold tabular-nums md:text-6xl'>
       {String(value).padStart(2, '0')}
     </div>
-    <div className='text-xs md:text-sm uppercase tracking-[0.3em] text-muted-foreground font-light'>{label}</div>
+    <div className='text-muted-foreground text-xs font-light tracking-[0.3em] uppercase md:text-sm'>{label}</div>
   </div>
 )

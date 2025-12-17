@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 export const Footer = () => {
   return (
-    <footer className='w-full p-4 flex flex-col items-center'>
-      <div className='flex flex-row space-x-4 mb-4'>
+    <footer className='flex w-full flex-col items-center p-4'>
+      <div className='mb-4 flex flex-row space-x-4'>
         <SocialButton
           href='https://www.instagram.com/aykut_hookah/'
           icon={SiInstagram}
@@ -23,7 +23,7 @@ export const Footer = () => {
           icon={SiYoutube}
         />
       </div>
-      <div className='text-muted-foreground text-center space-y-2'>
+      <div className='text-muted-foreground space-y-2 text-center'>
         <p>
           <span>All rights reserved</span>
           <span> - </span>

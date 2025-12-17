@@ -20,7 +20,7 @@ export const ClipDialog = (props: ClipDialogProps) => {
       onOpenChange={onOpenChange}
     >
       <DialogPortal>
-        <DialogOverlay className='bg-dialog-backdrop backdrop-blur-sm fixed inset-0' />
+        <DialogOverlay className='bg-dialog-backdrop fixed inset-0 backdrop-blur-sm' />
         {selectedClip && (
           <ClipDialogContent
             clip={selectedClip}

@@ -17,7 +17,7 @@ export const StreamerAvatarList = (props: StreamerAvatarListProps) => {
   }
 
   return (
-    <div className='flex flex-row gap-2 items-center'>
+    <div className='flex flex-row flex-wrap items-center gap-2'>
       <div className='*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2'>
         {streamerIds.map((streamerId) => (
           <StreamerAvatar

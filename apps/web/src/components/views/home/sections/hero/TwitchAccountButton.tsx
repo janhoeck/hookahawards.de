@@ -17,7 +17,7 @@ export const TwitchAccountButton = () => {
         className='w-full'
       >
         {data.user.image && (
-          <div className='relative h-6 w-6 rounded-full overflow-hidden flex-shrink-0'>
+          <div className='relative h-6 w-6 flex-shrink-0 overflow-hidden rounded-full'>
             <Image
               fill
               src={data.user.image}

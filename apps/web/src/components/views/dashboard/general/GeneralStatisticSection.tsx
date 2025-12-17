@@ -12,7 +12,7 @@ export const GeneralStatisticSection = () => {
         <Card className='glass-card'>
           <CardContent className='text-center'>
             <div className='flex flex-col'>
-              <span className='text-4xl font-bold text-primary'>{categories.length}</span>
+              <span className='text-primary text-4xl font-bold'>{categories.length}</span>
               <span className='text-foreground'>Kategorien</span>
             </div>
           </CardContent>
@@ -20,7 +20,7 @@ export const GeneralStatisticSection = () => {
         <Card className='glass-card'>
           <CardContent className='text-center'>
             <div className='flex flex-col'>
-              <span className='text-4xl font-bold text-primary'>{clips.length}</span>
+              <span className='text-primary text-4xl font-bold'>{clips.length}</span>
               <span className='text-foreground'>Clips</span>
             </div>
           </CardContent>
@@ -28,7 +28,7 @@ export const GeneralStatisticSection = () => {
         <Card className='glass-card'>
           <CardContent className='text-center'>
             <div className='flex flex-col'>
-              <span className='text-4xl font-bold text-primary'>{votes.length}</span>
+              <span className='text-primary text-4xl font-bold'>{votes.length}</span>
               <span className='text-foreground'>Votes</span>
             </div>
           </CardContent>

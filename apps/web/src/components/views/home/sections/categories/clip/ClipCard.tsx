@@ -40,16 +40,16 @@ export const ClipCard = (props: ClipCardProps) => {
 
   return (
     <Card
-      className='pt-0 overflow-hidden group cursor-pointer'
+      className='group cursor-pointer overflow-hidden pt-0'
       onClick={() => onClickAction(clip)}
     >
       <CardContent className='px-0'>
-        <div className='aspect-video relative overflow-hidden'>
+        <div className='relative aspect-video overflow-hidden'>
           {voted && <Badge className='absolute top-2 right-2 z-10'>Ausgewählt</Badge>}
           <Image
             fill
             loading='lazy'
-            className='object-cover group-hover:scale-110 transition-all duration-300'
+            className='object-cover transition-all duration-300 group-hover:scale-110'
             src={clipThumbnailUrl}
             alt={clip.title}
             sizes='(max-width: 768px) 100vw, 384px'

@@ -16,12 +16,12 @@ export const ClipDialogContent = (props: ClipDialogContentProps) => {
   const { clip, category, onNextClick, onPrevClick } = props
 
   return (
-    <DialogContent className='h-screen max-w-screen! block rounded-none bg-transparent'>
+    <DialogContent className='block h-screen max-w-screen! rounded-none bg-transparent'>
       <DialogHeader className='mb-12'>
         <DialogTitle>{clip.title}</DialogTitle>
         <DialogDescription>{clip.description}</DialogDescription>
       </DialogHeader>
-      <div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-4 w-full max-w-5xl mx-auto'>
+      <div className='mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-4 lg:grid-cols-[auto_1fr_auto]'>
         <DesktopOnly>
           <PreviousClipButton onClick={onPrevClick} />
         </DesktopOnly>
