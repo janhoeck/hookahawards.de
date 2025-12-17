@@ -13,15 +13,15 @@ export async function getCachedAvatar(username: string): Promise<string> {
   }
 
   const promise = fetch(`https://decapi.me/twitch/avatar/${username}`, {
-    next: { revalidate: 86400 }
+    next: { revalidate: 86400 },
   })
-    .then(res => res.text())
-    .then(url => {
+    .then((res) => res.text())
+    .then((url) => {
       cache.set(username, { url, timestamp: Date.now() })
       pendingRequests.delete(username)
       return url
     })
-    .catch(error => {
+    .catch((error) => {
       pendingRequests.delete(username)
       throw error
     })

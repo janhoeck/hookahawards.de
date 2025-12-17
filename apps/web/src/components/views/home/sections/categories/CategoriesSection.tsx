@@ -4,8 +4,9 @@ import { Fragment } from 'react'
 
 import { ClipCategory } from './clip/ClipCategory'
 import { SurveyCategory } from './survey/SurveyCategory'
-import { VotesContextProvider } from './context/VotesContextProvider'
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { VotesContextProvider } from '@/components/contexts/votes/VotesContextProvider'
+import { VotingFeedback } from '@/components/views/home/VotingFeedback'
 
 export const CategoriesSection = () => {
   const { categories } = useDataContext()
@@ -19,6 +20,7 @@ export const CategoriesSection = () => {
             {category.type === 'survey' && <SurveyCategory category={category} />}
           </Fragment>
         ))}
+        <VotingFeedback />
       </VotesContextProvider>
     </section>
   )

@@ -1,10 +1,11 @@
 'use client'
 
 import { useSession } from '@/lib/auth-client'
-import React, { startTransition, useEffect, useOptimistic, useState } from 'react'
+import React, { startTransition, useEffect, useMemo, useOptimistic, useState } from 'react'
 
 import { VotesContext } from './VotesContext'
 import { CategoryType, Vote } from '@janhoeck/domain'
+import { useDataContext } from '@/components/contexts/data/DataContext'
 
 export type VotesContextProviderProps = {
   children: React.ReactNode
@@ -15,6 +16,8 @@ export const VotesContextProvider = (props: VotesContextProviderProps) => {
 
   const [isLoading, setLoading] = useState<boolean>(true)
   const [votes, setVotes] = useState<Vote[]>([])
+
+  const { categories, clips, surveys } = useDataContext()
   const { data } = useSession()
 
   const [optimisticVotes, addOptimisticVote] = useOptimistic(votes, (state, newVote: Vote) => {
@@ -92,7 +95,29 @@ export const VotesContextProvider = (props: VotesContextProviderProps) => {
     })
   }
 
+  /**
+   * Returns true if the user votes for all categories
+   */
+  const hasCompletelyVoted = useMemo(() => {
+    return categories.every((category) => {
+      return optimisticVotes.some((vote) => {
+        const referenceId = vote.referenceId
+        const reference =
+          vote.referenceType === 'clip'
+            ? clips.find((clip) => clip.id === referenceId)
+            : surveys.find((survey) => survey.id === referenceId)
+
+        if (reference) {
+          return reference.categoryId === category.id
+        }
+        return false
+      })
+    })
+  }, [optimisticVotes, categories, clips, surveys])
+
   return (
-    <VotesContext.Provider value={{ votes: optimisticVotes, isLoading, createVote }}>{children}</VotesContext.Provider>
+    <VotesContext.Provider value={{ votes: optimisticVotes, isLoading, createVote, hasCompletelyVoted }}>
+      {children}
+    </VotesContext.Provider>
   )
 }

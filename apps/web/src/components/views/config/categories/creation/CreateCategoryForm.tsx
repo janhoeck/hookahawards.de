@@ -18,7 +18,7 @@ import {
 import { Category } from '@janhoeck/domain'
 
 export type CreateCategoryFormProps = {
-  categories: Category[],
+  categories: Category[]
   formState: FormState
   formAction: (payload: FormData) => void
   pending: boolean
@@ -27,7 +27,7 @@ export type CreateCategoryFormProps = {
 export const CreateCategoryForm = (props: CreateCategoryFormProps) => {
   const { categories, formState, formAction, pending } = props
 
-  const nextPosition = Math.max(...categories.map(category => category.position)) + 1
+  const nextPosition = Math.max(...categories.map((category) => category.position)) + 1
 
   return (
     <Form

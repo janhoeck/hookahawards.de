@@ -50,7 +50,7 @@ export const DataContext = createContext<DataContextType>({
 
   addStreamer: noop,
   updateStreamer: noop,
-  removeStreamer: noop
+  removeStreamer: noop,
 })
 
 export const useDataContext = () => {

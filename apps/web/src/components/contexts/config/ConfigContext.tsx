@@ -3,7 +3,7 @@
 import { createContext, useContext } from 'react'
 
 export type ConfigContextType = {
-  votingEndDate: Date,
+  votingEndDate: Date
   isVotingPhaseOver: boolean
 }
 

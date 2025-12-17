@@ -75,11 +75,7 @@ export const createClipRepository = (db: DatabaseClient) => {
     const { streamerIds, ...clip } = clipData
 
     return await db.transaction(async (tx) => {
-      const updatedClips = await tx
-        .update(clipSchema)
-        .set(clip)
-        .where(eq(clipSchema.id, clip.id))
-        .returning()
+      const updatedClips = await tx.update(clipSchema).set(clip).where(eq(clipSchema.id, clip.id)).returning()
 
       const updatedClip = updatedClips[0]
       if (!updatedClip) {
@@ -87,9 +83,7 @@ export const createClipRepository = (db: DatabaseClient) => {
       }
 
       if (streamerIds !== undefined) {
-        await tx
-          .delete(clipStreamersSchema)
-          .where(eq(clipStreamersSchema.clipId, clip.id))
+        await tx.delete(clipStreamersSchema).where(eq(clipStreamersSchema.clipId, clip.id))
 
         if (streamerIds.length > 0) {
           await tx.insert(clipStreamersSchema).values(

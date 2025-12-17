@@ -22,10 +22,7 @@ export const createCategoryRepository = (db: DatabaseClient) => {
     return createdCategories[0]
   }
 
-  const updateCategory = async (
-    categoryId: string,
-    updatedCategory: Partial<CategoryDraft>
-  ) => {
+  const updateCategory = async (categoryId: string, updatedCategory: Partial<CategoryDraft>) => {
     const updatedCategories = await db
       .update(categorySchema)
       .set(updatedCategory)

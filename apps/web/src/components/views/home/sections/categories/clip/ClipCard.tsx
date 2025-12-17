@@ -16,10 +16,10 @@ import {
 import Image from 'next/image'
 import { Check } from 'lucide-react'
 
-import { useVotesContext } from '../context/VotesContext'
 import { VoteButton } from '../VoteButton'
 import { Clip } from '@janhoeck/domain'
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
+import { useVotesContext } from '@/components/contexts/votes/VotesContext'
 
 type ClipCardProps = {
   clip: Clip

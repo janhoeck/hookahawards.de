@@ -8,5 +8,8 @@
   "jsxBracketSameLine": false,
   "endOfLine": "lf",
   "printWidth": 120,
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
