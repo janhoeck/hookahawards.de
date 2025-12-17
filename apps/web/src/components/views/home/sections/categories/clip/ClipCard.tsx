@@ -49,6 +49,7 @@ export const ClipCard = (props: ClipCardProps) => {
           <Image
             fill
             loading='lazy'
+            quality={100}
             className='object-cover transition-all duration-300 group-hover:scale-110'
             src={clipThumbnailUrl}
             alt={clip.title}

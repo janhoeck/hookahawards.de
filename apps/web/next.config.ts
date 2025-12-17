@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
   },
   images: {
+    qualities: [75, 100],
     minimumCacheTTL: 2678400,
     remotePatterns: [
       {
