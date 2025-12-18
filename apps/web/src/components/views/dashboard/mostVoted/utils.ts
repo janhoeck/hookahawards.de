@@ -1,6 +1,5 @@
 import { Category, Clip, Survey, Vote } from '@/lib/types'
 
-
 export const mostVotesForCategory = (category: Category, items: (Clip | Survey)[], votes: Vote[]) => {
   const voteCountForCategory = votes.reduce<Record<string, number>>((acc, vote) => {
     if (vote.categoryId === category.id) {

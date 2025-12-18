@@ -3,8 +3,8 @@
 import { useVotesContext } from '@/components/contexts/votes/VotesContext'
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
 import { useSession } from '@/lib/auth/auth-client'
-import { checkVote, extractYoutubeId } from '@/lib/utils'
 import { Clip } from '@/lib/types'
+import { checkVote, extractYoutubeId } from '@/lib/utils'
 import {
   Badge,
   Card,

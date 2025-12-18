@@ -1,3 +1,7 @@
+import { drizzle } from 'drizzle-orm/postgres-js'
+import postgres from 'postgres'
+import 'server-only'
+
 import {
   createCategoryRepository,
   createClipRepository,
@@ -6,12 +10,7 @@ import {
   createSurveyRepository,
   createVoteRepository,
 } from './api'
-import { drizzle } from 'drizzle-orm/postgres-js'
-
-import 'server-only'
-
 import * as schema from './schema'
-import postgres from 'postgres'
 
 export type DatabaseClient = ReturnType<typeof createDatabaseClient>
 
