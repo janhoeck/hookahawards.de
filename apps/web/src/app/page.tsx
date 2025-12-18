@@ -1,3 +1,5 @@
+'use server'
+
 import { ConfigContextProvider } from '@/components/contexts/config/ConfigContextProvider'
 import { DataContextProvider } from '@/components/contexts/data/DataContextProvider'
 import { HomeView } from '@/components/views/home/HomeView'

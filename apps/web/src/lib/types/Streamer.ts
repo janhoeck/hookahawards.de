@@ -1,6 +1,6 @@
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
 
-import { streamerSchema } from '../lib/db/schema'
+import { streamerSchema } from '../db/schema'
 
 /**
  * Represents to full streamer type of the database

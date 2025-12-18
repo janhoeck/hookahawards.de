@@ -1,4 +1,4 @@
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 import { H2, Muted } from '@janhoeck/ui'
 import { PropsWithChildren } from 'react'
 

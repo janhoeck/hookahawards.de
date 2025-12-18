@@ -2,10 +2,9 @@
 
 import { useVotesContext } from '@/components/contexts/votes/VotesContext'
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
-import { useSession } from '@/lib/auth-client'
-import { checkVote } from '@/utils/check-vote'
-import { extractYoutubeId } from '@/utils/extract-youtube-id'
-import { Clip } from '@janhoeck/domain'
+import { useSession } from '@/lib/auth/auth-client'
+import { checkVote, extractYoutubeId } from '@/lib/utils'
+import { Clip } from '@/lib/types'
 import {
   Badge,
   Card,

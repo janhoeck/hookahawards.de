@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm'
 
-import { Category, Clip, ClipDraftWithStreamers } from '../../../types'
-import { DatabaseClient } from '../database'
+import { Category, Clip, ClipDraftWithStreamers } from '../../types'
+import { DatabaseClient } from '../db'
 import { clipSchema, clipStreamersSchema } from '../schema'
 
 export const createClipRepository = (db: DatabaseClient) => {

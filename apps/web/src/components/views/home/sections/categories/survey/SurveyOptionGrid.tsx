@@ -1,7 +1,7 @@
 'use client'
 
-import { useSession } from '@/lib/auth-client'
-import { Survey } from '@janhoeck/domain'
+import { useSession } from '@/lib/auth/auth-client'
+import { Survey } from '@/lib/types'
 import { Variants, motion, stagger } from 'motion/react'
 
 import { VoteButton } from '../VoteButton'

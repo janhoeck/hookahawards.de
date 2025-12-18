@@ -1,7 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -44,7 +44,7 @@ export const EditCategoryButton = (props: EditCategoryButtonProps) => {
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, category, updateCategory])
+  }, [formState, category.id, updateCategory])
 
   return (
     <Dialog

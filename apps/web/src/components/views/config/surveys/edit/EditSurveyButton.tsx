@@ -1,7 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Survey } from '@janhoeck/domain'
+import { Survey } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -46,7 +46,7 @@ export const EditSurveyButton = (props: EditSurveyButtonProps) => {
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, survey.id, updateSurvey])
 
   return (
     <Dialog

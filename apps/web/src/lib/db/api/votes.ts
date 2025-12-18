@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm'
 
-import { Category, Vote } from '../../../types'
-import { DatabaseClient } from '../database'
+import { Category, Vote } from '../../types'
+import { DatabaseClient } from '../db'
 import { voteSchema } from '../schema'
 
 export const createVoteRepository = (db: DatabaseClient) => {

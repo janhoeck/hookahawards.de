@@ -2,12 +2,23 @@ import {
   createCategoryRepository,
   createClipRepository,
   createConfigRepository,
-  createDatabaseClient,
   createStreamerRepository,
   createSurveyRepository,
   createVoteRepository,
-} from '@janhoeck/domain'
+} from './api'
+import { drizzle } from 'drizzle-orm/postgres-js'
+
 import 'server-only'
+
+import * as schema from './schema'
+import postgres from 'postgres'
+
+export type DatabaseClient = ReturnType<typeof createDatabaseClient>
+
+export const createDatabaseClient = (url: string) => {
+  const client = postgres(url, { prepare: false })
+  return drizzle(client, { schema })
+}
 
 export const db = createDatabaseClient(process.env.DATABASE_URL as string)
 

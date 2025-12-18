@@ -1,7 +1,7 @@
 'use server'
 
-import { streamerRepository } from '@/lib/db/db'
-import { Streamer } from '@janhoeck/domain'
+import { streamerRepository } from '@/lib/db'
+import { Streamer } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 export async function deleteStreamerAction(streamer: Streamer) {

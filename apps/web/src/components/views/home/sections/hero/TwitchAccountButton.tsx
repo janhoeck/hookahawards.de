@@ -1,6 +1,6 @@
 'use client'
 
-import { signIn, useSession } from '@/lib/auth-client'
+import { signIn, useSession } from '@/lib/auth/auth-client'
 import { SiTwitch } from '@icons-pack/react-simple-icons'
 import { Button } from '@janhoeck/ui'
 import Image from 'next/image'

@@ -1,7 +1,7 @@
 'use server'
 
-import { surveyRepository } from '@/lib/db/db'
-import { Survey } from '@janhoeck/domain'
+import { surveyRepository } from '@/lib/db'
+import { Survey } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 import { FormState, schema } from './schema'

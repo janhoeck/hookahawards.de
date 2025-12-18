@@ -1,6 +1,6 @@
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
 
-import { categorySchema } from '../lib/db/schema'
+import { categorySchema } from '../db/schema'
 
 /**
  * Represents to full category type of the database

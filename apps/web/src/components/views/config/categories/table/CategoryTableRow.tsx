@@ -1,9 +1,9 @@
 import { EditCategoryButton } from '@/components/views/config/categories/edit/EditCategoryButton'
 import { DeleteButtonWithConfirm } from '@/components/views/config/components/DeleteButtonWithConfirm'
-import { shortenText } from '@/utils/shorten-text'
+import { shortenText } from '@/lib/utils'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 import { TableCell, TableRow } from '@janhoeck/ui'
 import { GripHorizontal } from 'lucide-react'
 

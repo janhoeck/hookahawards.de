@@ -1,7 +1,7 @@
 'use server'
 
-import { categoryRepository } from '@/lib/db/db'
-import { CategoryDraft } from '@janhoeck/domain'
+import { categoryRepository } from '@/lib/db'
+import { CategoryDraft } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 import { FormState, schema } from './schema'

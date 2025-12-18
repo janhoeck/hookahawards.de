@@ -1,4 +1,4 @@
-import { Clip } from '@janhoeck/domain'
+import { Clip } from '@/lib/types'
 import { z } from 'zod'
 
 const youtubeUrlRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/)|youtu\.be\/)[\w-]{11}([?&].*)?$/

@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm'
 
-import { Category, Survey, SurveyDraft } from '../../../types'
-import { DatabaseClient } from '../database'
+import { Category, Survey, SurveyDraft } from '../../types'
+import { DatabaseClient } from '../db'
 import { surveySchema } from '../schema'
 
 export const createSurveyRepository = (db: DatabaseClient) => {

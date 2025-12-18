@@ -1,7 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { shortenText } from '@/utils/shorten-text'
+import { shortenText } from '@/lib/utils'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 import { DeleteButtonWithConfirm } from '../components/DeleteButtonWithConfirm'

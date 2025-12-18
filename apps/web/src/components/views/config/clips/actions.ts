@@ -1,7 +1,7 @@
 'use server'
 
 import { clipRepository } from '@/lib/db/db'
-import { Clip } from '@janhoeck/domain'
+import { Clip } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 export async function deleteClipAction(clip: Clip) {

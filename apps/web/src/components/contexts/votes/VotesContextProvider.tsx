@@ -1,8 +1,8 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { useSession } from '@/lib/auth-client'
-import { CategoryType, Vote } from '@janhoeck/domain'
+import { useSession } from '@/lib/auth/auth-client'
+import { CategoryType, Vote } from '@/lib/types'
 import React, { startTransition, useEffect, useMemo, useOptimistic, useState } from 'react'
 
 import { VotesContext } from './VotesContext'

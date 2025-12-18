@@ -1,7 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 
 import { CategoryContainer } from '../CategoryContainer'
 import { SurveyOptionGrid } from './SurveyOptionGrid'

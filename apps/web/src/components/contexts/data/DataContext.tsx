@@ -1,6 +1,6 @@
 'use client'
 
-import { Category, Clip, Streamer, Survey, Vote } from '@janhoeck/domain'
+import { Category, Clip, Streamer, Survey, Vote } from '@/lib/types'
 import { createContext, useContext } from 'react'
 
 export type DataContextType = {

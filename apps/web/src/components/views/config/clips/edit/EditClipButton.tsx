@@ -1,7 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Clip } from '@janhoeck/domain'
+import { Clip } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -46,7 +46,7 @@ export const EditClipButton = (props: EditClipButtonProps) => {
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, clip.id, updateClip])
 
   return (
     <Dialog

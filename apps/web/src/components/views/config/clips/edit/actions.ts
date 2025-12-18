@@ -1,7 +1,7 @@
 'use server'
 
-import { clipRepository } from '@/lib/db/db'
-import { Clip } from '@janhoeck/domain'
+import { clipRepository } from '@/lib/db'
+import { Clip } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 import { FormState, schema } from './schema'

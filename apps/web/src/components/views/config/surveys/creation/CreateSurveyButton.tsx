@@ -41,7 +41,7 @@ export const CreateSurveyButton = () => {
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, addSurvey])
 
   return (
     <Dialog

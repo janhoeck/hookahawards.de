@@ -1,4 +1,4 @@
-import { CategoryType, Vote } from '@janhoeck/domain'
+import { CategoryType, Vote } from '@/lib/types'
 import { createContext, useContext } from 'react'
 
 export type VotesContextType = {

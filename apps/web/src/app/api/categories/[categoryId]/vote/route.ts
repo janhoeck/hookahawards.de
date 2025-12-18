@@ -1,5 +1,5 @@
-import { getCurrentUser } from '@/lib/auth-server'
-import { voteRepository } from '@/lib/db/db'
+import { getCurrentUser } from '@/lib/auth/auth-server'
+import { voteRepository } from '@/lib/db'
 import { NextRequest } from 'next/server'
 import { z } from 'zod'
 

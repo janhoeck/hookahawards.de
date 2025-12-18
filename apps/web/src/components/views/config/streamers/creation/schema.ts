@@ -1,4 +1,4 @@
-import { Streamer } from '@janhoeck/domain'
+import { Streamer } from '@/lib/types'
 import { z } from 'zod'
 
 export const schema = z.object({

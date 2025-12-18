@@ -1,4 +1,4 @@
-import { SocialButton } from '@/components/shared/Footer/SocialButton'
+import { SocialButton } from './SocialButton'
 import { SiDiscord, SiInstagram, SiTwitch, SiYoutube } from '@icons-pack/react-simple-icons'
 import Link from 'next/link'
 

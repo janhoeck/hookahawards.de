@@ -1,4 +1,4 @@
-import { Vote } from '@janhoeck/domain'
+import { Vote } from '@/lib/types'
 
 export const groupVotesByDay = (votes: Vote[]) => {
   const grouped = new Map<string, { date: Date; count: number }>()

@@ -41,7 +41,7 @@ export const CreateClipButton = () => {
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, addClip])
 
   return (
     <Dialog

@@ -1,7 +1,7 @@
 import { useConfigContext } from '@/components/contexts/config/ConfigContext'
 import { useVotesContext } from '@/components/contexts/votes/VotesContext'
-import { checkVote } from '@/utils/check-vote'
-import { CategoryType } from '@janhoeck/domain'
+import { CategoryType } from '@/lib/types'
+import { checkVote } from '@/lib/utils'
 import { Button } from '@janhoeck/ui'
 import React, { MouseEventHandler, useState } from 'react'
 

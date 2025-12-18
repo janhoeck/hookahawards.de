@@ -1,4 +1,4 @@
-import { Category, Clip } from '@janhoeck/domain'
+import { Category, Clip } from '@/lib/types'
 import { Dialog, DialogOverlay, DialogPortal } from '@janhoeck/ui'
 
 import { ClipDialogContent } from './ClipDialogContent'
@@ -12,7 +12,7 @@ export type ClipDialogProps = {
 }
 
 export const ClipDialog = (props: ClipDialogProps) => {
-  const { selectedClip, category, onOpenChange, onNextClick, onPrevClick } = props
+  const { selectedClip, onOpenChange, onNextClick, onPrevClick } = props
 
   return (
     <Dialog
@@ -24,7 +24,6 @@ export const ClipDialog = (props: ClipDialogProps) => {
         {selectedClip && (
           <ClipDialogContent
             clip={selectedClip}
-            category={category}
             onNextClick={onNextClick}
             onPrevClick={onPrevClick}
           />

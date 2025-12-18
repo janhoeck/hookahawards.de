@@ -1,5 +1,5 @@
-import { extractYoutubeId } from '@/utils/extract-youtube-id'
-import { Clip } from '@janhoeck/domain'
+import { extractYoutubeId } from '@/lib/utils'
+import { Clip } from '@/lib/types'
 
 type ResponsiveYouTubeVideoProps = {
   clip: Clip

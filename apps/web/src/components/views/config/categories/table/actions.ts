@@ -1,7 +1,7 @@
 'use server'
 
-import { categoryRepository } from '@/lib/db/db'
-import { Category } from '@janhoeck/domain'
+import { categoryRepository } from '@/lib/db'
+import { Category } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 export async function deleteCategoryAction(category: Category) {

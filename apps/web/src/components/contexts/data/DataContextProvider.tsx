@@ -1,6 +1,6 @@
 'use client'
 
-import { Category, Clip, Streamer, Survey, Vote } from '@janhoeck/domain'
+import { Category, Clip, Streamer, Survey, Vote } from '@/lib/types'
 import { Dispatch, PropsWithChildren, SetStateAction, useCallback, useState } from 'react'
 
 import { DataContext } from './DataContext'

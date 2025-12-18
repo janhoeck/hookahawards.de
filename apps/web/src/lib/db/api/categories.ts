@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm'
 
-import { Category, CategoryDraft } from '../../../types'
-import { DatabaseClient } from '../database'
+import { Category, CategoryDraft } from '../../types'
+import { DatabaseClient } from '../db'
 import { categorySchema } from '../schema'
 
 export const createCategoryRepository = (db: DatabaseClient) => {

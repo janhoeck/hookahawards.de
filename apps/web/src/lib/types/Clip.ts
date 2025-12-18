@@ -1,6 +1,6 @@
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
 
-import { clipSchema } from '../lib/db/schema'
+import { clipSchema } from '../db/schema'
 
 /**
  * Base clip type from database

@@ -1,4 +1,4 @@
-import { Vote } from '@janhoeck/domain'
+import { Vote } from '@/lib/types'
 
 /**
  * Check if the current user voted for the reference id (clip / survey)
