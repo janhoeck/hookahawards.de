@@ -4,6 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 export const useCategoryClips = (categoryId: string) => {
   return useInfiniteQuery({
     initialPageParam: 1,
+    staleTime: 5 * 60 * 1000,
     queryKey: ['clips', categoryId],
     queryFn: async ({ pageParam }) => {
       return fetchClips(categoryId, { page: pageParam, limit: 10 })

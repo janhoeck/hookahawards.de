@@ -4,6 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 export const useCategorySurveys = (categoryId: string) => {
   return useInfiniteQuery({
     initialPageParam: 1,
+    staleTime: 5 * 60 * 1000,
     queryKey: ['surveys', categoryId],
     queryFn: async ({ pageParam }) => {
       return fetchSurveys(categoryId, { page: pageParam, limit: 10 })

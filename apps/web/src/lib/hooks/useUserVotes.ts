@@ -6,7 +6,9 @@ export const useUserVotes = () => {
   return useQuery({
     queryKey: ['votes'],
     queryFn: fetchUserVotes,
-    initialData: [],
+    placeholderData: [],
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
   })
 }
 
