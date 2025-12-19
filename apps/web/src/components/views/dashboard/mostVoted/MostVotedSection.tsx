@@ -1,12 +1,10 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useStatistics } from '@/lib/hooks'
 import { H3, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
-import { mostVotesForCategory } from './utils'
-
 export const MostVotedSection = () => {
-  const { categories, clips, surveys, votes } = useDataContext()
+  const { data } = useStatistics()
 
   return (
     <section>
@@ -20,20 +18,12 @@ export const MostVotedSection = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {categories.map((category) => {
-            const { items, amount } = mostVotesForCategory(category, category.type === 'clip' ? clips : surveys, votes)
-
+          {data.mostVotes.map((item) => {
             return (
-              <TableRow key={category.id}>
-                <TableCell>{category.title}</TableCell>
-                <TableCell>
-                  <div className='flex flex-col space-y-4'>
-                    {items.map((item) => (
-                      <span key={item.id}>{item.title}</span>
-                    ))}
-                  </div>
-                </TableCell>
-                <TableCell className='text-center'>{amount ?? '--'}</TableCell>
+              <TableRow key={item.categoryId}>
+                <TableCell>{item.categoryTitle}</TableCell>
+                <TableCell>{item.itemTitle}</TableCell>
+                <TableCell className='text-center'>{item.voteCount}</TableCell>
               </TableRow>
             )
           })}

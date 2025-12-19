@@ -27,10 +27,13 @@ export const GET = async (request: NextRequest, { params }: { params: Params }) 
 
     return NextResponse.json(
       buildPaginationResponse({
-        items: itemsResponse.map((clip) => ({
-          ...clip,
-          streamerIds: clip.streamers.map((cs) => cs.streamerId),
-        })),
+        items: itemsResponse.map((clip) => {
+          const { streamers, ...rest } = clip
+          return {
+            ...rest,
+            streamerIds: streamers.map((cs) => cs.streamerId),
+          }
+        }),
         page,
         limit,
         offset,
