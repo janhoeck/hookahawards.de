@@ -3,13 +3,14 @@ import { CategoryType, Vote } from '@/lib/types'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 export const useUserVotes = () => {
-  return useQuery({
+  const { data = [], ...rest } = useQuery({
     queryKey: ['votes'],
     queryFn: fetchUserVotes,
     placeholderData: [],
     staleTime: 5 * 60 * 1000,
     gcTime: 10 * 60 * 1000,
   })
+  return { data, ...rest }
 }
 
 export const useAddVote = (categoryId: string, referenceId: string, referenceType: CategoryType) => {
