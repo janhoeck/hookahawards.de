@@ -1,6 +1,7 @@
 import { getCurrentUser } from '@/lib/auth/auth-server'
-import { voteRepository } from '@/lib/db'
-import { NextRequest } from 'next/server'
+import { db } from '@/lib/db'
+import { voteSchema } from '@/lib/db/schema'
+import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 type Params = Promise<{ categoryId: string }>
@@ -13,7 +14,7 @@ const bodySchema = z.object({
 export const POST = async (request: NextRequest, { params }: { params: Params }) => {
   const user = await getCurrentUser()
   if (!user) {
-    return Response.json({ error: 'Not authenticated' }, { status: 401 })
+    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
   }
 
   const userId = user.id
@@ -21,24 +22,35 @@ export const POST = async (request: NextRequest, { params }: { params: Params })
 
   const body = await request.json()
   if (!body) {
-    return Response.json('', { status: 400 })
+    return NextResponse.json('', { status: 400 })
   }
 
   const { success, data, error } = bodySchema.safeParse(body)
   if (!success) {
-    return Response.json(error, { status: 400 })
+    return NextResponse.json(error, { status: 400 })
   }
 
+  const { referenceId, referenceType } = data
   try {
-    await voteRepository.insertVote({
-      userId,
-      categoryId,
-      referenceId: data.referenceId,
-      referenceType: data.referenceType,
-    })
-    return Response.json('', { status: 200 })
+    const response = await db
+      .insert(voteSchema)
+      .values({
+        userId,
+        categoryId,
+        referenceId,
+        referenceType,
+      })
+      .onConflictDoUpdate({
+        target: [voteSchema.userId, voteSchema.categoryId],
+        set: {
+          referenceId,
+          referenceType,
+        },
+      })
+      .returning()
+    return NextResponse.json(response[0], { status: 200 })
   } catch (error) {
     console.error(error)
   }
-  return Response.error()
+  return NextResponse.error()
 }

@@ -1,7 +1,6 @@
 import { db } from '@/lib/db'
 import { categorySchema } from '@/lib/db/schema'
 import { buildPaginationResponse, extractPaginationFromUrl } from '@/lib/utils'
-import { count } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const GET = async (request: NextRequest) => {
@@ -9,11 +8,11 @@ export const GET = async (request: NextRequest) => {
 
   try {
     const [countResponse, itemsResponse] = await Promise.all([
-      db.select({ count: count() }).from(categorySchema),
+      db.$count(categorySchema),
       db.select().from(categorySchema).orderBy(categorySchema.position).limit(limit).offset(offset),
     ])
 
-    const totalItemsCount = countResponse[0]?.count ?? 0
+    const totalItemsCount = countResponse
 
     return NextResponse.json(buildPaginationResponse({ items: itemsResponse, page, limit, offset, totalItemsCount }))
   } catch (error) {

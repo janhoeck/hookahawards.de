@@ -1,6 +1,6 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useCategorySurveys } from '@/lib/hooks'
 import { Category } from '@/lib/types'
 
 import { CategoryContainer } from '../CategoryContainer'
@@ -12,11 +12,15 @@ type SurveyVotingSectionProps = {
 
 export const SurveyCategory = (props: SurveyVotingSectionProps) => {
   const { category } = props
-  const { surveys } = useDataContext()
+  const { isPending, error, data } = useCategorySurveys(category.id)
+
+  if (isPending || error) {
+    return null
+  }
 
   return (
     <CategoryContainer category={category}>
-      <SurveyOptionGrid surveys={surveys.filter((survey) => survey.categoryId === category.id)} />
+      <SurveyOptionGrid surveys={data.pages.flatMap((page) => page.items)} />
     </CategoryContainer>
   )
 }

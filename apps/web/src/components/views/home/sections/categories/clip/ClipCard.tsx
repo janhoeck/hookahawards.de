@@ -1,8 +1,8 @@
 'use client'
 
-import { useVotesContext } from '@/components/contexts/votes/VotesContext'
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
 import { useSession } from '@/lib/auth/auth-client'
+import { useUserVotes } from '@/lib/hooks'
 import { Clip } from '@/lib/types'
 import { checkVote, extractYoutubeId } from '@/lib/utils'
 import {
@@ -27,10 +27,10 @@ type ClipCardProps = {
 
 export const ClipCard = (props: ClipCardProps) => {
   const { clip, onClickAction } = props
-  const { votes } = useVotesContext()
+  const { data: votes } = useUserVotes()
 
   const isMounted = useIsMounted()
-  const { data } = useSession()
+  const { data: session } = useSession()
 
   const clipYouTubeId = extractYoutubeId(clip.link)
   const clipThumbnailUrl = `https://i.ytimg.com/vi/${clipYouTubeId}/0.jpg`
@@ -67,7 +67,7 @@ export const ClipCard = (props: ClipCardProps) => {
           categoryId={clip.categoryId}
           referenceId={clip.id}
           type='clip'
-          disabled={!isMounted || !data}
+          disabled={!isMounted || !session}
           label={(voted) =>
             voted ? (
               <>

@@ -1,6 +1,6 @@
-import { Pagination, PaginationResponse } from '@/lib/types'
+import { PaginationRequest, PaginationResponse } from '@/lib/types'
 
-export const extractPaginationFromUrl = (url: string): Pagination => {
+export const extractPaginationFromUrl = (url: string): PaginationRequest => {
   const parsedUrl = new URL(url)
   const searchParams = parsedUrl.searchParams
   const page = parseInt(searchParams.get('page') || '1')

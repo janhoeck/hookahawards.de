@@ -1,7 +1,7 @@
 import { db } from '@/lib/db'
 import { clipSchema } from '@/lib/db/schema'
 import { buildPaginationResponse, extractPaginationFromUrl } from '@/lib/utils'
-import { count, eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
 
 type Params = Promise<{ categoryId: string }>
@@ -12,19 +12,31 @@ export const GET = async (request: NextRequest, { params }: { params: Params }) 
 
   try {
     const [countResponse, itemsResponse] = await Promise.all([
-      db.select({ count: count() }).from(clipSchema).where(eq(clipSchema.categoryId, categoryId)),
-      db
-        .select()
-        .from(clipSchema)
-        .orderBy(clipSchema.createdAt)
-        .where(eq(clipSchema.categoryId, categoryId))
-        .limit(limit)
-        .offset(offset),
+      db.$count(clipSchema, eq(clipSchema.categoryId, categoryId)),
+      db.query.clipSchema.findMany({
+        limit,
+        offset,
+        where: eq(clipSchema.categoryId, categoryId),
+        with: {
+          streamers: true,
+        },
+      }),
     ])
 
-    const totalItemsCount = countResponse[0]?.count ?? 0
+    const totalItemsCount = countResponse
 
-    return NextResponse.json(buildPaginationResponse({ items: itemsResponse, page, limit, offset, totalItemsCount }))
+    return NextResponse.json(
+      buildPaginationResponse({
+        items: itemsResponse.map((clip) => ({
+          ...clip,
+          streamerIds: clip.streamers.map((cs) => cs.streamerId),
+        })),
+        page,
+        limit,
+        offset,
+        totalItemsCount,
+      })
+    )
   } catch (error) {
     console.error(error)
     return NextResponse.error()

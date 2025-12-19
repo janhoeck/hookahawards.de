@@ -1,3 +1,4 @@
+import { VotingFeedback } from './VotingFeedback'
 import { CategoriesSection } from './sections/categories/CategoriesSection'
 import { HeroSection } from './sections/hero/HeroSection'
 
@@ -6,6 +7,7 @@ export const HomeView = () => {
     <>
       <HeroSection className='mb-30' />
       <CategoriesSection />
+      <VotingFeedback />
     </>
   )
 }

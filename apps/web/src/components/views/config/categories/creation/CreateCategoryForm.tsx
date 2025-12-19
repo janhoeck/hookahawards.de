@@ -28,8 +28,7 @@ export type CreateCategoryFormProps = {
 export const CreateCategoryForm = (props: CreateCategoryFormProps) => {
   const { categories, formState, formAction, pending } = props
 
-  const nextPosition = Math.max(...categories.map((category) => category.position)) + 1
-
+  const nextPosition = categories.length === 0 ? 0 : Math.max(...categories.map((category) => category.position)) + 1
   return (
     <Form
       action={formAction}
@@ -82,7 +81,7 @@ export const CreateCategoryForm = (props: CreateCategoryFormProps) => {
               <SelectGroup>
                 <SelectLabel>Typ</SelectLabel>
                 <SelectItem value='clip'>Clip</SelectItem>
-                <SelectItem value='sruvey'>Umfrage</SelectItem>
+                <SelectItem value='survey'>Umfrage</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

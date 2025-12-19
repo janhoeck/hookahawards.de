@@ -1,6 +1,6 @@
 'use client'
 
-import { useVotesContext } from '@/components/contexts/votes/VotesContext'
+import { useVotingProgress } from '@/lib/hooks'
 import {
   Dialog,
   DialogContent,
@@ -17,14 +17,13 @@ import { useEffect, useState } from 'react'
 const CONFETTI_FIRED_KEY = 'voting_confetti_fired'
 
 export const VotingFeedback = () => {
-  const { hasCompletelyVoted } = useVotesContext()
+  const { allCategoriesVoted } = useVotingProgress()
   const { start } = useConfettiCannons()
 
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    console.log({ hasCompletelyVoted })
-    if (hasCompletelyVoted) {
+    if (allCategoriesVoted) {
       const hasConfettiFired = localStorage.getItem(CONFETTI_FIRED_KEY)
       console.log({ hasConfettiFired })
       if (!hasConfettiFired) {
@@ -33,7 +32,7 @@ export const VotingFeedback = () => {
         localStorage.setItem(CONFETTI_FIRED_KEY, 'true')
       }
     }
-  }, [hasCompletelyVoted, start])
+  }, [allCategoriesVoted, start])
 
   return (
     <Dialog

@@ -1,7 +1,7 @@
 import { db } from '@/lib/db'
 import { surveySchema } from '@/lib/db/schema'
 import { buildPaginationResponse, extractPaginationFromUrl } from '@/lib/utils'
-import { count, eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
 
 type Params = Promise<{ categoryId: string }>
@@ -12,7 +12,7 @@ export const GET = async (request: NextRequest, { params }: { params: Params }) 
 
   try {
     const [countResponse, itemsResponse] = await Promise.all([
-      db.select({ count: count() }).from(surveySchema).where(eq(surveySchema.categoryId, categoryId)),
+      db.$count(surveySchema, eq(surveySchema.categoryId, categoryId)),
       db
         .select()
         .from(surveySchema)
@@ -22,7 +22,7 @@ export const GET = async (request: NextRequest, { params }: { params: Params }) 
         .offset(offset),
     ])
 
-    const totalItemsCount = countResponse[0]?.count ?? 0
+    const totalItemsCount = countResponse
 
     return NextResponse.json(buildPaginationResponse({ items: itemsResponse, page, limit, offset, totalItemsCount }))
   } catch (error) {

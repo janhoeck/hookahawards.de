@@ -11,6 +11,11 @@ export function proxy(request: NextRequest) {
     return NextResponse.next()
   }
 
+  const nodeEnv = (process.env.NODE_ENV as string) || 'development'
+  if (nodeEnv !== 'production') {
+    return NextResponse.next()
+  }
+
   // Basic Auth Credentials (should be stored in environment variables)
   const validUsername = process.env.BASIC_AUTH_USERNAME! as string
   const validPassword = process.env.BASIC_AUTH_PASSWORD! as string

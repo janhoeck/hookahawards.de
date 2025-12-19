@@ -11,7 +11,6 @@ export async function createCategoryAction(_prevState: FormState, formData: Form
   values.position = Number(values.position)
 
   const { success, error } = schema.safeParse(values)
-
   if (!success) {
     return {
       category: null,

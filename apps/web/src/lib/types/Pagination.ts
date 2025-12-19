@@ -9,6 +9,12 @@ export type PaginationResponse<T> = {
   }
 }
 
+export type PaginationRequest = {
+  page: number
+  limit: number
+  offset: number
+}
+
 export type Pagination = {
   page: number
   limit: number
