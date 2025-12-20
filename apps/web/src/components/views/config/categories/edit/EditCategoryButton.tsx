@@ -1,6 +1,6 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useMutateCategory } from '@/lib/hooks'
 import { Category } from '@/lib/types'
 import {
   Button,
@@ -32,7 +32,8 @@ type EditCategoryButtonProps = {
 
 export const EditCategoryButton = (props: EditCategoryButtonProps) => {
   const { category } = props
-  const { updateCategory } = useDataContext()
+  const { updateMutation } = useMutateCategory()
+  const updateCategory = updateMutation.mutate
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -40,11 +41,11 @@ export const EditCategoryButton = (props: EditCategoryButtonProps) => {
 
   useEffect(() => {
     if (formState.success) {
-      updateCategory(category.id, formState.category)
+      updateCategory(formState.category)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, category.id, updateCategory])
+  }, [formState, updateCategory])
 
   return (
     <Dialog

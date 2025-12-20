@@ -1,6 +1,7 @@
 'use client'
 
 import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useCategories, useMutateCategory } from '@/lib/hooks'
 import {
   DndContext,
   DragEndEvent,
@@ -14,10 +15,12 @@ import { SortableContext, arrayMove, sortableKeyboardCoordinates, verticalListSo
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 import { CategoryTableRow } from './CategoryTableRow'
-import { deleteCategoryAction, updateCategoriesPositionAction } from './actions'
+import { updateCategoriesPositionAction } from './actions'
 
 export const CategoryTable = () => {
-  const { categories, removeCategory, updateCategory } = useDataContext()
+  const { data: categories } = useCategories()
+  const { deleteMutation } = useMutateCategory()
+  const { updateCategory } = useDataContext()
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -85,9 +88,8 @@ export const CategoryTable = () => {
               <CategoryTableRow
                 key={category.id}
                 category={category}
-                onDelete={async () => {
-                  await deleteCategoryAction(category)
-                  removeCategory(category.id)
+                onDelete={() => {
+                  deleteMutation.mutate(category)
                 }}
               />
             ))}

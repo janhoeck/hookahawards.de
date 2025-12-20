@@ -7,7 +7,7 @@ import { ClipCategory } from './clip/ClipCategory'
 import { SurveyCategory } from './survey/SurveyCategory'
 
 export const CategoriesSection = () => {
-  const { isPending, error, data } = useCategories()
+  const { isPending, error, data: categories } = useCategories()
 
   if (isPending || error) {
     return null
@@ -15,14 +15,12 @@ export const CategoriesSection = () => {
 
   return (
     <section className='flex flex-col space-y-40'>
-      {data.pages
-        .flatMap((page) => page.items)
-        .map((category) => (
-          <Fragment key={category.id}>
-            {category.type === 'clip' && <ClipCategory category={category} />}
-            {category.type === 'survey' && <SurveyCategory category={category} />}
-          </Fragment>
-        ))}
+      {categories.map((category) => (
+        <Fragment key={category.id}>
+          {category.type === 'clip' && <ClipCategory category={category} />}
+          {category.type === 'survey' && <SurveyCategory category={category} />}
+        </Fragment>
+      ))}
     </section>
   )
 }
