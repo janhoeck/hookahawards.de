@@ -1,6 +1,5 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
 import { useCategories, useMutateCategory } from '@/lib/hooks'
 import {
   DndContext,
@@ -19,8 +18,8 @@ import { updateCategoriesPositionAction } from './actions'
 
 export const CategoryTable = () => {
   const { data: categories } = useCategories()
-  const { deleteMutation } = useMutateCategory()
-  const { updateCategory } = useDataContext()
+  const { deleteMutation, updateCategoryInCache } = useMutateCategory()
+  const deleteCategory = deleteMutation.mutate
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -51,7 +50,8 @@ export const CategoryTable = () => {
     for (let i = start; i <= end; i++) {
       const category = reorderedCategories[i]
       if (category && category.position !== i) {
-        updateCategory(category.id, { ...category, position: i })
+        console.log({ ...category, position: i })
+        updateCategoryInCache({ ...category, position: i })
       }
     }
 
@@ -89,7 +89,7 @@ export const CategoryTable = () => {
                 key={category.id}
                 category={category}
                 onDelete={() => {
-                  deleteMutation.mutate(category)
+                  deleteCategory(category.id)
                 }}
               />
             ))}

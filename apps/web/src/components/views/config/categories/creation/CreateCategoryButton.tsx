@@ -1,6 +1,6 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useCategories, useMutateCategory } from '@/lib/hooks'
 import {
   Button,
   Dialog,
@@ -26,7 +26,8 @@ const INITIAL_FORM_STATE: FormState = {
 }
 
 export const CreateCategoryButton = () => {
-  const { categories, addCategory } = useDataContext()
+  const { data: categories } = useCategories()
+  const { syncCategoryToCache } = useMutateCategory()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -34,11 +35,11 @@ export const CreateCategoryButton = () => {
 
   useEffect(() => {
     if (formState.success) {
-      addCategory(formState.category)
+      syncCategoryToCache(formState.category)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, addCategory])
+  }, [formState, syncCategoryToCache])
 
   return (
     <Dialog

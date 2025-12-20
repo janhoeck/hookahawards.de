@@ -1,6 +1,6 @@
 'use server'
 
-import { categoryRepository } from '@/lib/db'
+import { updateCategory } from '@/lib/api/categories'
 import { Category } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
@@ -19,7 +19,7 @@ export async function updateCategoryAction(_prevState: FormState, formData: Form
   }
 
   try {
-    const category = await categoryRepository.updateCategory(categoryFormData.id, categoryFormData)
+    const category = await updateCategory(categoryFormData.id, categoryFormData)
     if (!category) {
       throw Error('No category was returned after update')
     }

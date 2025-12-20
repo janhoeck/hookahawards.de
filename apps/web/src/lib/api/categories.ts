@@ -24,3 +24,8 @@ export const updateCategory = async (categoryId: string, updatedCategory: Partia
     .returning()
   return updatedCategories[0]
 }
+
+export const createCategory = async (category: CategoryDraft) => {
+  const createdCategories = await db.insert(categorySchema).values(category).returning()
+  return createdCategories[0]
+}

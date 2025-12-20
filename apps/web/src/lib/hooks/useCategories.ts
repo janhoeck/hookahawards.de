@@ -1,15 +1,22 @@
-import { deleteCategoryById, fetchCategories, updateCategory } from '@/lib/api/categories'
+import { deleteCategoryById, fetchCategories } from '@/lib/api/categories'
 import { Category } from '@/lib/types'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useCallback } from 'react'
+
+export const categoryKeys = {
+  all: ['categories'] as const,
+  lists: () => [...categoryKeys.all, 'list'] as const,
+}
 
 export const useCategories = () => {
   const { data = [], ...rest } = useQuery<Category[]>({
-    staleTime: 5 * 60 * 1000,
-    queryKey: ['categories'],
+    queryKey: categoryKeys.lists(),
     queryFn: async () => {
       const response = await fetchCategories({ page: 1, limit: 50 })
       return response.items
     },
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
   })
   return { data, ...rest }
 }
@@ -17,55 +24,46 @@ export const useCategories = () => {
 export const useMutateCategory = () => {
   const queryClient = useQueryClient()
 
+  const syncCategoryToCache = useCallback(
+    (category: Category) => {
+      queryClient.setQueryData<Category[]>(categoryKeys.lists(), (old = []) => [...old, category])
+    },
+    [queryClient]
+  )
+
+  const updateCategoryInCache = useCallback(
+    (updatedCategory: Category) => {
+      queryClient.setQueryData<Category[]>(categoryKeys.lists(), (old = []) =>
+        old
+          .map((category) => (category.id === updatedCategory.id ? { ...category, ...updatedCategory } : category))
+          .sort((a, b) => a.position - b.position)
+      )
+    },
+    [queryClient]
+  )
+
   const deleteMutation = useMutation({
-    mutationFn: async (category: Category) => deleteCategoryById(category.id),
-    onMutate: async (category: Category) => {
-      // Cancel outgoing refetches
-      await queryClient.cancelQueries({ queryKey: ['categories'] })
+    mutationFn: (categoryId: string) => deleteCategoryById(categoryId),
+    onMutate: async (categoryId: string) => {
+      await queryClient.cancelQueries({ queryKey: categoryKeys.lists() })
+      const previousCategories = queryClient.getQueryData<Category[]>(categoryKeys.lists())
 
-      // Snapshot previous value
-      const previousCategories = queryClient.getQueryData(['categories'])
+      // Optimistic Update
+      queryClient.setQueryData<Category[]>(categoryKeys.lists(), (old = []) =>
+        old.filter((category) => category.id !== categoryId)
+      )
 
-      // Optimistically update
-      queryClient.setQueryData(['categories'], (prevCategories: Category[]) => {
-        return prevCategories.filter((prevCategory) => prevCategory.id !== category.id)
-      })
-
-      // Return context with snapshot
       return { previousCategories }
     },
-    onError: (_err, _deletedCategory, context) => {
-      // Rollback on error
-      queryClient.setQueryData(['categories'], context?.previousCategories)
+    onError: (_error, _variables, context) => {
+      if (context?.previousCategories) {
+        queryClient.setQueryData(categoryKeys.lists(), context.previousCategories)
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: categoryKeys.lists() })
     },
   })
 
-  const updateMutation = useMutation({
-    mutationFn: async (updatedCategory: Category) => updateCategory(updatedCategory.id, updatedCategory),
-    onMutate: async (updatedCategory: Category) => {
-      // Cancel outgoing refetches
-      await queryClient.cancelQueries({ queryKey: ['categories'] })
-      // Snapshot previous value
-      const previousCategories = queryClient.getQueryData(['categories'])
-
-      // Optimistically update
-      queryClient.setQueryData(['categories'], (prevCategories: Category[]) => {
-        return prevCategories.map((prevCategory) => {
-          if (prevCategory.id === updatedCategory.id) {
-            return { ...prevCategory, ...updatedCategory }
-          }
-          return prevCategory
-        })
-      })
-
-      // Return context with snapshot
-      return { previousCategories }
-    },
-    onError: (_err, _deletedCategory, context) => {
-      // Rollback on error
-      queryClient.setQueryData(['categories'], context?.previousCategories)
-    },
-  })
-
-  return { deleteMutation, updateMutation }
+  return { syncCategoryToCache, updateCategoryInCache, deleteMutation }
 }

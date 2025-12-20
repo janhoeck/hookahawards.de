@@ -1,17 +1,11 @@
 'use server'
 
-import { categoryRepository } from '@/lib/db'
-import { Category } from '@/lib/types'
+import { updateCategory } from '@/lib/api/categories'
 import { revalidatePath } from 'next/cache'
-
-export async function deleteCategoryAction(category: Category) {
-  await categoryRepository.deleteCategoryById(category.id)
-  revalidatePath('/', 'layout')
-}
 
 export async function updateCategoriesPositionAction(updates: { id: string; position: number }[]) {
   for (const { id, position } of updates) {
-    await categoryRepository.updateCategory(id, { position })
+    await updateCategory(id, { position })
   }
 
   revalidatePath('/', 'layout')

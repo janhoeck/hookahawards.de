@@ -1,6 +1,6 @@
 'use server'
 
-import { categoryRepository } from '@/lib/db'
+import { createCategory } from '@/lib/api/categories'
 import { CategoryDraft } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
@@ -20,7 +20,7 @@ export async function createCategoryAction(_prevState: FormState, formData: Form
   }
 
   try {
-    const category = await categoryRepository.insertCategory(values)
+    const category = await createCategory(values)
     if (!category) {
       throw new Error('No category was returned after creation.')
     }
