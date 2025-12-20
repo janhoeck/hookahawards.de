@@ -1,8 +1,7 @@
 import { PaginationRequest, PaginationResponse } from '@/lib/types'
 
-export const extractPaginationFromUrl = (url: string): PaginationRequest => {
-  const parsedUrl = new URL(url)
-  const searchParams = parsedUrl.searchParams
+export const extractPaginationFromUrl = (url: URL): PaginationRequest => {
+  const searchParams = url.searchParams
   const page = parseInt(searchParams.get('page') || '1')
   const limit = parseInt(searchParams.get('limit') || '50')
   const offset = (page - 1) * limit

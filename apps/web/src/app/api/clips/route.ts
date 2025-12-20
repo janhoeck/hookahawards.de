@@ -4,19 +4,20 @@ import { buildPaginationResponse, extractPaginationFromUrl } from '@/lib/utils'
 import { eq } from 'drizzle-orm'
 import { NextRequest, NextResponse } from 'next/server'
 
-type Params = Promise<{ categoryId: string }>
+export const GET = async (request: NextRequest) => {
+  const url = new URL(request.url)
+  const { page, limit, offset } = extractPaginationFromUrl(url)
+  const categoryId = url.searchParams.get('categoryId')
 
-export const GET = async (request: NextRequest, { params }: { params: Params }) => {
-  const { page, limit, offset } = extractPaginationFromUrl(request.url)
-  const { categoryId } = await params
+  const where = categoryId ? eq(clipSchema.categoryId, categoryId) : undefined
 
   try {
     const [countResponse, itemsResponse] = await Promise.all([
-      db.$count(clipSchema, eq(clipSchema.categoryId, categoryId)),
+      db.$count(clipSchema, where),
       db.query.clipSchema.findMany({
         limit,
         offset,
-        where: eq(clipSchema.categoryId, categoryId),
+        where,
         with: {
           streamers: true,
         },

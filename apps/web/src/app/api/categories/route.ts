@@ -4,7 +4,7 @@ import { buildPaginationResponse, extractPaginationFromUrl } from '@/lib/utils'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const GET = async (request: NextRequest) => {
-  const { page, limit, offset } = extractPaginationFromUrl(request.url)
+  const { page, limit, offset } = extractPaginationFromUrl(new URL(request.url))
 
   try {
     const [countResponse, itemsResponse] = await Promise.all([
