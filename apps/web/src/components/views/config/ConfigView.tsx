@@ -18,7 +18,7 @@ export const ConfigView = () => {
     <div className='container mx-auto max-w-6xl'>
       <Headline>Konfiguration</Headline>
       <Tabs defaultValue={TabsType.CATEGORIES}>
-        <div className='sticky top-6 z-10 flex justify-center'>
+        <div className='sticky top-6 z-10 mx-auto w-fit'>
           <TabsList>
             <TabsTrigger value={TabsType.CATEGORIES}>Kategorien</TabsTrigger>
             <TabsTrigger value={TabsType.CLIPS}>Clips</TabsTrigger>

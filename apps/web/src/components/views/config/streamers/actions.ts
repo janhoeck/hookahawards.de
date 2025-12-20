@@ -1,10 +1,10 @@
 'use server'
 
-import { streamerRepository } from '@/lib/db'
+import { deleteStreamerById } from '@/lib/api/streamers'
 import { Streamer } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 export async function deleteStreamerAction(streamer: Streamer) {
-  await streamerRepository.deleteStreamerById(streamer.id)
+  await deleteStreamerById(streamer.id)
   revalidatePath('/', 'layout')
 }

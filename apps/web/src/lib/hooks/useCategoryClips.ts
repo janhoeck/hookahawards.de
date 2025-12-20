@@ -1,14 +1,14 @@
-import { fetchClips } from '@/lib/api/clips'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { fetchCategoryClips } from '@/lib/api/clips'
+import { Clip } from '@/lib/types'
+import { useQuery } from '@tanstack/react-query'
 
 export const useCategoryClips = (categoryId: string) => {
-  return useInfiniteQuery({
-    initialPageParam: 1,
+  return useQuery<Clip[]>({
     staleTime: 5 * 60 * 1000,
     queryKey: ['clips', categoryId],
-    queryFn: async ({ pageParam }) => {
-      return fetchClips(categoryId, { page: pageParam, limit: 10 })
+    queryFn: async () => {
+      const response = await fetchCategoryClips(categoryId)
+      return response.items
     },
-    getNextPageParam: ({ pagination }) => (pagination.hasMore ? pagination.page + 1 : undefined),
   })
 }

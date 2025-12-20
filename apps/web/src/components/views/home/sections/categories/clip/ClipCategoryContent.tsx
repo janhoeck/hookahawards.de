@@ -11,7 +11,7 @@ type ClipCategoryContentProps = {
 
 export const ClipCategoryContent = (props: ClipCategoryContentProps) => {
   const { category } = props
-  const { isPending, error, data } = useCategoryClips(category.id)
+  const { isPending, error, data: clips } = useCategoryClips(category.id)
 
   if (isPending || error) {
     return null
@@ -19,7 +19,7 @@ export const ClipCategoryContent = (props: ClipCategoryContentProps) => {
 
   return (
     <ClipCardGrid
-      clips={data.pages.flatMap((page) => page.items)}
+      clips={clips}
       category={category}
     />
   )

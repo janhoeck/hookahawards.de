@@ -1,6 +1,6 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useMutateStreamers } from '@/lib/hooks'
 import {
   Button,
   Dialog,
@@ -26,7 +26,7 @@ const INITIAL_FORM_STATE: FormState = {
 }
 
 export const CreateStreamerButton = () => {
-  const { addStreamer } = useDataContext()
+  const { syncStreamerToCache } = useMutateStreamers()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -34,11 +34,11 @@ export const CreateStreamerButton = () => {
 
   useEffect(() => {
     if (formState.success) {
-      addStreamer(formState.streamer)
+      syncStreamerToCache(formState.streamer)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, syncStreamerToCache])
 
   return (
     <Dialog

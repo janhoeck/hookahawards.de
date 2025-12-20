@@ -1,8 +1,6 @@
-import { Clip, Pagination, PaginationResponse } from '@/lib/types'
+import { Clip, PaginationResponse } from '@/lib/types'
 
-export const fetchClips = async (categoryId: string, pagination: Pagination): Promise<PaginationResponse<Clip>> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/clips?categoryId=${categoryId}&page=${pagination.page}&limit=${pagination.limit}`
-  )
+export const fetchCategoryClips = async (categoryId: string): Promise<PaginationResponse<Clip>> => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/clips?categoryId=${categoryId}`)
   return await response.json()
 }

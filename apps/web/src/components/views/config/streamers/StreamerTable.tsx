@@ -1,13 +1,13 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
 import { DeleteButtonWithConfirm } from '@/components/views/config/components/DeleteButtonWithConfirm'
-import { deleteStreamerAction } from '@/components/views/config/streamers/actions'
+import { useMutateStreamers, useStreamers } from '@/lib/hooks'
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
 
 export const StreamerTable = () => {
-  const { streamers, removeStreamer } = useDataContext()
+  const { data: streamers } = useStreamers()
+  const { deleteMutation } = useMutateStreamers()
 
   return (
     <Table>
@@ -27,9 +27,8 @@ export const StreamerTable = () => {
               <TableCell className='w-[36px]'>
                 <DeleteButtonWithConfirm
                   description={`Bist du sicher, dass du den Streamer "${streamer.name}" wirklich löschen willst?`}
-                  onConfirm={async () => {
-                    await deleteStreamerAction(streamer)
-                    removeStreamer(streamer.id)
+                  onConfirm={() => {
+                    deleteMutation.mutate(streamer.id)
                   }}
                 />
               </TableCell>
