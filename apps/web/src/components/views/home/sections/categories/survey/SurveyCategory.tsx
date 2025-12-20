@@ -12,7 +12,7 @@ type SurveyVotingSectionProps = {
 
 export const SurveyCategory = (props: SurveyVotingSectionProps) => {
   const { category } = props
-  const { isPending, error, data } = useCategorySurveys(category.id)
+  const { isPending, error, data: surveys } = useCategorySurveys(category.id)
 
   if (isPending || error) {
     return null
@@ -20,7 +20,7 @@ export const SurveyCategory = (props: SurveyVotingSectionProps) => {
 
   return (
     <CategoryContainer category={category}>
-      <SurveyOptionGrid surveys={data.pages.flatMap((page) => page.items)} />
+      <SurveyOptionGrid surveys={surveys} />
     </CategoryContainer>
   )
 }

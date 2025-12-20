@@ -32,7 +32,7 @@ type EditCategoryButtonProps = {
 
 export const EditCategoryButton = (props: EditCategoryButtonProps) => {
   const { category } = props
-  const { updateCategoryInCache } = useMutateCategory()
+  const { updateInCache } = useMutateCategory()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -40,11 +40,11 @@ export const EditCategoryButton = (props: EditCategoryButtonProps) => {
 
   useEffect(() => {
     if (formState.success) {
-      updateCategoryInCache(formState.category)
+      updateInCache(formState.category)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, updateCategoryInCache])
+  }, [formState, updateInCache])
 
   return (
     <Dialog

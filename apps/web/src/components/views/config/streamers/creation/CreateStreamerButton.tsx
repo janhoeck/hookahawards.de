@@ -26,7 +26,7 @@ const INITIAL_FORM_STATE: FormState = {
 }
 
 export const CreateStreamerButton = () => {
-  const { syncStreamerToCache } = useMutateStreamers()
+  const { syncToCache } = useMutateStreamers()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -34,11 +34,11 @@ export const CreateStreamerButton = () => {
 
   useEffect(() => {
     if (formState.success) {
-      syncStreamerToCache(formState.streamer)
+      syncToCache(formState.streamer)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, syncStreamerToCache])
+  }, [formState, syncToCache])
 
   return (
     <Dialog

@@ -10,9 +10,9 @@ type StreamerAvatarListProps = {
 
 export const StreamerAvatarList = (props: StreamerAvatarListProps) => {
   const { streamerIds } = props
-  const { data: streamers, error } = useStreamers()
+  const { data: streamers } = useStreamers()
 
-  if (streamerIds.length === 0 || streamers.length === 0 || error) {
+  if (streamerIds.length === 0 || streamers.length === 0) {
     return null
   }
 

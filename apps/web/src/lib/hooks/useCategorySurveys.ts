@@ -1,14 +1,14 @@
 import { fetchSurveys } from '@/lib/api/surveys'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { Survey } from '@/lib/types'
+
+import { useDataFactory } from './factory/useDataFactory'
 
 export const useCategorySurveys = (categoryId: string) => {
-  return useInfiniteQuery({
-    initialPageParam: 1,
-    staleTime: 5 * 60 * 1000,
+  return useDataFactory<Survey>({
     queryKey: ['surveys', categoryId],
-    queryFn: async ({ pageParam }) => {
-      return fetchSurveys(categoryId, { page: pageParam, limit: 10 })
+    queryFn: async () => {
+      const response = await fetchSurveys(categoryId)
+      return response.items
     },
-    getNextPageParam: ({ pagination }) => (pagination.hasMore ? pagination.page + 1 : undefined),
   })
 }

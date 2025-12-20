@@ -18,7 +18,7 @@ import { updateCategoriesPositionAction } from './actions'
 
 export const CategoryTable = () => {
   const { data: categories } = useCategories()
-  const { deleteMutation, updateCategoryInCache } = useMutateCategory()
+  const { deleteMutation, updateInCache } = useMutateCategory()
   const deleteCategory = deleteMutation.mutate
 
   const sensors = useSensors(
@@ -50,8 +50,7 @@ export const CategoryTable = () => {
     for (let i = start; i <= end; i++) {
       const category = reorderedCategories[i]
       if (category && category.position !== i) {
-        console.log({ ...category, position: i })
-        updateCategoryInCache({ ...category, position: i })
+        updateInCache({ ...category, position: i })
       }
     }
 

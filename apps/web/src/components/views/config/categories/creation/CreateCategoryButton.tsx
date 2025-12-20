@@ -27,7 +27,7 @@ const INITIAL_FORM_STATE: FormState = {
 
 export const CreateCategoryButton = () => {
   const { data: categories } = useCategories()
-  const { syncCategoryToCache } = useMutateCategory()
+  const { syncToCache } = useMutateCategory()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -35,11 +35,11 @@ export const CreateCategoryButton = () => {
 
   useEffect(() => {
     if (formState.success) {
-      syncCategoryToCache(formState.category)
+      syncToCache(formState.category)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, syncCategoryToCache])
+  }, [formState, syncToCache])
 
   return (
     <Dialog
