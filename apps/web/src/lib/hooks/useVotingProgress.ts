@@ -1,5 +1,4 @@
-import { useCategories } from '@/lib/hooks/useCategories'
-import { useUserVotes } from '@/lib/hooks/useUserVotes'
+import { useCategories, useUserVotes } from '@/lib/hooks/queries'
 import { useMemo } from 'react'
 
 export const useVotingProgress = () => {
