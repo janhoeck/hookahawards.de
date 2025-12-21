@@ -3,6 +3,7 @@ import { Muted } from '@janhoeck/ui'
 import Link from 'next/link'
 
 import { StreamerAvatar } from './StreamerAvatar'
+import { StreamerAvatarListSkeleton } from './StreamerAvatarListSkeleton'
 
 type StreamerAvatarListProps = {
   streamerIds: string[]
@@ -10,10 +11,14 @@ type StreamerAvatarListProps = {
 
 export const StreamerAvatarList = (props: StreamerAvatarListProps) => {
   const { streamerIds } = props
-  const { data: streamers } = useStreamers()
+  const { isPending, data: streamers } = useStreamers()
 
-  if (streamerIds.length === 0 || streamers.length === 0) {
+  if (streamerIds.length === 0) {
     return null
+  }
+
+  if (isPending) {
+    return <StreamerAvatarListSkeleton amount={streamerIds.length} />
   }
 
   return (
