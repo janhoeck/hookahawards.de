@@ -1,3 +1,5 @@
+'use client'
+
 import { CategoryType, Vote } from '@/lib/types'
 
 export const fetchUserVotes = async (): Promise<Vote[]> => {

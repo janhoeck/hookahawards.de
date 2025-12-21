@@ -1,13 +1,11 @@
+'use server'
+
+import { db } from '@/lib/db'
+import { configSchema } from '@/lib/db/schema'
 import { Config } from '@/lib/types'
 
 export const fetchConfig = async (): Promise<Config> => {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/config`)
-    if (response.ok) {
-      return await response.json()
-    }
-  } catch (error) {
-    console.error(error)
-  }
-  return {}
+  const response = await db.select({ key: configSchema.key, value: configSchema.value }).from(configSchema)
+  const configObject = Object.fromEntries(response.map(({ key, value }) => [key, value]))
+  return configObject as Config
 }

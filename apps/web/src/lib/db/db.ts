@@ -3,7 +3,6 @@ import postgres from 'postgres'
 
 import * as schema from './schema'
 
-const isServerless = true
 const isProduction = process.env.NODE_ENV === 'production'
 
 const dbUrl = process.env.DATABASE_URL
@@ -12,11 +11,11 @@ if (!dbUrl) {
 }
 
 export const postgresClient = postgres(dbUrl, {
-  prepare: !isServerless,
-  max: isServerless ? 1 : 10,
-  idle_timeout: isServerless ? 0 : 300,
+  prepare: false,
+  max: 5,
+  idle_timeout: 0,
   connect_timeout: 5,
-  max_lifetime: isServerless ? 60 * 30 : 60 * 60,
+  max_lifetime: 60 * 30,
   onnotice: isProduction ? undefined : console.log,
   debug: !isProduction,
   transform: {

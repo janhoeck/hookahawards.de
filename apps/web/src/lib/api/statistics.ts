@@ -1,3 +1,5 @@
+'use client'
+
 import { validateBasicAuth } from '@/lib/auth/basic/validateBasicAuth'
 import { Statistics } from '@/lib/types'
 

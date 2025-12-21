@@ -1,16 +1,15 @@
 import { addVote, fetchUserVotes } from '@/lib/api/votes'
+import { useDataFactory } from '@/lib/hooks/queries/factory/useDataFactory'
 import { CategoryType, Vote } from '@/lib/types'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+const queryKey = ['votes'] as const
 
 export const useUserVotes = () => {
-  const { data = [], ...rest } = useQuery({
-    queryKey: ['votes'],
+  return useDataFactory<Vote>({
+    queryKey,
     queryFn: fetchUserVotes,
-    placeholderData: [],
-    staleTime: 5 * 60 * 1000,
-    gcTime: 10 * 60 * 1000,
   })
-  return { data, ...rest }
 }
 
 export const useAddVote = (categoryId: string, referenceId: string, referenceType: CategoryType) => {

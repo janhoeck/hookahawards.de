@@ -3,15 +3,8 @@
 import { validateBasicAuth } from '@/lib/auth/basic/validateBasicAuth'
 import { db } from '@/lib/db'
 import { categorySchema } from '@/lib/db/schema'
-import { Category, CategoryDraft, Pagination, PaginationResponse } from '@/lib/types'
+import { CategoryDraft } from '@/lib/types'
 import { eq } from 'drizzle-orm'
-
-export const fetchCategories = async (pagination: Pagination): Promise<PaginationResponse<Category>> => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/categories?page=${pagination.page}&limit=${pagination.limit}`
-  )
-  return await response.json()
-}
 
 export const deleteCategoryById = async (categoryId: string) => {
   await validateBasicAuth()

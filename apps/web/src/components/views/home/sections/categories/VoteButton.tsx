@@ -1,4 +1,5 @@
 import { useConfigContext } from '@/components/contexts/config/ConfigContext'
+import { useSession } from '@/lib/auth/auth-client'
 import { useAddVote, useUserVotes } from '@/lib/hooks'
 import { CategoryType } from '@/lib/types'
 import { checkVote } from '@/lib/utils'
@@ -17,15 +18,22 @@ type VoteButtonProps = {
 export const VoteButton = (props: VoteButtonProps) => {
   const { className, disabled, categoryId, referenceId, type, label } = props
 
+  const { data } = useSession()
   const { isPending: isFetchPending, data: votes } = useUserVotes()
   const { isPending: isAddVotePending, mutate } = useAddVote(categoryId, referenceId, type)
   const { isVotingPhaseOver } = useConfigContext()
 
   const handleVoteButtonClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.stopPropagation()
+
+    const userId = data?.user?.id
+    if (!userId) {
+      return
+    }
+
     mutate({
       createdAt: new Date(),
-      userId: '',
+      userId,
       categoryId,
       referenceId,
       referenceType: type,
