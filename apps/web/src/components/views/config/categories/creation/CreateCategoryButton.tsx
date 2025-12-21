@@ -1,6 +1,7 @@
 'use client'
 
-import { useCategories, useMutateCategory } from '@/lib/hooks'
+import { useMutateCategory } from '@/lib/hooks'
+import { Category } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -25,8 +26,12 @@ const INITIAL_FORM_STATE: FormState = {
   errors: null,
 }
 
-export const CreateCategoryButton = () => {
-  const { data: categories } = useCategories()
+type CreateCategoryButtonProps = {
+  categories: Category[]
+}
+
+export const CreateCategoryButton = (props: CreateCategoryButtonProps) => {
+  const { categories } = props
   const { syncToCache } = useMutateCategory()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)

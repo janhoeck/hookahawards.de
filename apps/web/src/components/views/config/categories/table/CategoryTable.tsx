@@ -1,6 +1,7 @@
 'use client'
 
-import { useCategories, useMutateCategory } from '@/lib/hooks'
+import { useMutateCategory } from '@/lib/hooks'
+import { Category } from '@/lib/types'
 import {
   DndContext,
   DragEndEvent,
@@ -16,8 +17,12 @@ import { Table, TableBody, TableHead, TableHeader, TableRow } from '@janhoeck/ui
 import { CategoryTableRow } from './CategoryTableRow'
 import { updateCategoriesPositionAction } from './actions'
 
-export const CategoryTable = () => {
-  const { data: categories } = useCategories()
+type CategoryTableProps = {
+  categories: Category[]
+}
+
+export const CategoryTable = (props: CategoryTableProps) => {
+  const { categories } = props
   const { deleteMutation, updateInCache } = useMutateCategory()
   const deleteCategory = deleteMutation.mutate
 

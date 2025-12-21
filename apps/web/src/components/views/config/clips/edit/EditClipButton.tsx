@@ -1,7 +1,7 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Clip } from '@/lib/types'
+import { useMutateClip } from '@/lib/hooks'
+import { Category, Clip, Streamer } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -28,11 +28,13 @@ const INITIAL_FORM_STATE: FormState = {
 
 type EditClipButtonProps = {
   clip: Clip
+  categories: Category[]
+  streamers: Streamer[]
 }
 
 export const EditClipButton = (props: EditClipButtonProps) => {
-  const { clip } = props
-  const { categories, streamers, updateClip } = useDataContext()
+  const { clip, categories, streamers } = props
+  const { updateInCache } = useMutateClip()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -42,11 +44,11 @@ export const EditClipButton = (props: EditClipButtonProps) => {
 
   useEffect(() => {
     if (formState.success) {
-      updateClip(clip.id, formState.clip)
+      updateInCache(formState.clip)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, clip.id, updateClip])
+  }, [formState, updateInCache])
 
   return (
     <Dialog

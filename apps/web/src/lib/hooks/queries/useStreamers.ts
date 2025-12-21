@@ -6,14 +6,16 @@ import { useMutationFactory } from './factory/useMutationFactory'
 
 const queryKey = ['streamers'] as const
 
+export const getStreamersQuery = () => ({
+  queryKey,
+  queryFn: fetchStreamers,
+})
+
 export const useStreamers = () => {
-  return useDataFactory<Streamer>({
-    queryKey,
-    queryFn: fetchStreamers,
-  })
+  return useDataFactory<Streamer>(getStreamersQuery())
 }
 
-export const useMutateStreamers = () => {
+export const useMutateStreamer = () => {
   return useMutationFactory({
     queryKey,
     deleteMutationFn: (streamerId: string) => deleteStreamerById(streamerId),

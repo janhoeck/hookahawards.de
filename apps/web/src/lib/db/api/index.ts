@@ -1,6 +1,0 @@
-export * from './categories'
-export * from './clips'
-export * from './surveys'
-export * from './votes'
-export * from './config'
-export * from './streamers'

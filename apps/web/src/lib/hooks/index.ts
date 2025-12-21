@@ -1,3 +1,3 @@
 export * from './queries'
-export * from './useWhyDidYouUpdate'
+export { default as useWhyDidYouUpdate } from './useWhyDidYouUpdate'
 export * from './useVotingProgress'

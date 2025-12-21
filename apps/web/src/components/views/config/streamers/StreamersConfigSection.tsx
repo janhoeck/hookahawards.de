@@ -8,7 +8,7 @@ import { StreamerTableContainer } from './StreamerTableContainer'
 import { CreateStreamerButton } from './creation/CreateStreamerButton'
 
 export const StreamersConfigSection = () => {
-  const { isPending } = useStreamers()
+  const { data: streamers, isPending } = useStreamers()
 
   if (isPending) {
     return <ConfigSectionSkeleton />
@@ -20,7 +20,7 @@ export const StreamersConfigSection = () => {
         <H3 className='mb-6'>Streamer</H3>
         <CreateStreamerButton />
       </div>
-      <StreamerTableContainer />
+      <StreamerTableContainer streamers={streamers} />
     </section>
   )
 }

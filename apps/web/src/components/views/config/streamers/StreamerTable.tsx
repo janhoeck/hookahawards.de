@@ -2,12 +2,17 @@
 
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
 import { DeleteButtonWithConfirm } from '@/components/views/config/components/DeleteButtonWithConfirm'
-import { useMutateStreamers, useStreamers } from '@/lib/hooks'
+import { useMutateStreamer } from '@/lib/hooks'
+import { Streamer } from '@/lib/types'
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@janhoeck/ui'
 
-export const StreamerTable = () => {
-  const { data: streamers } = useStreamers()
-  const { deleteMutation } = useMutateStreamers()
+type StreamerTableProps = {
+  streamers: Streamer[]
+}
+
+export const StreamerTable = (props: StreamerTableProps) => {
+  const { streamers } = props
+  const { deleteMutation } = useMutateStreamer()
 
   return (
     <Table>

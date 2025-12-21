@@ -1,6 +1,6 @@
 'use server'
 
-import { clipRepository } from '@/lib/db'
+import { createClip } from '@/lib/api/clips'
 import { ClipDraftWithStreamers } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
@@ -19,7 +19,7 @@ export async function createClipAction(_prevState: FormState, formData: FormData
   }
 
   try {
-    const clip = await clipRepository.insertClip(data)
+    const clip = await createClip(data)
     if (!clip) {
       throw new Error('No clip was returned after creation.')
     }

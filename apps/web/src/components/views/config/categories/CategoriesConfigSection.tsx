@@ -8,7 +8,7 @@ import { CategoryTableContainer } from './CategoryTableContainer'
 import { CreateCategoryButton } from './creation/CreateCategoryButton'
 
 export const CategoriesConfigSection = () => {
-  const { isPending } = useCategories()
+  const { data: categories, isPending } = useCategories()
 
   if (isPending) {
     return <ConfigSectionSkeleton />
@@ -18,9 +18,9 @@ export const CategoriesConfigSection = () => {
     <section>
       <div className='flex justify-between'>
         <H3 className='mb-6'>Kategorien</H3>
-        <CreateCategoryButton />
+        <CreateCategoryButton categories={categories} />
       </div>
-      <CategoryTableContainer />
+      <CategoryTableContainer categories={categories} />
     </section>
   )
 }

@@ -13,8 +13,7 @@ export function useDataFactory<T extends Identifiable>(options: Options<T>) {
   const { data = [], ...rest } = useQuery<T[]>({
     queryKey: queryKey,
     queryFn: queryFn,
-    staleTime: 5 * 60 * 1000,
-    gcTime: 10 * 60 * 1000,
+    notifyOnChangeProps: ['data', 'error', 'isPending'],
   })
   return { data, ...rest }
 }

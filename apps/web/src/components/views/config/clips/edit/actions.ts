@@ -1,6 +1,6 @@
 'use server'
 
-import { clipRepository } from '@/lib/db'
+import { updateClip } from '@/lib/api/clips'
 import { Clip } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
@@ -19,7 +19,7 @@ export async function updateClipAction(_prevState: FormState, formData: FormData
   }
 
   try {
-    const clip = await clipRepository.updateClip(data)
+    const clip = await updateClip(data)
     if (!clip) {
       throw new Error('No clip was returned after update.')
     }

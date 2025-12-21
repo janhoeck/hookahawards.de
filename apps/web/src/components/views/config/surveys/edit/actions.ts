@@ -1,6 +1,6 @@
 'use server'
 
-import { surveyRepository } from '@/lib/db'
+import { updateSurvey } from '@/lib/api/surveys'
 import { Survey } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
@@ -19,7 +19,7 @@ export async function updateSurveyAction(_prevState: FormState, formData: FormDa
   }
 
   try {
-    const survey = await surveyRepository.updateSurvey(surveyFormData)
+    const survey = await updateSurvey(surveyFormData)
     if (!survey) {
       throw new Error('No survey was returned after update.')
     }

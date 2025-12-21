@@ -33,16 +33,16 @@ export function useMutationFactory<T extends Identifiable>(options: Options<T>) 
     mutationFn: deleteMutationFn,
     onMutate: async (itemId: string) => {
       await queryClient.cancelQueries({ queryKey })
-      const previousItems = queryClient.getQueryData<T[]>(queryKey)
+      const previous = queryClient.getQueryData<T[]>(queryKey)
 
       // Optimistic Update
       queryClient.setQueryData<T[]>(queryKey, (old = []) => old.filter((item) => item.id !== itemId))
 
-      return { previousItems }
+      return { previous }
     },
     onError: (_error, _variables, context) => {
-      if (context?.previousItems) {
-        queryClient.setQueryData(queryKey, context.previousItems)
+      if (context?.previous) {
+        queryClient.setQueryData(queryKey, context.previous)
       }
     },
     onSettled: () => {

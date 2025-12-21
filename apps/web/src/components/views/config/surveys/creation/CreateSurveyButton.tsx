@@ -1,6 +1,7 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useMutateSurvey } from '@/lib/hooks'
+import { Category } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -25,8 +26,13 @@ const INITIAL_FORM_STATE: FormState = {
   errors: null,
 }
 
-export const CreateSurveyButton = () => {
-  const { categories, addSurvey } = useDataContext()
+type CreateSurveyButtonProps = {
+  categories: Category[]
+}
+
+export const CreateSurveyButton = (props: CreateSurveyButtonProps) => {
+  const { categories } = props
+  const { syncToCache } = useMutateSurvey()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -37,11 +43,11 @@ export const CreateSurveyButton = () => {
 
   useEffect(() => {
     if (formState.success) {
-      addSurvey(formState.survey)
+      syncToCache(formState.survey)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, addSurvey])
+  }, [formState, syncToCache])
 
   return (
     <Dialog

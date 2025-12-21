@@ -1,6 +1,6 @@
 'use client'
 
-import { useMutateStreamers } from '@/lib/hooks'
+import { useMutateStreamer } from '@/lib/hooks'
 import {
   Button,
   Dialog,
@@ -26,7 +26,7 @@ const INITIAL_FORM_STATE: FormState = {
 }
 
 export const CreateStreamerButton = () => {
-  const { syncToCache } = useMutateStreamers()
+  const { syncToCache } = useMutateStreamer()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)

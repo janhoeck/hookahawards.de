@@ -1,5 +1,6 @@
 'use server'
 
+import { validateBasicAuth } from '@/lib/auth/basic/validateBasicAuth'
 import { db } from '@/lib/db'
 import { categorySchema } from '@/lib/db/schema'
 import { Category, CategoryDraft, Pagination, PaginationResponse } from '@/lib/types'
@@ -13,10 +14,14 @@ export const fetchCategories = async (pagination: Pagination): Promise<Paginatio
 }
 
 export const deleteCategoryById = async (categoryId: string) => {
+  await validateBasicAuth()
+
   return db.delete(categorySchema).where(eq(categorySchema.id, categoryId))
 }
 
 export const updateCategory = async (categoryId: string, updatedCategory: Partial<CategoryDraft>) => {
+  await validateBasicAuth()
+
   const updatedCategories = await db
     .update(categorySchema)
     .set(updatedCategory)
@@ -26,6 +31,8 @@ export const updateCategory = async (categoryId: string, updatedCategory: Partia
 }
 
 export const createCategory = async (category: CategoryDraft) => {
+  await validateBasicAuth()
+
   const createdCategories = await db.insert(categorySchema).values(category).returning()
   return createdCategories[0]
 }
