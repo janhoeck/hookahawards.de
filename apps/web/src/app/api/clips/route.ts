@@ -14,12 +14,16 @@ export const GET = async (request: NextRequest) => {
   try {
     const [countResponse, itemsResponse] = await Promise.all([
       db.$count(clipSchema, where),
-      db.query.clipSchema.findMany({
+      await db.query.clipSchema.findMany({
         limit,
         offset,
         where,
         with: {
-          streamers: true,
+          streamers: {
+            columns: {
+              streamerId: true,
+            },
+          },
         },
       }),
     ])

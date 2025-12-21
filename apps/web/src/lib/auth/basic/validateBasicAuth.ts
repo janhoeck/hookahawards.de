@@ -12,10 +12,8 @@ function safeCompare(a: string, b: string): boolean {
 
   if (bufferA.length !== bufferB.length) {
     // Use a dummy comparison to keep timing consistent
-    crypto.timingSafeEqual(
-      Buffer.alloc(Math.max(bufferA.length, bufferB.length)),
-      Buffer.alloc(Math.max(bufferA.length, bufferB.length))
-    )
+    const dummyBuffer = Buffer.alloc(32)
+    crypto.timingSafeEqual(dummyBuffer, dummyBuffer)
     return false
   }
 
@@ -44,7 +42,7 @@ export async function validateBasicAuth(authHeader?: string | null): Promise<voi
   // Only enforce in production
   const nodeEnv = process.env.NODE_ENV || 'development'
   if (nodeEnv !== 'production') {
-    //return
+    return // Skip auth in development
   }
 
   // Get credentials from environment

@@ -7,7 +7,7 @@ import { z } from 'zod'
 type Params = Promise<{ categoryId: string }>
 
 const bodySchema = z.object({
-  referenceId: z.string(),
+  referenceId: z.uuid(),
   referenceType: z.enum(['clip', 'survey']),
 })
 

@@ -1,14 +1,13 @@
+import { db } from '@/lib/db/db'
 import { betterAuth } from 'better-auth'
+import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { nextCookies } from 'better-auth/next-js'
-import { Pool } from 'pg'
 
 export const runtime = 'nodejs'
 
 export const auth = betterAuth({
-  database: new Pool({
-    connectionString: process.env.DATABASE_URL as string,
-    max: 10,
-    idleTimeoutMillis: 30000,
+  database: drizzleAdapter(db, {
+    provider: 'pg',
   }),
   baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL as string,
   emailAndPassword: {
