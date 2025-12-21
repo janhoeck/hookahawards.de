@@ -1,4 +1,4 @@
-import { Category, Clip, Survey, Vote } from '@janhoeck/domain'
+import { Category, Clip, Survey, Vote } from '@/lib/types'
 
 export const mostVotesForCategory = (category: Category, items: (Clip | Survey)[], votes: Vote[]) => {
   const voteCountForCategory = votes.reduce<Record<string, number>>((acc, vote) => {
@@ -14,7 +14,7 @@ export const mostVotesForCategory = (category: Category, items: (Clip | Survey)[
 
   const maxVotes = Math.max(...Object.values(voteCountForCategory))
   const mostVotedItemIds = Object.entries(voteCountForCategory)
-    .filter(([_, count]) => count === maxVotes)
+    .filter(([, count]) => count === maxVotes)
     .map(([itemId]) => itemId)
 
   return {

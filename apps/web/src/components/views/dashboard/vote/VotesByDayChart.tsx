@@ -1,10 +1,10 @@
 'use client'
 
+import { VotesPerDayStatistics } from '@/lib/types'
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@janhoeck/ui'
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
 
-import { useDataContext } from '../../../contexts/data/DataContext'
-import { buildChartData, groupVotesByDay } from './utils'
+import { buildChartData } from './utils'
 
 const chartConfig = {
   amount: {
@@ -13,10 +13,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export const VotesByDayChart = () => {
-  const { votes } = useDataContext()
+export type VotesByDayChartProps = {
+  votesPerDay: VotesPerDayStatistics
+}
 
-  const data = buildChartData(groupVotesByDay(votes))
+export const VotesByDayChart = (props: VotesByDayChartProps) => {
+  const { votesPerDay } = props
+  const data = buildChartData(votesPerDay)
 
   return (
     <ChartContainer

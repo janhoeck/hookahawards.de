@@ -1,7 +1,7 @@
 'use server'
 
-import { streamerRepository } from '@/lib/db/db'
-import { SurveyDraft } from '@janhoeck/domain'
+import { createStreamer } from '@/lib/api/streamers'
+import { SurveyDraft } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 import { FormState, schema } from './schema'
@@ -19,7 +19,7 @@ export async function createStreamerAction(_prevState: FormState, formData: Form
   }
 
   try {
-    const streamer = await streamerRepository.insertStreamer(data)
+    const streamer = await createStreamer(data)
     if (!streamer) {
       throw new Error('No streamer was returned after creation.')
     }

@@ -1,7 +1,7 @@
 'use server'
 
-import { surveyRepository } from '@/lib/db/db'
-import { SurveyDraft } from '@janhoeck/domain'
+import { createSurvey } from '@/lib/api/surveys'
+import { SurveyDraft } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 import { FormState, schema } from './schema'
@@ -19,7 +19,7 @@ export async function createSurveyAction(_prevState: FormState, formData: FormDa
   }
 
   try {
-    const survey = await surveyRepository.insertSurvey(data)
+    const survey = await createSurvey(data)
     if (!survey) {
       throw new Error('No survey was returned after creation.')
     }

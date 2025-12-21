@@ -1,4 +1,4 @@
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 
 import { CategoryContainer } from '../CategoryContainer'
 import { ClipCategoryContent } from './ClipCategoryContent'

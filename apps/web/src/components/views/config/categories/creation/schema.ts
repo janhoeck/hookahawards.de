@@ -1,4 +1,4 @@
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 import { z } from 'zod'
 
 export const schema = z.object({
@@ -9,7 +9,7 @@ export const schema = z.object({
   type: z.enum(['clip', 'survey'], {
     error: 'Du musst einen Typ angeben',
   }),
-  position: z.number().min(1),
+  position: z.number().min(0),
 })
 
 export type FormState =

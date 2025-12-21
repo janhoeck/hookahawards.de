@@ -1,8 +1,9 @@
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useStreamers } from '@/lib/hooks'
 import { Muted } from '@janhoeck/ui'
 import Link from 'next/link'
 
 import { StreamerAvatar } from './StreamerAvatar'
+import { StreamerAvatarListSkeleton } from './StreamerAvatarListSkeleton'
 
 type StreamerAvatarListProps = {
   streamerIds: string[]
@@ -10,10 +11,14 @@ type StreamerAvatarListProps = {
 
 export const StreamerAvatarList = (props: StreamerAvatarListProps) => {
   const { streamerIds } = props
-  const { streamers } = useDataContext()
+  const { isPending, data: streamers } = useStreamers()
 
   if (streamerIds.length === 0) {
     return null
+  }
+
+  if (isPending) {
+    return <StreamerAvatarListSkeleton amount={streamerIds.length} />
   }
 
   return (
@@ -22,13 +27,13 @@ export const StreamerAvatarList = (props: StreamerAvatarListProps) => {
         {streamerIds.map((streamerId) => (
           <StreamerAvatar
             key={streamerId}
-            username={streamers.find((streamer) => streamer.id === streamerId)!.name}
+            username={streamers.find((streamer) => streamer.id === streamerId)?.name ?? ''}
           />
         ))}
       </div>
       <Muted>
         {streamerIds.flatMap((streamerId, index) => {
-          const username = streamers.find((streamer) => streamer.id === streamerId)!.name
+          const username = streamers.find((streamer) => streamer.id === streamerId)?.name ?? ''
           return [
             <Link
               key={streamerId}

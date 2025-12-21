@@ -1,9 +1,10 @@
 import { useConfigContext } from '@/components/contexts/config/ConfigContext'
-import { useVotesContext } from '@/components/contexts/votes/VotesContext'
-import { checkVote } from '@/utils/check-vote'
-import { CategoryType } from '@janhoeck/domain'
+import { useSession } from '@/lib/auth/auth-client'
+import { useAddVote, useUserVotes } from '@/lib/hooks'
+import { CategoryType } from '@/lib/types'
+import { checkVote } from '@/lib/utils'
 import { Button } from '@janhoeck/ui'
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEventHandler } from 'react'
 
 type VoteButtonProps = {
   className?: string
@@ -17,16 +18,26 @@ type VoteButtonProps = {
 export const VoteButton = (props: VoteButtonProps) => {
   const { className, disabled, categoryId, referenceId, type, label } = props
 
-  const [isVotePending, setVotePending] = useState<boolean>(false)
-  const { votes, isLoading, createVote } = useVotesContext()
+  const { data } = useSession()
+  const { isPending: isFetchPending, data: votes } = useUserVotes()
+  const { isPending: isAddVotePending, mutate } = useAddVote(categoryId, referenceId, type)
   const { isVotingPhaseOver } = useConfigContext()
 
   const handleVoteButtonClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
     event.stopPropagation()
 
-    setVotePending(true)
-    await createVote(categoryId, referenceId, type)
-    setVotePending(false)
+    const userId = data?.user?.id
+    if (!userId) {
+      return
+    }
+
+    mutate({
+      createdAt: new Date(),
+      userId,
+      categoryId,
+      referenceId,
+      referenceType: type,
+    })
   }
 
   const voted = checkVote(votes, referenceId)
@@ -35,7 +46,7 @@ export const VoteButton = (props: VoteButtonProps) => {
     <Button
       className={className}
       variant={voted ? 'default' : 'outline'}
-      disabled={disabled || isLoading || isVotePending || isVotingPhaseOver}
+      disabled={disabled || isFetchPending || isAddVotePending || isVotingPhaseOver}
       onClick={handleVoteButtonClick}
     >
       {label(voted)}

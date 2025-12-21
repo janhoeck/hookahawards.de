@@ -1,4 +1,4 @@
-import { Category, Clip, Streamer } from '@janhoeck/domain'
+import { Category, Clip, Streamer } from '@/lib/types'
 import {
   Field,
   FieldError,

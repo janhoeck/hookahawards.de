@@ -1,15 +1,22 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { shortenText } from '@/utils/shorten-text'
+import { useMutateSurvey } from '@/lib/hooks'
+import { Category, Survey } from '@/lib/types'
+import { shortenText } from '@/lib/utils'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 import { DeleteButtonWithConfirm } from '../components/DeleteButtonWithConfirm'
-import { deleteSurveyAction } from './actions'
 import { EditSurveyButton } from './edit/EditSurveyButton'
 
-export const SurveyTable = () => {
-  const { surveys, categories, removeSurvey } = useDataContext()
+type SurveyTableProps = {
+  categories: Category[]
+  surveys: Survey[]
+}
+
+export const SurveyTable = (props: SurveyTableProps) => {
+  const { categories, surveys } = props
+  const { deleteMutation } = useMutateSurvey()
+  const deleteSurvey = deleteMutation.mutate
 
   return (
     <Table>
@@ -34,9 +41,8 @@ export const SurveyTable = () => {
                   <EditSurveyButton survey={survey} />
                   <DeleteButtonWithConfirm
                     description={`Bist du sicher, dass du die Umfragen Option "${survey.title}" wirklich löschen?`}
-                    onConfirm={async () => {
-                      await deleteSurveyAction(survey)
-                      removeSurvey(survey.id)
+                    onConfirm={() => {
+                      deleteSurvey(survey.id)
                     }}
                   />
                 </div>

@@ -1,19 +1,19 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Card, CardContent, H3, Muted } from '@janhoeck/ui'
+import { useStatistics } from '@/lib/hooks'
+import { Card, CardContent, H3 } from '@janhoeck/ui'
 
 import { VotesByDayChart } from './VotesByDayChart'
 
 export const VoteStatisticSection = () => {
-  const { votes } = useDataContext()
+  const { data } = useStatistics()
 
   return (
     <section>
       <H3 className='mb-6'>Vote Statistik</H3>
       <Card>
         <CardContent className='pl-0'>
-          {votes.length === 0 ? <Muted className='ml-6'>Keine Daten vorhanden</Muted> : <VotesByDayChart />}
+          <VotesByDayChart votesPerDay={data.votesPerDay} />
         </CardContent>
       </Card>
     </section>

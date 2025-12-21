@@ -1,6 +1,6 @@
 'use client'
 
-import { Category, Clip } from '@janhoeck/domain'
+import { Category, Clip } from '@/lib/types'
 import { Variants, motion, stagger } from 'motion/react'
 import { useMemo, useState } from 'react'
 

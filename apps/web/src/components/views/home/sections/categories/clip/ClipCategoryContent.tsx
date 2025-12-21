@@ -1,7 +1,7 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Category } from '@janhoeck/domain'
+import { useCategoryClips } from '@/lib/hooks'
+import { Category } from '@/lib/types'
 
 import ClipCardGrid from './ClipCardGrid'
 
@@ -11,11 +11,15 @@ type ClipCategoryContentProps = {
 
 export const ClipCategoryContent = (props: ClipCategoryContentProps) => {
   const { category } = props
-  const { clips } = useDataContext()
+  const { isPending, error, data: clips } = useCategoryClips(category.id)
+
+  if (isPending || error) {
+    return null
+  }
 
   return (
     <ClipCardGrid
-      clips={clips.filter((clip) => clip.categoryId === category.id)}
+      clips={clips}
       category={category}
     />
   )

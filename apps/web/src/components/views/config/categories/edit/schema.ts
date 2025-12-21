@@ -1,4 +1,4 @@
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 import { z } from 'zod'
 
 export const schema = z.object({

@@ -1,21 +1,11 @@
 'use client'
 
-import { useVotesContext } from '@/components/contexts/votes/VotesContext'
 import { StreamerAvatarList } from '@/components/shared/StreamerAvatar/StreamerAvatarList'
-import { useSession } from '@/lib/auth-client'
-import { checkVote } from '@/utils/check-vote'
-import { extractYoutubeId } from '@/utils/extract-youtube-id'
-import { Clip } from '@janhoeck/domain'
-import {
-  Badge,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  useIsMounted,
-} from '@janhoeck/ui'
+import { useSession } from '@/lib/auth/auth-client'
+import { useUserVotes } from '@/lib/hooks'
+import { Clip } from '@/lib/types'
+import { checkVote, extractYoutubeId } from '@/lib/utils'
+import { Badge, Card, CardContent, CardFooter, CardHeader, CardTitle, useIsMounted } from '@janhoeck/ui'
 import { Check } from 'lucide-react'
 import Image from 'next/image'
 
@@ -28,10 +18,10 @@ type ClipCardProps = {
 
 export const ClipCard = (props: ClipCardProps) => {
   const { clip, onClickAction } = props
-  const { votes } = useVotesContext()
+  const { data: votes } = useUserVotes()
 
   const isMounted = useIsMounted()
-  const { data } = useSession()
+  const { data: session } = useSession()
 
   const clipYouTubeId = extractYoutubeId(clip.link)
   const clipThumbnailUrl = `https://i.ytimg.com/vi/${clipYouTubeId}/0.jpg`
@@ -40,7 +30,7 @@ export const ClipCard = (props: ClipCardProps) => {
 
   return (
     <Card
-      className='group cursor-pointer overflow-hidden pt-0'
+      className='group h-full cursor-pointer overflow-hidden pt-0'
       onClick={() => onClickAction(clip)}
     >
       <CardContent className='px-0'>
@@ -57,9 +47,8 @@ export const ClipCard = (props: ClipCardProps) => {
           />
         </div>
       </CardContent>
-      <CardHeader>
-        <CardTitle>{clip.title}</CardTitle>
-        <CardDescription>{clip.description}</CardDescription>
+      <CardHeader className='grow grid-rows-[min-content_auto]'>
+        <CardTitle className='pb-2'>{clip.title}</CardTitle>
         <StreamerAvatarList streamerIds={clip.streamerIds} />
       </CardHeader>
       <CardFooter className='gap-3 max-sm:flex-col max-sm:items-stretch'>
@@ -68,7 +57,7 @@ export const ClipCard = (props: ClipCardProps) => {
           categoryId={clip.categoryId}
           referenceId={clip.id}
           type='clip'
-          disabled={!isMounted || !data}
+          disabled={!isMounted || !session}
           label={(voted) =>
             voted ? (
               <>

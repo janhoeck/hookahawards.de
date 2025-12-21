@@ -1,15 +1,17 @@
-'use client'
-
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { Streamer } from '@/lib/types'
 
 import { StreamerTable } from './StreamerTable'
 
-export const StreamerTableContainer = () => {
-  const { streamers } = useDataContext()
+type StreamerTableContainerProps = {
+  streamers: Streamer[]
+}
+
+export const StreamerTableContainer = (props: StreamerTableContainerProps) => {
+  const { streamers } = props
 
   if (streamers.length === 0) {
     return <span className='text-muted-foreground'>Keine Streamer vorhanden</span>
   }
 
-  return <StreamerTable />
+  return <StreamerTable streamers={streamers} />
 }

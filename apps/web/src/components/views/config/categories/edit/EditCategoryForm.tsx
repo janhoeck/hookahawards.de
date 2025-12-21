@@ -1,4 +1,4 @@
-import { Category } from '@janhoeck/domain'
+import { Category } from '@/lib/types'
 import { Field, FieldError, FieldGroup, FieldLabel, Input, Textarea } from '@janhoeck/ui'
 import Form from 'next/form'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { Config } from '@janhoeck/domain'
+import { Config } from '@/lib/types'
 import { PropsWithChildren } from 'react'
 
 import { ConfigContext } from './ConfigContext'

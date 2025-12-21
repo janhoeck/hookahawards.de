@@ -1,15 +1,23 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { shortenText } from '@/utils/shorten-text'
+import { useMutateClip } from '@/lib/hooks'
+import { Category, Clip, Streamer } from '@/lib/types'
+import { shortenText } from '@/lib/utils'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@janhoeck/ui'
 
 import { DeleteButtonWithConfirm } from '../components/DeleteButtonWithConfirm'
-import { deleteClipAction } from './actions'
 import { EditClipButton } from './edit/EditClipButton'
 
-export const ClipTable = () => {
-  const { clips, categories, removeClip } = useDataContext()
+type ClipTableProps = {
+  categories: Category[]
+  clips: Clip[]
+  streamers: Streamer[]
+}
+
+export const ClipTable = (props: ClipTableProps) => {
+  const { categories, clips, streamers } = props
+  const { deleteMutation } = useMutateClip()
+  const deleteClip = deleteMutation.mutate
 
   return (
     <Table>
@@ -32,12 +40,15 @@ export const ClipTable = () => {
               <TableCell className='whitespace-normal'>{shortenText(clip.description ?? '')}</TableCell>
               <TableCell>
                 <div className='flex flex-row space-x-2'>
-                  <EditClipButton clip={clip} />
+                  <EditClipButton
+                    clip={clip}
+                    categories={categories}
+                    streamers={streamers}
+                  />
                   <DeleteButtonWithConfirm
                     description={`Bist du sicher, dass du den Clip "${clip.title}" wirklich löschen?`}
-                    onConfirm={async () => {
-                      await deleteClipAction(clip)
-                      removeClip(clip.id)
+                    onConfirm={() => {
+                      deleteClip(clip.id)
                     }}
                   />
                 </div>

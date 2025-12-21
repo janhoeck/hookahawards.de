@@ -1,4 +1,4 @@
-import { Survey } from '@janhoeck/domain'
+import { Survey } from '@/lib/types'
 import { z } from 'zod'
 
 export const schema = z.object({

@@ -1,7 +1,7 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Category } from '@janhoeck/domain'
+import { useCategorySurveys } from '@/lib/hooks'
+import { Category } from '@/lib/types'
 
 import { CategoryContainer } from '../CategoryContainer'
 import { SurveyOptionGrid } from './SurveyOptionGrid'
@@ -12,11 +12,15 @@ type SurveyVotingSectionProps = {
 
 export const SurveyCategory = (props: SurveyVotingSectionProps) => {
   const { category } = props
-  const { surveys } = useDataContext()
+  const { isPending, error, data: surveys } = useCategorySurveys(category.id)
+
+  if (isPending || error) {
+    return null
+  }
 
   return (
     <CategoryContainer category={category}>
-      <SurveyOptionGrid surveys={surveys.filter((survey) => survey.categoryId === category.id)} />
+      <SurveyOptionGrid surveys={surveys} />
     </CategoryContainer>
   )
 }

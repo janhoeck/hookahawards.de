@@ -1,6 +1,7 @@
 'use client'
 
-import { useVotesContext } from '@/components/contexts/votes/VotesContext'
+import { useVotingProgress } from '@/lib/hooks'
+import { getLocalStorageItem, setLocalStorageItem } from '@/lib/utils'
 import {
   Dialog,
   DialogContent,
@@ -12,28 +13,30 @@ import {
   useConfettiCannons,
 } from '@janhoeck/ui'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const CONFETTI_FIRED_KEY = 'voting_confetti_fired'
 
 export const VotingFeedback = () => {
-  const { hasCompletelyVoted } = useVotesContext()
+  const { allCategoriesVoted } = useVotingProgress()
   const { start } = useConfettiCannons()
 
   const [isOpen, setIsOpen] = useState(false)
 
+  const startConfetti = useCallback(() => {
+    start()
+  }, [start])
+
   useEffect(() => {
-    console.log({ hasCompletelyVoted })
-    if (hasCompletelyVoted) {
-      const hasConfettiFired = localStorage.getItem(CONFETTI_FIRED_KEY)
-      console.log({ hasConfettiFired })
+    if (allCategoriesVoted) {
+      const hasConfettiFired = getLocalStorageItem(CONFETTI_FIRED_KEY)
       if (!hasConfettiFired) {
         setIsOpen(true)
-        start()
-        localStorage.setItem(CONFETTI_FIRED_KEY, 'true')
+        startConfetti()
+        setLocalStorageItem(CONFETTI_FIRED_KEY, 'true')
       }
     }
-  }, [hasCompletelyVoted, start])
+  }, [allCategoriesVoted, startConfetti])
 
   return (
     <Dialog

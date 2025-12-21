@@ -1,10 +1,17 @@
 'use client'
 
-import { useDataContext } from '../../../contexts/data/DataContext'
+import { Category, Clip, Streamer } from '@/lib/types'
+
 import { ClipTable } from './ClipTable'
 
-export const ClipTableContainer = () => {
-  const { categories, clips } = useDataContext()
+type ClipTableContainerProps = {
+  categories: Category[]
+  clips: Clip[]
+  streamers: Streamer[]
+}
+
+export const ClipTableContainer = (props: ClipTableContainerProps) => {
+  const { categories, clips, streamers } = props
 
   const hasClipsCategories = categories.some((category) => category.type === 'clip')
   if (!hasClipsCategories) {
@@ -15,5 +22,11 @@ export const ClipTableContainer = () => {
     return <span className='text-muted-foreground'>Keine Clips vorhanden</span>
   }
 
-  return <ClipTable />
+  return (
+    <ClipTable
+      categories={categories}
+      clips={clips}
+      streamers={streamers}
+    />
+  )
 }

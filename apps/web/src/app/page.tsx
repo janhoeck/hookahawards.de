@@ -1,28 +1,15 @@
+'use server'
+
 import { ConfigContextProvider } from '@/components/contexts/config/ConfigContextProvider'
-import { DataContextProvider } from '@/components/contexts/data/DataContextProvider'
 import { HomeView } from '@/components/views/home/HomeView'
-import { categoryRepository, clipRepository, configRepository, streamerRepository, surveyRepository } from '@/lib/db/db'
+import { fetchConfig } from '@/lib/api/config'
 
 export default async function HomePage() {
-  const [config, categories, clips, surveys, streamers] = await Promise.all([
-    configRepository.getConfig(),
-    categoryRepository.getCategories(),
-    clipRepository.getClips(),
-    surveyRepository.getSurveys(),
-    streamerRepository.getStreamers(),
-  ])
+  const config = await fetchConfig()
 
   return (
     <ConfigContextProvider config={config}>
-      <DataContextProvider
-        categories={categories}
-        clips={clips}
-        surveys={surveys}
-        votes={[]}
-        streamers={streamers}
-      >
-        <HomeView />
-      </DataContextProvider>
+      <HomeView />
     </ConfigContextProvider>
   )
 }

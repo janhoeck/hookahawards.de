@@ -1,4 +1,4 @@
-import { Category, Survey } from '@janhoeck/domain'
+import { Category, Survey } from '@/lib/types'
 import {
   Field,
   FieldError,

@@ -1,4 +1,4 @@
-import { Category, Clip } from '@janhoeck/domain'
+import { Clip } from '@/lib/types'
 import { DesktopOnly, DialogContent, DialogDescription, DialogHeader, DialogTitle, MobileOnly } from '@janhoeck/ui'
 
 import { ResponsiveYouTubeVideo } from './ResponsiveYouTubeVideo'
@@ -7,13 +7,12 @@ import { PreviousClipButton } from './buttons/PreviousClipButton'
 
 export type ClipDialogContentProps = {
   clip: Clip
-  category: Category
   onPrevClick?: () => void
   onNextClick?: () => void
 }
 
 export const ClipDialogContent = (props: ClipDialogContentProps) => {
-  const { clip, category, onNextClick, onPrevClick } = props
+  const { clip, onNextClick, onPrevClick } = props
 
   return (
     <DialogContent className='block h-screen max-w-screen! rounded-none bg-transparent'>

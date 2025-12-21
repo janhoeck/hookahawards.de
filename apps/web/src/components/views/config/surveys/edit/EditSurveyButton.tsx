@@ -1,7 +1,7 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Survey } from '@janhoeck/domain'
+import { useCategories, useMutateSurvey } from '@/lib/hooks'
+import { Survey } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -32,7 +32,8 @@ type EditSurveyButtonProps = {
 
 export const EditSurveyButton = (props: EditSurveyButtonProps) => {
   const { survey } = props
-  const { categories, updateSurvey } = useDataContext()
+  const { data: categories } = useCategories()
+  const { updateInCache } = useMutateSurvey()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -42,11 +43,11 @@ export const EditSurveyButton = (props: EditSurveyButtonProps) => {
 
   useEffect(() => {
     if (formState.success) {
-      updateSurvey(survey.id, formState.survey)
+      updateInCache(formState.survey)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, updateInCache])
 
   return (
     <Dialog

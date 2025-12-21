@@ -1,6 +1,7 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { useMutateClip } from '@/lib/hooks'
+import { Category, Streamer } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -25,8 +26,14 @@ const INITIAL_FORM_STATE: FormState = {
   errors: null,
 }
 
-export const CreateClipButton = () => {
-  const { categories, streamers, addClip } = useDataContext()
+type CreateClipButtonProps = {
+  categories: Category[]
+  streamers: Streamer[]
+}
+
+export const CreateClipButton = (props: CreateClipButtonProps) => {
+  const { categories, streamers } = props
+  const { syncToCache } = useMutateClip()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -37,11 +44,11 @@ export const CreateClipButton = () => {
 
   useEffect(() => {
     if (formState.success) {
-      addClip(formState.clip)
+      syncToCache(formState.clip)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState])
+  }, [formState, syncToCache])
 
   return (
     <Dialog

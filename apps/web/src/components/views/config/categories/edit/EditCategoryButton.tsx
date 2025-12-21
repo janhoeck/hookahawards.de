@@ -1,7 +1,7 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
-import { Category } from '@janhoeck/domain'
+import { useMutateCategory } from '@/lib/hooks'
+import { Category } from '@/lib/types'
 import {
   Button,
   Dialog,
@@ -32,7 +32,7 @@ type EditCategoryButtonProps = {
 
 export const EditCategoryButton = (props: EditCategoryButtonProps) => {
   const { category } = props
-  const { updateCategory } = useDataContext()
+  const { updateInCache } = useMutateCategory()
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [initialFormState, setInitialFormState] = useState(INITIAL_FORM_STATE)
@@ -40,11 +40,11 @@ export const EditCategoryButton = (props: EditCategoryButtonProps) => {
 
   useEffect(() => {
     if (formState.success) {
-      updateCategory(category.id, formState.category)
+      updateInCache(formState.category)
       setInitialFormState(INITIAL_FORM_STATE)
       setIsOpen(false)
     }
-  }, [formState, category, updateCategory])
+  }, [formState, updateInCache])
 
   return (
     <Dialog

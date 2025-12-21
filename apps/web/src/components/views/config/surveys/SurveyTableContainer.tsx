@@ -1,11 +1,16 @@
 'use client'
 
-import { useDataContext } from '@/components/contexts/data/DataContext'
+import { Category, Survey } from '@/lib/types'
 
 import { SurveyTable } from './SurveyTable'
 
-export const SurveyTableContainer = () => {
-  const { categories, surveys } = useDataContext()
+type SurveyTableContainerProps = {
+  categories: Category[]
+  surveys: Survey[]
+}
+
+export const SurveyTableContainer = (props: SurveyTableContainerProps) => {
+  const { categories, surveys } = props
 
   const hasSurveyCategories = categories.some((category) => category.type === 'survey')
   if (!hasSurveyCategories) {
@@ -16,5 +21,10 @@ export const SurveyTableContainer = () => {
     return <span className='text-muted-foreground'>Keine Umfragen vorhanden</span>
   }
 
-  return <SurveyTable />
+  return (
+    <SurveyTable
+      categories={categories}
+      surveys={surveys}
+    />
+  )
 }

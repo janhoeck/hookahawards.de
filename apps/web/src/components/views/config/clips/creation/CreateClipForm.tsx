@@ -1,5 +1,6 @@
-'use client' // Falls du Next.js App Router verwendest
-import { Category, Streamer } from '@janhoeck/domain'
+'use client'
+
+import { Category, Streamer } from '@/lib/types'
 import {
   Field,
   FieldError,
