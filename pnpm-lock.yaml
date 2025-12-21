@@ -254,6 +254,9 @@ importers:
       lucide-react:
         specifier: ^0.561.0
         version: 0.561.0(react@19.2.3)
+      motion:
+        specifier: ^12.23.26
+        version: 12.23.26(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-hook-form:
         specifier: ^7.68.0
         version: 7.68.0(react@19.2.3)
@@ -6890,7 +6893,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.15(@types/node@22.19.3)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(lightningcss@1.30.2)(tsx@4.21.0)
+      vitest: 4.0.15(@types/node@25.0.2)(@vitest/ui@4.0.15)(jiti@2.6.1)(jsdom@27.3.0(postcss@8.5.6))(lightningcss@1.30.2)(tsx@4.21.0)
 
   '@vitest/utils@4.0.15':
     dependencies:
