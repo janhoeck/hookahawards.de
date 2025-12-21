@@ -5,16 +5,7 @@ import { useSession } from '@/lib/auth/auth-client'
 import { useUserVotes } from '@/lib/hooks'
 import { Clip } from '@/lib/types'
 import { checkVote, extractYoutubeId } from '@/lib/utils'
-import {
-  Badge,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  useIsMounted,
-} from '@janhoeck/ui'
+import { Badge, Card, CardContent, CardFooter, CardHeader, CardTitle, useIsMounted } from '@janhoeck/ui'
 import { Check } from 'lucide-react'
 import Image from 'next/image'
 
@@ -39,7 +30,7 @@ export const ClipCard = (props: ClipCardProps) => {
 
   return (
     <Card
-      className='group cursor-pointer overflow-hidden pt-0'
+      className='group h-full cursor-pointer overflow-hidden pt-0'
       onClick={() => onClickAction(clip)}
     >
       <CardContent className='px-0'>
@@ -56,9 +47,8 @@ export const ClipCard = (props: ClipCardProps) => {
           />
         </div>
       </CardContent>
-      <CardHeader>
-        <CardTitle>{clip.title}</CardTitle>
-        <CardDescription>{clip.description}</CardDescription>
+      <CardHeader className='grow grid-rows-[min-content_auto]'>
+        <CardTitle className='pb-2'>{clip.title}</CardTitle>
         <StreamerAvatarList streamerIds={clip.streamerIds} />
       </CardHeader>
       <CardFooter className='gap-3 max-sm:flex-col max-sm:items-stretch'>
